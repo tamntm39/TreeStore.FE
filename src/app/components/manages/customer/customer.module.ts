@@ -1,16 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { CustomerComponent } from './customer.component';
+import { CustomerListComponent } from './customer-list/customer-list.component';
+import { CustomerEditComponent } from './customer-edit/customer-edit.component';
 
 
 const routes: Routes = [
-  { path: '', component: CustomerComponent }
+  {
+    path: 'customer-list',
+    component: CustomerListComponent
+  },
+  {
+    path: 'customer-edit',
+    component: CustomerEditComponent
+  }
 ];
 
 @NgModule({
   declarations: [
-    CustomerComponent
+    CustomerListComponent,
+    CustomerEditComponent
   ],
   imports: [
     CommonModule,

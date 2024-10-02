@@ -1,0 +1,57 @@
+<div class="container mt-4">
+    <div class="card p-4">
+      <h4 class="card-title mb-4">Chỉnh sửa thông tin khách hàng</h4>
+      <form (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label for="fullname" class="form-label">Tên khách hàng</label>
+          <input
+            type="text"
+            id="fullname"
+            class="form-control"
+
+            name="fullname"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input
+            type="email"
+            id="email"
+            class="form-control"
+            
+            name="email"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="role" class="form-label">Địa chỉ</label>
+          <input
+            id="address"
+            class="form-select"
+            
+            name="address"
+            required
+          />
+            
+          
+        </div>
+        <div class="mb-3">
+          <label for="createdAt" class="form-label">Số điện thoại</label>
+          <input
+            type="text"
+            id="phone"
+            class="form-control"
+            
+            name="phone"
+            required
+          />
+        </div>
+        <div class="d-flex justify-content-end">
+          <button type="button" class="btn btn-secondary me-2" (click)="onCancel()">Hủy</button>
+          <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

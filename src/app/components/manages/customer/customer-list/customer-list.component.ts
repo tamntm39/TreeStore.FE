@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-customer',
-  templateUrl: './customer.component.html',
-  styleUrls: ['./customer.component.scss']
+  selector: 'app-customer-list',
+  templateUrl: './customer-list.component.html',
+  styleUrls: ['./customer-list.component.scss']
 })
-export class CustomerComponent implements OnInit {
+export class CustomerListComponent implements OnInit {
   listUsers: Array<{ fullname: string, email: string, address: string, phone: string }> = [];
 
   constructor() {}
