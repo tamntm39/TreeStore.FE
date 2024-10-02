@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 // Project import
 import { AdminComponent } from './theme/layouts/admin-layout/admin-layout.component';
 import { GuestComponent } from './theme/layouts/guest/guest.component';
+import { UserAddComponent } from './components/manages/user/user-add/user-add.component';
 
 const routes: Routes = [
   {
@@ -40,7 +41,15 @@ const routes: Routes = [
       {
         path: 'sample-page',
         loadComponent: () => import('./demo/other/sample-page/sample-page.component')
-      }
+      },
+      {
+        path: 'user-add', // Đường dẫn mới cho trang thêm người dùng
+        component: UserAddComponent // Component hiển thị trang thêm người dùng
+      },
+      {
+        path: 'user-edit', // Đường dẫn mới cho trang thêm người dùng
+        component: UserAddComponent // Component hiển thị trang thêm người dùng
+      },
     ]
   },
   {

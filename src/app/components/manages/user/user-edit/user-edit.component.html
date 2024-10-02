@@ -1,0 +1,21 @@
+<form (ngSubmit)="onSubmit()" #userForm="ngForm">
+    <div class="form-group">
+      <label for="fullname">Họ và tên:</label>
+      <input type="text" id="fullname" class="form-control" [(ngModel)]="user.fullname" name="fullname" required>
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" class="form-control" [(ngModel)]="user.email" name="email" required>
+    </div>
+    <div class="form-group">
+      <label for="position">Chức vụ:</label>
+      <input type="text" id="position" class="form-control" [(ngModel)]="user.position" name="position" required>
+    </div>
+    <div class="form-group">
+      <label for="birthday">Ngày tham gia:</label>
+      <input type="date" id="birthday" class="form-control" [(ngModel)]="user.birthday" name="birthday" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Cập nhật</button>
+    <button type="button" (click)="cancel()" class="btn btn-secondary">Hủy</button>
+  </form>
+  
