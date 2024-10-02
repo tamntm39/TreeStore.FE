@@ -1,32 +1,33 @@
-.card {
-    .card-body.dashboard-card {
-      padding: 18px;
-      padding-bottom: 20px;
-    }
-  }
-  
-  .user-group {
-    img {
-      position: relative;
-      width: 35px;
-      height: 35px;
-      border-radius: 50%;
-      z-index: 2;
-      transition: all 0.1s ease-in-out;
-      border: 2px solid var(--bs-white);
-      + img {
-        margin-left: -14px;
-      }
-      &:hover {
-        z-index: 5;
-      }
-    }
-  }
-  
-  .badge-circle {
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-  }
-  
+.col-md-12.col-xl-8 {
+  width: 90%;
+  margin: 0 auto; // Center the container
+}
+
+.btn {
+  margin-right: 20px; // Cách nhau 20px
+}
+
+.btn:hover {
+  opacity: 0.8; // Giảm độ đậm khi hover
+  transition: opacity 0.3s ease; // Hiệu ứng chuyển tiếp
+}
+
+.tbl-card {
+  border-radius: 5px; // Bo góc cho thẻ
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Thêm bóng cho thẻ
+}
+
+.table {
+  width: 100%; // Đảm bảo bảng sử dụng toàn bộ chiều rộng
+  border-collapse: collapse; // Gộp các đường biên
+}
+
+th, td {
+  padding: 12px; // Padding cho các ô
+  text-align: left; // Căn trái
+  border-bottom: 1px solid #ddd; // Đường viền dưới cho các ô
+}
+
+tr:hover {
+  background-color: #f1f1f1; // Màu nền khi hover lên hàng
+}
