@@ -38,6 +38,6 @@ export class CustomerEditComponent implements OnInit {
   }
 
   onCancel(): void {
-    this.router.navigate(['/customer-list']);
+    this.router.navigate(['/manages/customer/customer-list']);
   }
 }
