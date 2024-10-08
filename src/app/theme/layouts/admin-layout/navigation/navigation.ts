@@ -37,6 +37,34 @@ export const NavigationItems: NavigationItem[] = [
     ]
   },
   {
+    id: 'manages',
+    title: 'Quản lý',
+    type: 'group',
+    icon: 'icon-navigation',
+    children: [
+      {
+        id: 'listuser',
+        title: 'Danh sách người dùng',
+        type: 'item',
+        classes: 'nav-item',
+        url: '/manages/user/user-list',
+        icon: 'login',
+        target: false,
+        breadcrumbs: false
+      },
+      {
+        id: 'listuser',
+        title: 'Danh sách khách hàng',
+        type: 'item',
+        classes: 'nav-item',
+        url: '/manages/customer/customer-list',
+        icon: 'login',
+        target: false,
+        breadcrumbs: false
+      } 
+    ]
+  },
+  {
     id: 'authentication',
     title: 'Authentication',
     type: 'group',
