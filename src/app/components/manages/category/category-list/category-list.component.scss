@@ -1,0 +1,57 @@
+.table {
+
+    th,
+    td {
+        text-align: center;
+    }
+
+    th {
+        background-color: #f8f9fa;
+    }
+
+    td button {
+        margin-right: 5px;
+    }
+
+    img {
+        border-radius: 5px; // Thêm một chút bo góc cho hình ảnh
+    }
+
+    .modal {
+        display: none;
+
+        &.show {
+            display: block;
+        }
+    }
+}
+
+.container {
+    position: relative; // Để overlay nằm trong vị trí này
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); // Màu nền tối với độ trong suốt
+    z-index: 999; // Đảm bảo overlay nằm trên các phần tử khác
+}
+
+.modal {
+    position: fixed; // Để modal nằm ở vị trí cố định
+    top: 50%; // Đặt ở giữa theo chiều dọc
+    left: 50%; // Đặt ở giữa theo chiều ngang
+    transform: translate(-50%, -50%); // Dịch modal để căn giữa
+    z-index: 1000; // Đảm bảo modal nằm trên overlay
+    max-width: 500px; // Chiều rộng tối đa của modal
+    width: 90%; // Đặt chiều rộng modal là 90% để responsive
+    border-radius: 8px; // Thêm góc bo cho modal
+    max-height: 90%; // Chiều cao tối đa
+}
+
+.modal-dialog {
+    max-width: 100%; // Đảm bảo dialog không vượt quá chiều rộng màn hình
+}

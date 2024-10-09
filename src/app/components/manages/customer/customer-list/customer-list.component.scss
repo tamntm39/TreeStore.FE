@@ -14,4 +14,9 @@
   .table td button {
     min-width: 50px;
   }
+  .table {
+    width: 100%; // Đảm bảo bảng sử dụng toàn bộ chiều rộng
+    border-collapse: collapse; // Gộp các đường biên
+  }
+  
   

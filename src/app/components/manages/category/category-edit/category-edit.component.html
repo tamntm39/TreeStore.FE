@@ -1,0 +1,23 @@
+<div class="container mt-4">
+    <h2>Chỉnh Sửa Loại Cây</h2>
+    <form (ngSubmit)="updateCategory()">
+      <div class="mb-3">
+        <label for="name" class="form-label">Tên</label>
+        <input type="text" class="form-control" id="name" [(ngModel)]="category.name" name="name" required>
+      </div>
+      <div class="mb-3">
+        <label for="image" class="form-label">Hình Ảnh</label>
+        <input type="file" class="form-control" id="image" (change)="onImageSelected($event)">
+        <div *ngIf="imagePreview" class="mt-2">
+          <img [src]="imagePreview" alt="Preview" class="img-thumbnail" width="100">
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="totalProducts" class="form-label">Tổng Sản Phẩm</label>
+        <input type="number" class="form-control" id="totalProducts" [(ngModel)]="category.totalProducts" name="totalProducts" required>
+      </div>
+      <button type="submit" class="btn btn-primary  me-3">Lưu thay đổi</button>
+      <button type="button" class="btn btn-secondary" (click)="cancel()">Hủy</button>
+    </form>
+  </div>
+  

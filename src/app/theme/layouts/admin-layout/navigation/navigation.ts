@@ -53,11 +53,21 @@ export const NavigationItems: NavigationItem[] = [
         breadcrumbs: false
       },
       {
-        id: 'listuser',
+        id: 'listcustomer',
         title: 'Danh sách khách hàng',
         type: 'item',
         classes: 'nav-item',
         url: '/manages/customer/customer-list',
+        icon: 'login',
+        target: false,
+        breadcrumbs: false
+      },
+      {
+        id: 'listcategory',
+        title: 'Danh sách loại cây',
+        type: 'item',
+        classes: 'nav-item',
+        url: '/manages/category/category-list',
         icon: 'login',
         target: false,
         breadcrumbs: false
