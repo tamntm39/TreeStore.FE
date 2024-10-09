@@ -8,15 +8,15 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { UpdateUserRequest } from '../../models/update-user-request';
-import { UserResultCustomModel } from '../../models/user-result-custom-model';
+import { BooleanResultCustomModel } from '../../models/boolean-result-custom-model';
+import { Category } from '../../models/category';
 
-export interface UpdateUserPut$Plain$Params {
-      body?: UpdateUserRequest
+export interface ApiCategoryCreatePost$Plain$Params {
+      body?: Category
 }
 
-export function updateUserPut$Plain(http: HttpClient, rootUrl: string, params?: UpdateUserPut$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<UserResultCustomModel>> {
-  const rb = new RequestBuilder(rootUrl, updateUserPut$Plain.PATH, 'put');
+export function apiCategoryCreatePost$Plain(http: HttpClient, rootUrl: string, params?: ApiCategoryCreatePost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<BooleanResultCustomModel>> {
+  const rb = new RequestBuilder(rootUrl, apiCategoryCreatePost$Plain.PATH, 'post');
   if (params) {
     rb.body(params.body, 'application/*+json');
   }
@@ -26,9 +26,9 @@ export function updateUserPut$Plain(http: HttpClient, rootUrl: string, params?: 
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<UserResultCustomModel>;
+      return r as StrictHttpResponse<BooleanResultCustomModel>;
     })
   );
 }
 
-updateUserPut$Plain.PATH = '/UpdateUser';
+apiCategoryCreatePost$Plain.PATH = '/api/Category/Create';

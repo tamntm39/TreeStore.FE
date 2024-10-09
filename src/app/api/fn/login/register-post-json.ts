@@ -8,15 +8,15 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { UpdateUserRequest } from '../../models/update-user-request';
-import { UserResultCustomModel } from '../../models/user-result-custom-model';
+import { RegisterRequest } from '../../models/register-request';
+import { RegisterResponseResultCustomModel } from '../../models/register-response-result-custom-model';
 
-export interface UpdateUserPut$Json$Params {
-      body?: UpdateUserRequest
+export interface RegisterPost$Json$Params {
+      body?: RegisterRequest
 }
 
-export function updateUserPut$Json(http: HttpClient, rootUrl: string, params?: UpdateUserPut$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<UserResultCustomModel>> {
-  const rb = new RequestBuilder(rootUrl, updateUserPut$Json.PATH, 'put');
+export function registerPost$Json(http: HttpClient, rootUrl: string, params?: RegisterPost$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<RegisterResponseResultCustomModel>> {
+  const rb = new RequestBuilder(rootUrl, registerPost$Json.PATH, 'post');
   if (params) {
     rb.body(params.body, 'application/*+json');
   }
@@ -26,9 +26,9 @@ export function updateUserPut$Json(http: HttpClient, rootUrl: string, params?: U
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<UserResultCustomModel>;
+      return r as StrictHttpResponse<RegisterResponseResultCustomModel>;
     })
   );
 }
 
-updateUserPut$Json.PATH = '/UpdateUser';
+registerPost$Json.PATH = '/Register';

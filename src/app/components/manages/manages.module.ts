@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { FormsModule } from '@angular/forms'; // Đảm bảo import FormsModule
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // Đảm bảo import FormsModule
 import { UserModule } from './user/user.module';
 
 const routes: Routes = [
@@ -17,6 +17,7 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     FormsModule,
+    ReactiveFormsModule, 
     UserModule // Import UserModule ở đây
   ]
 })

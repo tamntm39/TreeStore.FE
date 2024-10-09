@@ -4,6 +4,7 @@
 
 import { Category } from '../models/category';
 import { ProductOrder } from '../models/product-order';
+import { Review } from '../models/review';
 export interface Product {
   bannerImg?: string | null;
   category?: Category;
@@ -25,6 +26,7 @@ export interface Product {
   productId?: number;
   productOrders?: Array<ProductOrder> | null;
   quantity?: number;
+  reviews?: Array<Review> | null;
   saleOff?: number;
   shortDescription?: string | null;
   slug?: string | null;

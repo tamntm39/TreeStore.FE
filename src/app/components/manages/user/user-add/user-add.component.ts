@@ -14,7 +14,7 @@ export class UserAddComponent {
     birthday: ''
   };
 
-  constructor(private router: Router) {}a
+  constructor(private router: Router) {}
 
   onSubmit() {
     // Logic thêm người dùng

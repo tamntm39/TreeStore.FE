@@ -20,7 +20,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let user of listUsers; let i = index">
+          <tr *ngFor="let user of listUsersDB; let i = index">
             <td>{{ i + 1 }}</td> <!-- Số thứ tự -->
             <td>{{ user.fullname }}</td> <!-- Tên người dùng -->
             <td>{{ user.email }}</td> <!-- Email -->
@@ -28,9 +28,9 @@
             <td>{{ user.birthday }}</td> <!-- Thời gian tạo -->
             <td>
               <!-- Nút sửa -->
-              <button (click)="navigateToEditUser(user.id)" class="btn btn-warning btn-sm">Sửa</button>
+              <button (click)="navigateToEditUser(user.userId)" class="btn btn-warning btn-sm">Sửa</button>
               <!-- Nút xóa -->
-              <button (click)="deleteUser(user.id)" class="btn btn-danger btn-sm">Xóa</button>
+              <button (click)="deleteUser(user.userId)" class="btn btn-danger btn-sm">Xóa</button>
             </td>
           </tr>
         </tbody>

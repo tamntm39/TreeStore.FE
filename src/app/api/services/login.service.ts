@@ -16,6 +16,11 @@ import { LoginPost$Json$Params } from '../fn/login/login-post-json';
 import { loginPost$Plain } from '../fn/login/login-post-plain';
 import { LoginPost$Plain$Params } from '../fn/login/login-post-plain';
 import { LoginResponseResultCustomModel } from '../models/login-response-result-custom-model';
+import { registerPost$Json } from '../fn/login/register-post-json';
+import { RegisterPost$Json$Params } from '../fn/login/register-post-json';
+import { registerPost$Plain } from '../fn/login/register-post-plain';
+import { RegisterPost$Plain$Params } from '../fn/login/register-post-plain';
+import { RegisterResponseResultCustomModel } from '../models/register-response-result-custom-model';
 
 @Injectable({ providedIn: 'root' })
 export class LoginService extends BaseService {
@@ -67,6 +72,53 @@ export class LoginService extends BaseService {
   loginPost$Json(params?: LoginPost$Json$Params, context?: HttpContext): Observable<LoginResponseResultCustomModel> {
     return this.loginPost$Json$Response(params, context).pipe(
       map((r: StrictHttpResponse<LoginResponseResultCustomModel>): LoginResponseResultCustomModel => r.body)
+    );
+  }
+
+  /** Path part for operation `registerPost()` */
+  static readonly RegisterPostPath = '/Register';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `registerPost$Plain()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  registerPost$Plain$Response(params?: RegisterPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<RegisterResponseResultCustomModel>> {
+    return registerPost$Plain(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `registerPost$Plain$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  registerPost$Plain(params?: RegisterPost$Plain$Params, context?: HttpContext): Observable<RegisterResponseResultCustomModel> {
+    return this.registerPost$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<RegisterResponseResultCustomModel>): RegisterResponseResultCustomModel => r.body)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `registerPost$Json()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  registerPost$Json$Response(params?: RegisterPost$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<RegisterResponseResultCustomModel>> {
+    return registerPost$Json(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `registerPost$Json$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  registerPost$Json(params?: RegisterPost$Json$Params, context?: HttpContext): Observable<RegisterResponseResultCustomModel> {
+    return this.registerPost$Json$Response(params, context).pipe(
+      map((r: StrictHttpResponse<RegisterResponseResultCustomModel>): RegisterResponseResultCustomModel => r.body)
     );
   }
 

@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { UserListComponent } from './user-list/user-list.component';
 import { UserAddComponent } from './user-add/user-add.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserEditComponent } from './user-edit/user-edit.component';
 
 const routes: Routes = [
   {
@@ -13,20 +14,20 @@ const routes: Routes = [
   {
     path: 'user-add',
     component: UserAddComponent
-  }
-  ,
+  },
   {
-    path: 'user-edit',
-    component: UserAddComponent
+    path: 'user-edit/:id',
+    component: UserEditComponent
   }
 ];
 
 @NgModule({
-  declarations: [UserListComponent, UserAddComponent],
+  declarations: [UserListComponent, UserAddComponent, UserEditComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    FormsModule // Nhập khẩu FormsModule
+    FormsModule, // Nhập khẩu FormsModule
+    ReactiveFormsModule
   ]
 })
 export class UserModule {}

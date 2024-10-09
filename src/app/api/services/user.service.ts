@@ -11,14 +11,31 @@ import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
 import { StrictHttpResponse } from '../strict-http-response';
 
+import { apiUserActivateAccountPost$Json } from '../fn/user/api-user-activate-account-post-json';
+import { ApiUserActivateAccountPost$Json$Params } from '../fn/user/api-user-activate-account-post-json';
+import { apiUserActivateAccountPost$Plain } from '../fn/user/api-user-activate-account-post-plain';
+import { ApiUserActivateAccountPost$Plain$Params } from '../fn/user/api-user-activate-account-post-plain';
+import { apiUserCreatePost$Json } from '../fn/user/api-user-create-post-json';
+import { ApiUserCreatePost$Json$Params } from '../fn/user/api-user-create-post-json';
+import { apiUserCreatePost$Plain } from '../fn/user/api-user-create-post-plain';
+import { ApiUserCreatePost$Plain$Params } from '../fn/user/api-user-create-post-plain';
+import { apiUserDeactivateAccountPost } from '../fn/user/api-user-deactivate-account-post';
+import { ApiUserDeactivateAccountPost$Params } from '../fn/user/api-user-deactivate-account-post';
+import { apiUserGetUserByIdGet$Json } from '../fn/user/api-user-get-user-by-id-get-json';
+import { ApiUserGetUserByIdGet$Json$Params } from '../fn/user/api-user-get-user-by-id-get-json';
+import { apiUserGetUserByIdGet$Plain } from '../fn/user/api-user-get-user-by-id-get-plain';
+import { ApiUserGetUserByIdGet$Plain$Params } from '../fn/user/api-user-get-user-by-id-get-plain';
 import { apiUserListUserGet$Json } from '../fn/user/api-user-list-user-get-json';
 import { ApiUserListUserGet$Json$Params } from '../fn/user/api-user-list-user-get-json';
 import { apiUserListUserGet$Plain } from '../fn/user/api-user-list-user-get-plain';
 import { ApiUserListUserGet$Plain$Params } from '../fn/user/api-user-list-user-get-plain';
-import { updateUserPut$Json } from '../fn/user/update-user-put-json';
-import { UpdateUserPut$Json$Params } from '../fn/user/update-user-put-json';
-import { updateUserPut$Plain } from '../fn/user/update-user-put-plain';
-import { UpdateUserPut$Plain$Params } from '../fn/user/update-user-put-plain';
+import { apiUserUpdateUserPut$Json } from '../fn/user/api-user-update-user-put-json';
+import { ApiUserUpdateUserPut$Json$Params } from '../fn/user/api-user-update-user-put-json';
+import { apiUserUpdateUserPut$Plain } from '../fn/user/api-user-update-user-put-plain';
+import { ApiUserUpdateUserPut$Plain$Params } from '../fn/user/api-user-update-user-put-plain';
+import { BooleanResultCustomModel } from '../models/boolean-result-custom-model';
+import { StringResultCustomModel } from '../models/string-result-custom-model';
+import { UpdateUserResponseResultCustomModel } from '../models/update-user-response-result-custom-model';
 import { UserListResultCustomModel } from '../models/user-list-result-custom-model';
 import { UserResultCustomModel } from '../models/user-result-custom-model';
 
@@ -26,6 +43,53 @@ import { UserResultCustomModel } from '../models/user-result-custom-model';
 export class UserService extends BaseService {
   constructor(config: ApiConfiguration, http: HttpClient) {
     super(config, http);
+  }
+
+  /** Path part for operation `apiUserCreatePost()` */
+  static readonly ApiUserCreatePostPath = '/api/User/Create';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiUserCreatePost$Plain()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiUserCreatePost$Plain$Response(params?: ApiUserCreatePost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<BooleanResultCustomModel>> {
+    return apiUserCreatePost$Plain(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiUserCreatePost$Plain$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiUserCreatePost$Plain(params?: ApiUserCreatePost$Plain$Params, context?: HttpContext): Observable<BooleanResultCustomModel> {
+    return this.apiUserCreatePost$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<BooleanResultCustomModel>): BooleanResultCustomModel => r.body)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiUserCreatePost$Json()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiUserCreatePost$Json$Response(params?: ApiUserCreatePost$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<BooleanResultCustomModel>> {
+    return apiUserCreatePost$Json(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiUserCreatePost$Json$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiUserCreatePost$Json(params?: ApiUserCreatePost$Json$Params, context?: HttpContext): Observable<BooleanResultCustomModel> {
+    return this.apiUserCreatePost$Json$Response(params, context).pipe(
+      map((r: StrictHttpResponse<BooleanResultCustomModel>): BooleanResultCustomModel => r.body)
+    );
   }
 
   /** Path part for operation `apiUserListUserGet()` */
@@ -75,49 +139,168 @@ export class UserService extends BaseService {
     );
   }
 
-  /** Path part for operation `updateUserPut()` */
-  static readonly UpdateUserPutPath = '/UpdateUser';
+  /** Path part for operation `apiUserUpdateUserPut()` */
+  static readonly ApiUserUpdateUserPutPath = '/api/User/UpdateUser';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `updateUserPut$Plain()` instead.
+   * To access only the response body, use `apiUserUpdateUserPut$Plain()` instead.
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  updateUserPut$Plain$Response(params?: UpdateUserPut$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<UserResultCustomModel>> {
-    return updateUserPut$Plain(this.http, this.rootUrl, params, context);
+  apiUserUpdateUserPut$Plain$Response(params?: ApiUserUpdateUserPut$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<UpdateUserResponseResultCustomModel>> {
+    return apiUserUpdateUserPut$Plain(this.http, this.rootUrl, params, context);
   }
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `updateUserPut$Plain$Response()` instead.
+   * To access the full response (for headers, for example), `apiUserUpdateUserPut$Plain$Response()` instead.
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  updateUserPut$Plain(params?: UpdateUserPut$Plain$Params, context?: HttpContext): Observable<UserResultCustomModel> {
-    return this.updateUserPut$Plain$Response(params, context).pipe(
+  apiUserUpdateUserPut$Plain(params?: ApiUserUpdateUserPut$Plain$Params, context?: HttpContext): Observable<UpdateUserResponseResultCustomModel> {
+    return this.apiUserUpdateUserPut$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<UpdateUserResponseResultCustomModel>): UpdateUserResponseResultCustomModel => r.body)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiUserUpdateUserPut$Json()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiUserUpdateUserPut$Json$Response(params?: ApiUserUpdateUserPut$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<UpdateUserResponseResultCustomModel>> {
+    return apiUserUpdateUserPut$Json(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiUserUpdateUserPut$Json$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiUserUpdateUserPut$Json(params?: ApiUserUpdateUserPut$Json$Params, context?: HttpContext): Observable<UpdateUserResponseResultCustomModel> {
+    return this.apiUserUpdateUserPut$Json$Response(params, context).pipe(
+      map((r: StrictHttpResponse<UpdateUserResponseResultCustomModel>): UpdateUserResponseResultCustomModel => r.body)
+    );
+  }
+
+  /** Path part for operation `apiUserDeactivateAccountPost()` */
+  static readonly ApiUserDeactivateAccountPostPath = '/api/User/DeactivateAccount';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiUserDeactivateAccountPost()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiUserDeactivateAccountPost$Response(params?: ApiUserDeactivateAccountPost$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+    return apiUserDeactivateAccountPost(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiUserDeactivateAccountPost$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiUserDeactivateAccountPost(params?: ApiUserDeactivateAccountPost$Params, context?: HttpContext): Observable<void> {
+    return this.apiUserDeactivateAccountPost$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `apiUserActivateAccountPost()` */
+  static readonly ApiUserActivateAccountPostPath = '/api/User/ActivateAccount';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiUserActivateAccountPost$Plain()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiUserActivateAccountPost$Plain$Response(params?: ApiUserActivateAccountPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<StringResultCustomModel>> {
+    return apiUserActivateAccountPost$Plain(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiUserActivateAccountPost$Plain$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiUserActivateAccountPost$Plain(params?: ApiUserActivateAccountPost$Plain$Params, context?: HttpContext): Observable<StringResultCustomModel> {
+    return this.apiUserActivateAccountPost$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<StringResultCustomModel>): StringResultCustomModel => r.body)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiUserActivateAccountPost$Json()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiUserActivateAccountPost$Json$Response(params?: ApiUserActivateAccountPost$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<StringResultCustomModel>> {
+    return apiUserActivateAccountPost$Json(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiUserActivateAccountPost$Json$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiUserActivateAccountPost$Json(params?: ApiUserActivateAccountPost$Json$Params, context?: HttpContext): Observable<StringResultCustomModel> {
+    return this.apiUserActivateAccountPost$Json$Response(params, context).pipe(
+      map((r: StrictHttpResponse<StringResultCustomModel>): StringResultCustomModel => r.body)
+    );
+  }
+
+  /** Path part for operation `apiUserGetUserByIdGet()` */
+  static readonly ApiUserGetUserByIdGetPath = '/api/User/GetUserById';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiUserGetUserByIdGet$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUserGetUserByIdGet$Plain$Response(params?: ApiUserGetUserByIdGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<UserResultCustomModel>> {
+    return apiUserGetUserByIdGet$Plain(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiUserGetUserByIdGet$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUserGetUserByIdGet$Plain(params?: ApiUserGetUserByIdGet$Plain$Params, context?: HttpContext): Observable<UserResultCustomModel> {
+    return this.apiUserGetUserByIdGet$Plain$Response(params, context).pipe(
       map((r: StrictHttpResponse<UserResultCustomModel>): UserResultCustomModel => r.body)
     );
   }
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `updateUserPut$Json()` instead.
+   * To access only the response body, use `apiUserGetUserByIdGet$Json()` instead.
    *
-   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   * This method doesn't expect any request body.
    */
-  updateUserPut$Json$Response(params?: UpdateUserPut$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<UserResultCustomModel>> {
-    return updateUserPut$Json(this.http, this.rootUrl, params, context);
+  apiUserGetUserByIdGet$Json$Response(params?: ApiUserGetUserByIdGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<UserResultCustomModel>> {
+    return apiUserGetUserByIdGet$Json(this.http, this.rootUrl, params, context);
   }
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `updateUserPut$Json$Response()` instead.
+   * To access the full response (for headers, for example), `apiUserGetUserByIdGet$Json$Response()` instead.
    *
-   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   * This method doesn't expect any request body.
    */
-  updateUserPut$Json(params?: UpdateUserPut$Json$Params, context?: HttpContext): Observable<UserResultCustomModel> {
-    return this.updateUserPut$Json$Response(params, context).pipe(
+  apiUserGetUserByIdGet$Json(params?: ApiUserGetUserByIdGet$Json$Params, context?: HttpContext): Observable<UserResultCustomModel> {
+    return this.apiUserGetUserByIdGet$Json$Response(params, context).pipe(
       map((r: StrictHttpResponse<UserResultCustomModel>): UserResultCustomModel => r.body)
     );
   }

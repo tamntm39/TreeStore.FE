@@ -14,16 +14,16 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let user of listUsers; let i = index">
+            <tr *ngFor="let customer of listCustomersDB; let i = index">
               <td>{{ i + 1 }}</td>
-              <td>{{ user.fullname }}</td>
-              <td>{{ user.email }}</td>
-              <td>{{ user.address }}</td>
-              <td>{{ user.phone }}</td>
+              <td>{{ customer.fullName }}</td>
+              <td>{{ customer.email }}</td>
+              <td>{{ customer.address }}</td>
+              <td>{{ customer.phone }}</td>
               <td class="text-center">
                 <button class="btn btn-warning btn-sm me-2">Đặt lại mật khẩu</button>
                 <button class="btn btn-danger btn-sm me-2">Vô hiệu hóa</button>
-                <button class="btn btn-primary btn-sm" (click)="onEdit()">Chỉnh sửa</button>
+                <button class="btn btn-primary btn-sm" (click)="navigateToEditCustomer(customer.customerId)">Chỉnh sửa</button>
               </td>
             </tr>
           </tbody>
