@@ -15,12 +15,20 @@ import { apiUserActivateAccountPost$Json } from '../fn/user/api-user-activate-ac
 import { ApiUserActivateAccountPost$Json$Params } from '../fn/user/api-user-activate-account-post-json';
 import { apiUserActivateAccountPost$Plain } from '../fn/user/api-user-activate-account-post-plain';
 import { ApiUserActivateAccountPost$Plain$Params } from '../fn/user/api-user-activate-account-post-plain';
+import { apiUserChangeActivePost$Json } from '../fn/user/api-user-change-active-post-json';
+import { ApiUserChangeActivePost$Json$Params } from '../fn/user/api-user-change-active-post-json';
+import { apiUserChangeActivePost$Plain } from '../fn/user/api-user-change-active-post-plain';
+import { ApiUserChangeActivePost$Plain$Params } from '../fn/user/api-user-change-active-post-plain';
 import { apiUserCreatePost$Json } from '../fn/user/api-user-create-post-json';
 import { ApiUserCreatePost$Json$Params } from '../fn/user/api-user-create-post-json';
 import { apiUserCreatePost$Plain } from '../fn/user/api-user-create-post-plain';
 import { ApiUserCreatePost$Plain$Params } from '../fn/user/api-user-create-post-plain';
 import { apiUserDeactivateAccountPost } from '../fn/user/api-user-deactivate-account-post';
 import { ApiUserDeactivateAccountPost$Params } from '../fn/user/api-user-deactivate-account-post';
+import { apiUserGetRolesGet$Json } from '../fn/user/api-user-get-roles-get-json';
+import { ApiUserGetRolesGet$Json$Params } from '../fn/user/api-user-get-roles-get-json';
+import { apiUserGetRolesGet$Plain } from '../fn/user/api-user-get-roles-get-plain';
+import { ApiUserGetRolesGet$Plain$Params } from '../fn/user/api-user-get-roles-get-plain';
 import { apiUserGetUserByIdGet$Json } from '../fn/user/api-user-get-user-by-id-get-json';
 import { ApiUserGetUserByIdGet$Json$Params } from '../fn/user/api-user-get-user-by-id-get-json';
 import { apiUserGetUserByIdGet$Plain } from '../fn/user/api-user-get-user-by-id-get-plain';
@@ -34,10 +42,11 @@ import { ApiUserUpdateUserPut$Json$Params } from '../fn/user/api-user-update-use
 import { apiUserUpdateUserPut$Plain } from '../fn/user/api-user-update-user-put-plain';
 import { ApiUserUpdateUserPut$Plain$Params } from '../fn/user/api-user-update-user-put-plain';
 import { BooleanResultCustomModel } from '../models/boolean-result-custom-model';
+import { RoleListResultCustomModel } from '../models/role-list-result-custom-model';
 import { StringResultCustomModel } from '../models/string-result-custom-model';
 import { UpdateUserResponseResultCustomModel } from '../models/update-user-response-result-custom-model';
 import { UserListResultCustomModel } from '../models/user-list-result-custom-model';
-import { UserResultCustomModel } from '../models/user-result-custom-model';
+import { UserResponseResultCustomModel } from '../models/user-response-result-custom-model';
 
 @Injectable({ providedIn: 'root' })
 export class UserService extends BaseService {
@@ -258,6 +267,53 @@ export class UserService extends BaseService {
     );
   }
 
+  /** Path part for operation `apiUserChangeActivePost()` */
+  static readonly ApiUserChangeActivePostPath = '/api/User/ChangeActive';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiUserChangeActivePost$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUserChangeActivePost$Plain$Response(params?: ApiUserChangeActivePost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<BooleanResultCustomModel>> {
+    return apiUserChangeActivePost$Plain(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiUserChangeActivePost$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUserChangeActivePost$Plain(params?: ApiUserChangeActivePost$Plain$Params, context?: HttpContext): Observable<BooleanResultCustomModel> {
+    return this.apiUserChangeActivePost$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<BooleanResultCustomModel>): BooleanResultCustomModel => r.body)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiUserChangeActivePost$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUserChangeActivePost$Json$Response(params?: ApiUserChangeActivePost$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<BooleanResultCustomModel>> {
+    return apiUserChangeActivePost$Json(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiUserChangeActivePost$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUserChangeActivePost$Json(params?: ApiUserChangeActivePost$Json$Params, context?: HttpContext): Observable<BooleanResultCustomModel> {
+    return this.apiUserChangeActivePost$Json$Response(params, context).pipe(
+      map((r: StrictHttpResponse<BooleanResultCustomModel>): BooleanResultCustomModel => r.body)
+    );
+  }
+
   /** Path part for operation `apiUserGetUserByIdGet()` */
   static readonly ApiUserGetUserByIdGetPath = '/api/User/GetUserById';
 
@@ -267,7 +323,7 @@ export class UserService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiUserGetUserByIdGet$Plain$Response(params?: ApiUserGetUserByIdGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<UserResultCustomModel>> {
+  apiUserGetUserByIdGet$Plain$Response(params?: ApiUserGetUserByIdGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<UserResponseResultCustomModel>> {
     return apiUserGetUserByIdGet$Plain(this.http, this.rootUrl, params, context);
   }
 
@@ -277,9 +333,9 @@ export class UserService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiUserGetUserByIdGet$Plain(params?: ApiUserGetUserByIdGet$Plain$Params, context?: HttpContext): Observable<UserResultCustomModel> {
+  apiUserGetUserByIdGet$Plain(params?: ApiUserGetUserByIdGet$Plain$Params, context?: HttpContext): Observable<UserResponseResultCustomModel> {
     return this.apiUserGetUserByIdGet$Plain$Response(params, context).pipe(
-      map((r: StrictHttpResponse<UserResultCustomModel>): UserResultCustomModel => r.body)
+      map((r: StrictHttpResponse<UserResponseResultCustomModel>): UserResponseResultCustomModel => r.body)
     );
   }
 
@@ -289,7 +345,7 @@ export class UserService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiUserGetUserByIdGet$Json$Response(params?: ApiUserGetUserByIdGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<UserResultCustomModel>> {
+  apiUserGetUserByIdGet$Json$Response(params?: ApiUserGetUserByIdGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<UserResponseResultCustomModel>> {
     return apiUserGetUserByIdGet$Json(this.http, this.rootUrl, params, context);
   }
 
@@ -299,9 +355,56 @@ export class UserService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiUserGetUserByIdGet$Json(params?: ApiUserGetUserByIdGet$Json$Params, context?: HttpContext): Observable<UserResultCustomModel> {
+  apiUserGetUserByIdGet$Json(params?: ApiUserGetUserByIdGet$Json$Params, context?: HttpContext): Observable<UserResponseResultCustomModel> {
     return this.apiUserGetUserByIdGet$Json$Response(params, context).pipe(
-      map((r: StrictHttpResponse<UserResultCustomModel>): UserResultCustomModel => r.body)
+      map((r: StrictHttpResponse<UserResponseResultCustomModel>): UserResponseResultCustomModel => r.body)
+    );
+  }
+
+  /** Path part for operation `apiUserGetRolesGet()` */
+  static readonly ApiUserGetRolesGetPath = '/api/User/GetRoles';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiUserGetRolesGet$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUserGetRolesGet$Plain$Response(params?: ApiUserGetRolesGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<RoleListResultCustomModel>> {
+    return apiUserGetRolesGet$Plain(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiUserGetRolesGet$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUserGetRolesGet$Plain(params?: ApiUserGetRolesGet$Plain$Params, context?: HttpContext): Observable<RoleListResultCustomModel> {
+    return this.apiUserGetRolesGet$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<RoleListResultCustomModel>): RoleListResultCustomModel => r.body)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiUserGetRolesGet$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUserGetRolesGet$Json$Response(params?: ApiUserGetRolesGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<RoleListResultCustomModel>> {
+    return apiUserGetRolesGet$Json(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiUserGetRolesGet$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUserGetRolesGet$Json(params?: ApiUserGetRolesGet$Json$Params, context?: HttpContext): Observable<RoleListResultCustomModel> {
+    return this.apiUserGetRolesGet$Json$Response(params, context).pipe(
+      map((r: StrictHttpResponse<RoleListResultCustomModel>): RoleListResultCustomModel => r.body)
     );
   }
 
