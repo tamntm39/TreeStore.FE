@@ -14,7 +14,7 @@ export class UserListComponent implements OnInit {
   // listUsers = [
   // Dữ liệu mẫu, bạn có thể thay thế bằng dữ liệu thực từ API
   //   { id: 1, fullname: 'Ngô Gia Bảo', email: 'a@example.com', position: 'Admin', birthday: '2000-01-01' },
-  //   { id: 2, fullname: 'Con đỉ Nhất DUy', email: 'b@example.com', position: 'Gay', birthday: '1995-05-05' }
+  //   { id: 2, fullname: 'Nhất DUy', email: 'b@example.com', position: 'Gay', birthday: '1995-05-05' }
   // ];
 
   constructor(
