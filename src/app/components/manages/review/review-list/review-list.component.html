@@ -1,0 +1,9 @@
+<div class="review-container">
+  <h2>Đánh giá của khách hàng</h2>
+  <div *ngFor="let review of reviews" class="review-card">
+    <h3>{{ review.customerName }}</h3>
+    <p><strong>Xếp hạng:</strong> {{ review.rating }}/5</p>
+    <p><strong>Bình luận:</strong> {{ review.comment }}</p>
+    <button (click)="deleteReview(review)">Xóa</button> <!-- Nút xóa -->
+  </div>
+</div>

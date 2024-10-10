@@ -1,0 +1,25 @@
+<form (ngSubmit)="onSubmit()" #treeForm="ngForm">
+    <div class="form-group">
+      <label for="treeName">Tên cây:</label>
+      <input type="text" id="treeName" class="form-control" [(ngModel)]="tree.name" name="name" required>
+    </div>
+    <div class="form-group">
+      <label for="treeType">Loại cây:</label>
+      <input type="text" id="treeType" class="form-control" [(ngModel)]="tree.type" name="type" required>
+    </div>
+    <div class="form-group">
+      <label for="quantity">Số lượng:</label>
+      <input type="number" id="quantity" class="form-control" [(ngModel)]="tree.quantity" name="quantity" required>
+    </div>
+    <div class="form-group">
+      <label for="price">Giá:</label>
+      <input type="number" id="price" class="form-control" [(ngModel)]="tree.price" name="price" required>
+    </div>
+    <div class="form-group">
+      <label for="image">Hình ảnh:</label>
+      <input type="file" id="image" class="form-control" (change)="onFileSelected($event)" name="image" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Cập nhật</button>
+    <button type="button" (click)="cancel()" class="btn btn-secondary">Hủy</button>
+  </form>
+  

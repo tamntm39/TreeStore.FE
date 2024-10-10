@@ -61,6 +61,26 @@ export const NavigationItems: NavigationItem[] = [
         icon: 'login',
         target: false,
         breadcrumbs: false
+      },
+      {
+        id: 'listtree',
+        title: 'Danh sách cây',
+        type: 'item',
+        classes: 'nav-item',
+        url: '/manages/tree/tree-list',
+        icon: 'login',
+        target: false,
+        breadcrumbs: false
+      },
+      {
+        id: 'listreview',
+        title: 'Danh sách đánh giá',
+        type: 'item',
+        classes: 'nav-item',
+        url: '/manages/review/review-list',
+        icon: 'login',
+        target: false,
+        breadcrumbs: false
       } 
     ]
   },
