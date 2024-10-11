@@ -109,4 +109,8 @@ export class UserAddComponent implements OnInit {
       lstRolesIdArray.removeAt(index);
     }
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/BaoBao

@@ -73,11 +73,11 @@ export const NavigationItems: NavigationItem[] = [
         breadcrumbs: false
       },
       {
-        id: 'listtree',
+        id: 'listproduct',
         title: 'Danh sách cây',
         type: 'item',
         classes: 'nav-item',
-        url: '/manages/tree/tree-list',
+        url: '/manages/product/product-list',
         icon: 'login',
         target: false,
         breadcrumbs: false
