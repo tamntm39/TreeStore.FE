@@ -23,6 +23,9 @@ export class UserListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.loadUsers();
+  }
+  loadUsers(): void {
     this.userService.apiUserListUserGet$Json$Response().subscribe((rs) => {
       const response = rs.body;
       if (response.success) {
@@ -32,7 +35,6 @@ export class UserListComponent implements OnInit {
       }
     });
   }
-
   navigateToAddUser() {
     console.log('Navigating to Add User');
     this.router.navigate(['/manages/user/user-add']);
@@ -41,30 +43,35 @@ export class UserListComponent implements OnInit {
   navigateToEditUser(userId: number) {
     this.router.navigate(['/manages/user/user-edit', userId]);
   }
-  deleteUser(userId: number) {
+
+  toggleUserActiveStatus(user: User) {
     Swal.fire({
-      title: 'Do you want to save the changes?',
-      showDenyButton: true,
+      title: 'Bạn chắc chứ?',
+      text: `Bạn có muốn chuyển trạng thái người dùng này thành ${user.isActive ? 'unactive' : 'active'}.`,
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Yes',
-      denyButtonText: 'No',
-      customClass: {
-        actions: 'my-actions',
-        cancelButton: 'order-1 right-gap',
-        confirmButton: 'order-2',
-        denyButton: 'order-3',
-      },
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Thực hiện!',
+      cancelButtonText: 'Hủy bỏ'
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire('Saved!', '', 'success')
-      } else if (result.isDenied) {
-        Swal.fire('Changes are not saved', '', 'info')
+        this.userService.apiUserChangeActivePost$Json$Response({ userId: user.userId }).subscribe((rs) => {
+          const response = rs.body;
+          if (response.success) {
+            Swal.fire(
+              'Cập nhật!',
+              `Đã cập nhật thành công thành trạng thái ${user.isActive ? 'Unactivated' : 'Activated'}.`,
+              'success'
+            ).then(() => {
+              this.loadUsers();
+              // window.location.reload();
+            });
+          } else {
+            Swal.fire('Cập nhật thất bại!', response.message, 'error');
+          }
+        });
       }
-    })
-    // const confirmDelete = confirm('Bạn có chắc chắn muốn xóa người dùng này không?');
-    // if (confirmDelete) {
-    //   this.listUsersDB = this.listUsersDB.filter((user) => user.userId !== userId);
-    //   console.log(`Xóa người dùng có ID: ${userId}`);
-    // }
+    });
   }
 }

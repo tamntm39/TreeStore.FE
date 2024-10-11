@@ -8,14 +8,14 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { UserResponseResultCustomModel } from '../../models/user-response-result-custom-model';
+import { BooleanResultCustomModel } from '../../models/boolean-result-custom-model';
 
-export interface ApiUserGetUserByIdGet$Json$Params {
+export interface ApiUserChangeActivePost$Json$Params {
   userId?: number;
 }
 
-export function apiUserGetUserByIdGet$Json(http: HttpClient, rootUrl: string, params?: ApiUserGetUserByIdGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<UserResponseResultCustomModel>> {
-  const rb = new RequestBuilder(rootUrl, apiUserGetUserByIdGet$Json.PATH, 'get');
+export function apiUserChangeActivePost$Json(http: HttpClient, rootUrl: string, params?: ApiUserChangeActivePost$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<BooleanResultCustomModel>> {
+  const rb = new RequestBuilder(rootUrl, apiUserChangeActivePost$Json.PATH, 'post');
   if (params) {
     rb.query('userId', params.userId, {});
   }
@@ -25,9 +25,9 @@ export function apiUserGetUserByIdGet$Json(http: HttpClient, rootUrl: string, pa
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<UserResponseResultCustomModel>;
+      return r as StrictHttpResponse<BooleanResultCustomModel>;
     })
   );
 }
 
-apiUserGetUserByIdGet$Json.PATH = '/api/User/GetUserById';
+apiUserChangeActivePost$Json.PATH = '/api/User/ChangeActive';

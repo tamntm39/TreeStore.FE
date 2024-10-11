@@ -11,6 +11,5 @@ export interface CreateUserRequest {
   listRoles?: Array<number> | null;
   password?: string | null;
   phone?: string | null;
-  position?: string | null;
   username?: string | null;
 }

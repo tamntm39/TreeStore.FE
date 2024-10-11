@@ -13,12 +13,6 @@ export class TreeListComponent {
     { id: 2, name: 'Cây Xương Rồng', quantity: 5, price: 300, type: 'Cây cảnh', image: '../../../../assets/images/image-tree/trucnhatphuquy.png' }
   ];
 
-  reviews = [
-    // Dữ liệu mẫu cho đánh giá
-    { id: 1, treeId: 1, user: 'tamtm', rating: 5, comment: 'Cây rất đẹp!' },
-    { id: 2, treeId: 1, user: 'Bảo Khang mập địch', rating: 4, comment: 'Cây rất khỏe!' },
-    { id: 3, treeId: 2, user: 'Kweennulo', rating: 3, comment: 'Cần chăm sóc nhiều hơn!' }
-  ];
 
   constructor(private router: Router) {}
 
@@ -40,25 +34,5 @@ export class TreeListComponent {
     }
   }
 
-  viewReviews(treeId: number) {
-    const treeReviews = this.reviews.filter(review => review.treeId === treeId);
-    console.log('Đánh giá cho cây:', treeReviews);
-    const modal = document.getElementById('reviewsModal');
-    if (modal) {
-      modal.style.display = 'block'; // Hiển thị modal
-      this.reviews = treeReviews; // Lưu đánh giá của cây vào mảng reviews
-    }
-  }
 
-  closeModal() {
-    const modal = document.getElementById('reviewsModal');
-    if (modal) {
-      modal.style.display = 'none'; // Ẩn modal
-    }
-  }
-
-  deleteReview(reviewId: number) {
-    this.reviews = this.reviews.filter(review => review.id !== reviewId);
-    console.log('Đã xóa đánh giá có id:', reviewId);
-  }
 }

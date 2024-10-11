@@ -1,47 +1,67 @@
-.review-container {
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
+.col-md-12.col-xl-8 {
+  width: 90%;
+  margin: 0 auto; // Center the container
+}
+
+.btn {
+  margin-right: 20px; // Cách nhau 20px
+}
+
+.btn:hover {
+  opacity: 0.8; // Giảm độ đậm khi hover
+  transition: opacity 0.3s ease; // Hiệu ứng chuyển tiếp
+}
+
+.tbl-card {
+  border-radius: 5px; // Bo góc cho thẻ
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Thêm bóng cho thẻ
+}
+
+.table {
+  width: 100%; // Đảm bảo bảng sử dụng toàn bộ chiều rộng
+  border-collapse: collapse; // Gộp các đường biên
+}
+
+th, td {
+  padding: 12px; // Padding cho các ô
+  text-align: left; // Căn trái
+  border-bottom: 1px solid #ddd; // Đường viền dưới cho các ô
+}
+
+tr:hover {
+  background-color: #f1f1f1; // Màu nền khi hover lên hàng
+}
+
+.modal {
+  display: none; /* Ẩn modal mặc định */
+  position: fixed;
+  z-index: 1050; /* Đảm bảo modal nằm trên các phần khác */
+  left: 0;
+  top: 0;
+  width: 100%; /* Toàn bộ chiều rộng */
+  height: 100%; /* Toàn bộ chiều cao */
+  overflow: auto; /* Thêm thanh cuộn nếu cần */
+  background-color: rgba(0, 0, 0, 0.5); /* Nền mờ */
+
+}
+
+.modal-dialog {
+  margin: 15% auto; /* Đưa modal vào giữa */
+  width: 100%; /* Chiều rộng modal */
   
-  .review-card {
-    padding: 15px;
-    border-bottom: 1px solid #ddd;
-    margin-bottom: 15px;
-  
-    h3 {
-      margin-bottom: 5px;
-      font-size: 18px;
-    }
-  
-    p {
-      margin: 5px 0;
-    }
-  }
-  .review-card {
-    margin-bottom: 20px; /* Thêm khoảng cách giữa các thẻ đánh giá */
-  }
-  
-  button {
-    background-color: #ff0000; /* Màu nền nút */
-    color: white; /* Màu chữ */
-    border: none; /* Không có đường viền */
-    padding: 5px 10px; /* Khoảng cách bên trong */
-    text-align: center; /* Căn giữa nội dung */
-    text-decoration: none; /* Không có gạch chân */
-    display: inline-block; /* Hiển thị như một khối */
-    font-size: 16px; /* Kích thước chữ */
-    margin-top: 10px; /* Khoảng cách phía trên */
-    cursor: pointer; /* Con trỏ khi di chuột qua nút */
-    border-radius: 3px; /* Bo góc */
-    transition: background-color 0.3s; /* Hiệu ứng chuyển màu khi hover */
-  }
-  
-  button:hover {
-    background-color: #bb7b7b; /* Màu nền khi di chuột qua */
-  }
-  
-  
+}
+.review-item {
+  margin-bottom: 20px; /* Khoảng cách giữa các đánh giá */
+  padding: 10px; /* Padding cho mỗi đánh giá */
+  border: 1px solid #ddd; /* Viền nhẹ cho mỗi đánh giá */
+  border-radius: 5px; /* Bo tròn góc */
+  background-color: #f9f9f9; /* Màu nền nhẹ cho đánh giá */
+}
+
+.review-item h6 {
+  margin-bottom: 5px; /* Khoảng cách giữa tên người dùng và nội dung đánh giá */
+}
+
+.review-item p {
+  margin-bottom: 10px; /* Khoảng cách giữa nội dung đánh giá và nút xóa */
+}
