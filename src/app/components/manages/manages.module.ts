@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // Đảm bảo import FormsModule
 import { UserModule } from './user/user.module';
 import { CustomerModule } from './customer/customer.module';
-import { TreeModule } from './tree/tree.module';
+import { ProductModule } from './product/product.module';
 
 
 const routes: Routes = [
@@ -18,8 +18,8 @@ const routes: Routes = [
   
   // { path: 'customer', loadChildren: () => import('./customer/customer.module').then((m) => m.CustomerModule) },
   {
-    path: 'tree', // Đường dẫn chính cho user
-    loadChildren: () => import('./tree/tree.module').then((m) => m.TreeModule)
+    path: 'product', // Đường dẫn chính cho user
+    loadChildren: () => import('./product/product.module').then((m) => m.ProductModule)
   },
   {
     path: 'review', // Đường dẫn chính cho user
@@ -36,7 +36,7 @@ const routes: Routes = [
     ReactiveFormsModule, 
     UserModule, // Import UserModule ở đây
     CustomerModule,
-    TreeModule
+    ProductModule
   ]
 })
 export class ManagesModule {}
