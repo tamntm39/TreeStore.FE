@@ -1,70 +1,36 @@
-<div class="container mt-4">
-    <h2>Danh Sách Loại Cây</h2>
-    <button class="btn btn-primary mb-3" (click)="openAddCategoryModal()">Thêm Loại Cây</button>
-
-    <table class="table table-striped">
-        <thead>
+<div class="col-md-12 col-xl-8">
+    <h5 class="mb-3">Danh sách danh mục</h5>
+  
+    <!-- Nút thêm danh mục -->
+    <button (click)="navigateToAddCategory()" class="btn btn-primary mb-3">Thêm danh mục</button>
+  
+    <div class="card tbl-card">
+      <div class="table-responsive">
+        <table class="table table-hover mb-0">
+          <thead>
             <tr>
-                <th>Mã loại cây</th>
-                <th>Tên</th>
-                <th>Hình Ảnh</th>
-                <th>Ngày Tạo</th>
-                <th>Tổng Sản Phẩm</th>
-                <th>Hành Động</th>
+              <th>STT</th>
+              <th>Tên danh mục</th>
+              <th>Hình ảnh</th>
+              <th>Thời gian tạo</th>
+              <th>Tổng sản phẩm</th>
+              <th>Thao tác</th>
             </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let category of categories">
-                <td>{{ category.id }}</td>
-                <td>{{ category.name }}</td>
-                <td>
-                    <img [src]="category.imagePlaceholder" alt="{{ category.name }}" class="img-thumbnail" width="100">
-                </td>
-                <td>{{ category.createdOn | date: 'dd/MM/yyyy' }}</td>
-                <td>{{ category.totalProducts }}</td>
-                <td>
-                    <button class="btn btn-warning" (click)="onEdit()">Chỉnh Sửa</button>
-                    <button class="btn btn-danger" (click)="deleteCategory">Xóa</button>
-                </td>
+          </thead>
+          <tbody>
+            <tr *ngFor="let category of listCategoriesDB; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ category.name }}</td>
+              <td><img [src]="category.image" alt="Category Image" width="100" height="100" /></td>
+              <td>{{ category.createOn }}</td>
+              <td>{{ category.totalProduct }}</td>
+              <td>
+                <button (click)="navigateToEditCategory(category.categoryId)" class="btn btn-warning btn-sm">Sửa</button>
+              </td>
             </tr>
-        </tbody>
-    </table>
-
-    <!-- Overlay -->
-    <div class="overlay" *ngIf="showModal" (click)="closeAddCategoryModal()"></div>
-
-    <!-- Modal Thêm Loại Cây -->
-    <div class="modal" tabindex="-1" [ngClass]="{'show': showModal}" [style.display]="showModal ? 'block' : 'none'">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Thêm Loại Cây</h5>
-                    <button type="button" class="btn-close" (click)="closeAddCategoryModal()"></button>
-                </div>
-                <div class="modal-body">
-                    <form (ngSubmit)="addCategory()">
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Tên</label>
-                            <input type="text" class="form-control" id="name" [(ngModel)]="newCategory.name" name="name"
-                                required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="image" class="form-label">Hình Ảnh</label>
-                            <input type="file" class="form-control" id="image" (change)="onImageSelected($event)"
-                                required>
-                            <div *ngIf="imagePreview" class="mt-2">
-                                <img [src]="imagePreview" alt="Preview" class="img-thumbnail" width="100">
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="totalProducts" class="form-label">Tổng Sản Phẩm</label>
-                            <input type="number" class="form-control" id="totalProducts"
-                                [(ngModel)]="newCategory.totalProducts" name="totalProducts" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Thêm</button>
-                    </form>
-                </div>
-            </div>
-        </div>
+          </tbody>
+        </table>
+      </div>
     </div>
-</div>
+  </div>
+  

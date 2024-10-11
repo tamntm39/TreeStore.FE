@@ -1,34 +1,34 @@
-<div class="container mt-4">
-    <h4>Danh sách người dùng</h4>
-    <div class="card mt-3">
-      <div class="table-responsive">
-        <table class="table table-bordered table-hover mb-0">
-          <thead class="table-light">
-            <tr>
-              <th>STT</th>
-              <th>Tên khách hàng</th>
-              <th>Email</th>
-              <th>Địa chỉ</th>
-              <th>Số điện thoại</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let customer of listCustomersDB; let i = index">
-              <td>{{ i + 1 }}</td>
-              <td>{{ customer.fullName }}</td>
-              <td>{{ customer.email }}</td>
-              <td>{{ customer.address }}</td>
-              <td>{{ customer.phone }}</td>
-              <td class="text-center">
-                <button class="btn btn-warning btn-sm me-2">Đặt lại mật khẩu</button>
-                <button class="btn btn-danger btn-sm me-2">Vô hiệu hóa</button>
-                <button class="btn btn-primary btn-sm" (click)="navigateToEditCustomer(customer.customerId)">Chỉnh sửa</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+<div class="col-md-12 col-xl-8">
+  <h5 class="mb-3">Danh sách khách hàng</h5>
+
+  <div class="card tbl-card">
+    <div class="table-responsive">
+      <table class="table table-hover mb-0">
+        <thead>
+          <tr>
+            <th>STT</th>
+            <th>Tên khách hàng</th>
+            <th>Email</th>
+            <th>Địa chỉ</th>
+            <th>Số điện thoại</th>
+            <th>Thao tác</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let customer of listCustomersDB; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ customer.fullName }}</td>
+            <td>{{ customer.email }}</td>
+            <td>{{ customer.address }}</td>
+            <td>{{ customer.phone }}</td>
+            <td>
+              <!-- Nút sửa -->
+              <button (click)="navigateToEditCustomer(customer.customerId)" class="btn btn-warning btn-sm">Sửa</button> 
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
-  
+</div>
+

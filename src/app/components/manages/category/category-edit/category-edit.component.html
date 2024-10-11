@@ -1,23 +1,34 @@
 <div class="container mt-4">
-    <h2>Chỉnh Sửa Loại Cây</h2>
-    <form (ngSubmit)="updateCategory()">
+  <div class="card p-4">
+    <h4 class="card-title mb-4">Chỉnh sửa thông tin danh mục</h4>
+    <form [formGroup]="editCategoryForm" (ngSubmit)="onSubmit()">
+      <!-- Hình ảnh -->
+      <div class="mb-3 text-center">
+        <img [src]="editCategoryForm.get('image')?.value || 'default-image.png'" alt="Category Image" class="rounded" width="150" height="150" />
+      </div>
+
       <div class="mb-3">
-        <label for="name" class="form-label">Tên</label>
-        <input type="text" class="form-control" id="name" [(ngModel)]="category.name" name="name" required>
+        <label for="name" class="form-label">Tên danh mục</label>
+        <input type="text" id="name" class="form-control" formControlName="name" required />
       </div>
       <div class="mb-3">
-        <label for="image" class="form-label">Hình Ảnh</label>
-        <input type="file" class="form-control" id="image" (change)="onImageSelected($event)">
-        <div *ngIf="imagePreview" class="mt-2">
-          <img [src]="imagePreview" alt="Preview" class="img-thumbnail" width="100">
-        </div>
+        <label for="createOn" class="form-label">Ngày tạo</label>
+        <input type="date" id="createOn" class="form-control" formControlName="createOn" required />
       </div>
       <div class="mb-3">
-        <label for="totalProducts" class="form-label">Tổng Sản Phẩm</label>
-        <input type="number" class="form-control" id="totalProducts" [(ngModel)]="category.totalProducts" name="totalProducts" required>
+        <label for="totalProduct" class="form-label">Tổng sản phẩm</label>
+        <input type="number" id="totalProduct" class="form-control" formControlName="totalProduct" required />
       </div>
-      <button type="submit" class="btn btn-primary  me-3">Lưu thay đổi</button>
-      <button type="button" class="btn btn-secondary" (click)="cancel()">Hủy</button>
+      
+      <div class="mb-3">
+        <label for="imageUpload" class="form-label">Tải lên hình ảnh</label>
+        <input type="file" id="imageUpload" (change)="onImageChange($event)" accept="image/*" />
+      </div>
+
+      <div class="d-flex justify-content-end">
+        <button type="button" (click)="cancel()" class="btn btn-secondary">Hủy</button>
+        <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+      </div>
     </form>
   </div>
-  
+</div>

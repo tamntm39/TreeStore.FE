@@ -4,6 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms'; // Import FormsModule
 import { CategoryListComponent } from './category-list/category-list.component';
 import { CategoryEditComponent } from './category-edit/category-edit.component';
+import { CategoryAddComponent } from './category-add/category-add.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -11,7 +13,11 @@ const routes: Routes = [
     component: CategoryListComponent
   },
   {
-    path: 'category-edit',
+    path: 'category-add',
+    component: CategoryEditComponent
+  },
+  {
+    path: 'category-edit:/id',
     component: CategoryEditComponent
   }
 ];
@@ -19,13 +25,14 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     CategoryListComponent,
-    CategoryEditComponent
+    CategoryEditComponent,
+    CategoryAddComponent
   ],
   imports: [
     CommonModule,
     FormsModule, 
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    ReactiveFormsModule 
   ]
 })
 export class CategoryModule { }
-

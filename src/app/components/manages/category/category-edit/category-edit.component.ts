@@ -1,13 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-
-interface Category {
-  id: number;
-  name: string;
-  imagePlaceholder: string;
-  createdOn: Date;
-  totalProducts: number;
-}
+import { UpdateCategoryRequest,Category, CategoryResponse } from 'src/app/api/models/category';
+import { CategoryService } from 'src/app/api/services';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-category-edit',
@@ -15,47 +11,97 @@ interface Category {
   styleUrls: ['./category-edit.component.scss']
 })
 export class CategoryEditComponent implements OnInit {
-  category: Category = { id: 0, name: '', imagePlaceholder: '', createdOn: new Date(), totalProducts: 0 };
-  imagePreview: string | ArrayBuffer | null = null;
+  categoryId: number;
+  categoryDB: Category | undefined;
+  editCategoryForm: FormGroup;
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
-
-  ngOnInit(): void {
-    const id = +this.route.snapshot.paramMap.get('id')!;
-    this.loadCategory(id); // Tải dữ liệu loại cây
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private categoryService: CategoryService,
+    private fb: FormBuilder
+  ) {
+    // Khởi tạo form cho danh mục
+    this.editCategoryForm = this.fb.group({
+      name: [''],
+      image: [''],
+      createOn: [''],
+      totalProduct: [0] // Giả sử totalProduct là số
+    });
   }
-
-  loadCategory(id: number): void {
-    // Giả lập dữ liệu cho ví dụ
-    const categories: Category[] = [
-      { id: 1, name: 'Cây Bàng', imagePlaceholder: 'https://via.placeholder.com/100', createdOn: new Date('2022-01-01'), totalProducts: 10 },
-      { id: 2, name: 'Cây Xoài', imagePlaceholder: 'https://via.placeholder.com/100', createdOn: new Date('2022-02-01'), totalProducts: 15 },
-      { id: 3, name: 'Cây Dừa', imagePlaceholder: 'https://via.placeholder.com/100', createdOn: new Date('2022-03-01'), totalProducts: 20 },
-    ];
-    
-    this.category = categories.find(c => c.id === id) || this.category;
-    this.imagePreview = this.category.imagePlaceholder; // Thiết lập hình ảnh preview
-  }
-
-  onImageSelected(event: Event): void {
-    const file = (event.target as HTMLInputElement).files?.[0];
+  onImageChange(event: any) {
+    const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = (e) => {
-        this.imagePreview = e.target?.result; // Lưu hình ảnh preview
+        // Cập nhật giá trị hình ảnh trong form
+        this.editCategoryForm.patchValue({
+          image: e.target.result // Lưu URL của hình ảnh
+        });
       };
       reader.readAsDataURL(file); // Đọc file hình ảnh
     }
   }
+  
 
-  updateCategory(): void {
-    // Logic cập nhật loại cây
-    console.log('Cập nhật loại cây:', this.category);
-    // Thực hiện các hành động cần thiết (như gọi API)
-    this.router.navigate(['/manages/category/category-list']); // Quay lại danh sách loại cây
+  ngOnInit() {
+    // Lấy ID danh mục từ route
+    this.categoryId = +this.route.snapshot.paramMap.get('id')!;
+    
+    // Lấy dữ liệu danh mục theo ID
+    this.categoryService.apiCategoryGetByIdCategoryIdGet$Json$Response({ categoryId: this.categoryId }).subscribe((rs) => {
+      if (rs.body.success==true) {
+        this.categoryDB = rs.body.data;
+        this.editCategoryForm.patchValue({
+          name: this.categoryDB.name,
+          image: this.categoryDB.image,
+          createOn: this.categoryDB.createOn,
+          totalProduct: this.categoryDB.totalProduct
+        });
+      } else {
+        console.log('Lấy dữ liệu danh mục thất bại');
+      }
+    });
   }
 
-  cancel(): void {
-    this.router.navigate(['/manages/category/category-list']); // Quay lại danh sách loại cây
+  cancel() {
+    this.router.navigate(['/manages/category/category-list']); // Quay lại danh sách danh mục
+  }
+
+  onSubmit() {
+    if (this.editCategoryForm.valid) {
+      // Chuẩn bị dữ liệu cập nhật danh mục
+      const updatedCategory = {
+        categoryId: this.categoryId, // Thêm categoryId vào payload
+        name: this.editCategoryForm.get('name')?.value || null,
+        image: this.editCategoryForm.get('image')?.value || null,
+        createOn: this.editCategoryForm.get('createOn')?.value || null,
+        totalProduct: this.editCategoryForm.get('totalProduct')?.value || 0 // Mặc định là 0 nếu không cung cấp
+      } as UpdateCategoryRequest;
+
+      // Gọi API cập nhật danh mục
+      this.categoryService.apiCategoryUpdatePut$Json$Response({ body: updatedCategory }).subscribe({
+        next: (rs) => {
+          if (rs.body.success==true) {
+            Swal.fire({
+              icon: 'success',
+              title: 'Cập nhật thành công',
+              text: 'Thông tin danh mục đã được cập nhật thành công!',
+              confirmButtonText: 'OK'
+            }).then(() => {
+              this.router.navigate(['/manages/category/category-list']); // Quay lại danh sách danh mục
+            });
+          } else {
+            console.log('Cập nhật thất bại:', rs.body.message); // Log thông báo lỗi từ backend
+          }
+        },
+        error: (error) => {
+          console.error('Có lỗi xảy ra:', error); // Log lỗi chi tiết
+        }
+      });
+    } else {
+      console.log('Form không hợp lệ');
+    }
   }
 }
+

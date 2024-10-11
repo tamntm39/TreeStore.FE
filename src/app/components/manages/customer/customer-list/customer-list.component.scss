@@ -1,22 +1,33 @@
-.card {
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .table th, .table td {
-    vertical-align: middle;
-  }
-  
-  .table th {
-    font-weight: 600;
-  }
-  
-  .table td button {
-    min-width: 50px;
-  }
-  .table {
-    width: 100%; // Đảm bảo bảng sử dụng toàn bộ chiều rộng
-    border-collapse: collapse; // Gộp các đường biên
-  }
-  
-  
+.col-md-12.col-xl-8 {
+  width: 90%;
+  margin: 0 auto; // Center the container
+}
+
+.btn {
+  margin-right: 20px; // Cách nhau 20px
+}
+
+.btn:hover {
+  opacity: 0.8; // Giảm độ đậm khi hover
+  transition: opacity 0.3s ease; // Hiệu ứng chuyển tiếp
+}
+
+.tbl-card {
+  border-radius: 5px; // Bo góc cho thẻ
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Thêm bóng cho thẻ
+}
+
+.table {
+  width: 100%; // Đảm bảo bảng sử dụng toàn bộ chiều rộng
+  border-collapse: collapse; // Gộp các đường biên
+}
+
+th, td {
+  padding: 12px; // Padding cho các ô
+  text-align: left; // Căn trái
+  border-bottom: 1px solid #ddd; // Đường viền dưới cho các ô
+}
+
+tr:hover {
+  background-color: #f1f1f1; // Màu nền khi hover lên hàng
+}
