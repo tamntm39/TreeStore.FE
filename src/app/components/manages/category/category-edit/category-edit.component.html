@@ -4,30 +4,92 @@
     <form [formGroup]="editCategoryForm" (ngSubmit)="onSubmit()">
       <!-- Hình ảnh -->
       <div class="mb-3 text-center">
-        <img [src]="editCategoryForm.get('image')?.value || 'default-image.png'" alt="Category Image" class="rounded" width="150" height="150" />
+        <img 
+          [src]="editCategoryForm.get('image')?.value || 'assets/images/default-image.png'" 
+          alt="Category Image" 
+          class="rounded" 
+          width="150" 
+          height="150" 
+        />
       </div>
 
       <div class="mb-3">
         <label for="name" class="form-label">Tên danh mục</label>
-        <input type="text" id="name" class="form-control" formControlName="name" required />
+        <input 
+          type="text" 
+          id="name" 
+          class="form-control" 
+          formControlName="name" 
+          required 
+          placeholder="Nhập tên danh mục"
+        />
+        <div *ngIf="editCategoryForm.get('name')?.invalid && editCategoryForm.get('name')?.touched" class="text-danger">
+          Tên danh mục là bắt buộc.
+        </div>
       </div>
+
+      <div class="mb-3">
+        <label for="slug" class="form-label">Slug</label>
+        <input 
+          type="text" 
+          id="slug" 
+          class="form-control" 
+          formControlName="slug" 
+          required 
+          placeholder="Nhập slug cho danh mục" 
+          readonly
+        />
+        <div *ngIf="editCategoryForm.get('slug')?.invalid && editCategoryForm.get('slug')?.touched" class="text-danger">
+          Slug là bắt buộc.
+        </div>
+      </div>
+
       <div class="mb-3">
         <label for="createOn" class="form-label">Ngày tạo</label>
-        <input type="date" id="createOn" class="form-control" formControlName="createOn" required />
+        <input 
+          type="date" 
+          id="createOn" 
+          class="form-control" 
+          formControlName="createOn" 
+          required 
+        />
+        <div *ngIf="editCategoryForm.get('createOn')?.invalid && editCategoryForm.get('createOn')?.touched" class="text-danger">
+          Ngày tạo là bắt buộc.
+        </div>
       </div>
+
       <div class="mb-3">
         <label for="totalProduct" class="form-label">Tổng sản phẩm</label>
-        <input type="number" id="totalProduct" class="form-control" formControlName="totalProduct" required />
+        <input 
+          type="number" 
+          id="totalProduct" 
+          class="form-control" 
+          formControlName="totalProduct" 
+          required 
+          min="0" 
+          placeholder="Nhập tổng sản phẩm"
+        />
+        <div *ngIf="editCategoryForm.get('totalProduct')?.invalid && editCategoryForm.get('totalProduct')?.touched" class="text-danger">
+          Tổng sản phẩm là bắt buộc và phải lớn hơn hoặc bằng 0.
+        </div>
       </div>
-      
+
       <div class="mb-3">
         <label for="imageUpload" class="form-label">Tải lên hình ảnh</label>
-        <input type="file" id="imageUpload" (change)="onImageChange($event)" accept="image/*" />
+        <input 
+          type="file" 
+          id="imageUpload" 
+          (change)="onImageChange($event)" 
+          accept="image/*" 
+        />
+        <div *ngIf="editCategoryForm.get('image')?.invalid && editCategoryForm.get('image')?.touched" class="text-danger">
+          Hãy tải lên hình ảnh.
+        </div>
       </div>
 
       <div class="d-flex justify-content-end">
         <button type="button" (click)="cancel()" class="btn btn-secondary">Hủy</button>
-        <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+        <button type="submit" class="btn btn-primary" [disabled]="editCategoryForm.invalid">Lưu thay đổi</button>
       </div>
     </form>
   </div>
