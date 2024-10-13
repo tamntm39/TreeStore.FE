@@ -14,19 +14,20 @@ const routes: Routes = [
   },
   {
     path: 'category-add',
-    component: CategoryEditComponent
+    component: CategoryAddComponent
   },
   {
-    path: 'category-edit:/id',
+    path: 'category-edit/:id',
     component: CategoryEditComponent
   }
+  
 ];
 
 @NgModule({
   declarations: [
     CategoryListComponent,
-    CategoryEditComponent,
-    CategoryAddComponent
+    CategoryAddComponent,
+    CategoryEditComponent
   ],
   imports: [
     CommonModule,

@@ -5,6 +5,16 @@
 import { Product } from '../models/product';
 export interface Category {
   categoryId?: number;
+  name?: string;
+  slug?: string;
+  image?: string | null;
+  isActive?: boolean;
+  createOn?: string;  // Ngày tạo (dạng chuỗi hoặc ISO 8601 date string)
+  totalProduct?: number;
+}
+
+export interface Category {
+  categoryId?: number;
   createOn?: string;
   image?: string | null;
   isActive?: boolean;
@@ -19,10 +29,4 @@ export interface UpdateCategoryRequest {
   image: string | null;
   createOn: string | null;
   totalProduct: number;
-}
-
-export interface CategoryResponse {
-  success: boolean;
-  message: string;
-  data: Category;
 }

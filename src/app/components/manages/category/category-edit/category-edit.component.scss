@@ -1,22 +1,21 @@
 .col-md-12.col-xl-8 {
-    width: 80%;
-    margin: 0 auto; // Center the container
-  }
-  
-  h5 {
-    margin-bottom: 20px; // Khoảng cách dưới tiêu đề
-  }
-  
-  .form-group {
-    margin-bottom: 15px; // Khoảng cách giữa các trường
-  }
-  
-  .btn {
-    margin-right: 10px; // Khoảng cách giữa các nút
-  }
-  
-  .btn:hover {
-    opacity: 0.8; // Giảm độ đậm khi hover
-    transition: opacity 0.3s ease; // Hiệu ứng chuyển tiếp
-  }
-  
+  width: 80%;
+  margin: 0 auto; // Center the container
+}
+
+h5 {
+  margin-bottom: 20px; // Khoảng cách dưới tiêu đề
+}
+
+.form-group {
+  margin-bottom: 15px; // Khoảng cách giữa các trường
+}
+
+.btn {
+  margin-right: 10px; // Khoảng cách giữa các nút
+}
+
+.btn:hover {
+  opacity: 0.8; // Giảm độ đậm khi hover
+  transition: opacity 0.3s ease; // Hiệu ứng chuyển tiếp
+}

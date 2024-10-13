@@ -1,35 +1,43 @@
 <div class="container mt-4">
-    <div class="card p-4">
-      <h4 class="card-title mb-4">Thêm danh mục mới</h4>
-      <form [formGroup]="editCategoryForm" (ngSubmit)="onSubmit()">
-        <!-- Hình ảnh -->
-        <div class="mb-3 text-center">
-          <img [src]="editCategoryForm.get('image')?.value || 'default-category.png'" alt="Category Image" class="rounded" width="150" height="150" />
-          <div class="mt-2">
-            <input type="file" accept="image/*" (change)="onImageChange($event)" />
-          </div>
+  <div class="card p-4">
+    <h4 class="card-title mb-4">Thêm danh mục mới</h4>
+    <form [formGroup]="editCategoryForm" (ngSubmit)="onSubmit()">
+      <!-- Hình ảnh -->
+      <div class="mb-3 text-center">
+        <img [src]="editCategoryForm.get('image')?.value ? editCategoryForm.get('image')?.value : 'default-category.png'" 
+             alt="Category Image" 
+             class="rounded" 
+             width="150" 
+             height="150" />
+        <div class="mt-2">
+          <input type="file" accept="image/*" (change)="onImageChange($event)" class="form-control-file" />
         </div>
-  
-        <div class="mb-3">
-          <label for="name" class="form-label">Tên danh mục</label>
-          <input type="text" id="name" class="form-control" formControlName="name" required />
-        </div>
-        
-        <div class="mb-3">
-          <label for="createOn" class="form-label">Ngày tạo</label>
-          <input type="date" id="createOn" class="form-control" formControlName="createOn" required />
-        </div>
-  
-        <div class="mb-3">
-          <label for="totalProduct" class="form-label">Tổng sản phẩm</label>
-          <input type="number" id="totalProduct" class="form-control" formControlName="totalProduct" required />
-        </div>
-  
-        <div class="d-flex justify-content-end">
-          <button type="button" (click)="cancel()" class="btn btn-secondary">Hủy</button>
-          <button type="submit" class="btn btn-primary">Lưu danh mục</button>
-        </div>
-      </form>
-    </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="name" class="form-label">Tên danh mục</label>
+        <input type="text" id="name" class="form-control" formControlName="name" placeholder="Nhập tên danh mục" required />
+      </div>
+      
+      <div class="mb-3">
+        <label for="slug" class="form-label">Slug</label>
+        <input type="text" id="slug" class="form-control" formControlName="slug" placeholder="Slug sẽ tự động được tạo" readonly />
+      </div>
+
+      <div class="mb-3">
+        <label for="createOn" class="form-label">Ngày tạo</label>
+        <input type="date" id="createOn" class="form-control" formControlName="createOn" required />
+      </div>
+
+      <div class="mb-3">
+        <label for="totalProduct" class="form-label">Tổng sản phẩm</label>
+        <input type="number" id="totalProduct" class="form-control" formControlName="totalProduct" min="0" placeholder="Nhập tổng số sản phẩm" required />
+      </div>
+
+      <div class="d-flex justify-content-end">
+        <button type="button" (click)="cancel()" class="btn btn-secondary me-2">Hủy</button>
+        <button type="submit" class="btn btn-primary">Lưu danh mục</button>
+      </div>
+    </form>
   </div>
-  
+</div>

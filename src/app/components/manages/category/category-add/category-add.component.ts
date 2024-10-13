@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CategoryService } from 'src/app/api/services';
 import Swal from 'sweetalert2';
@@ -17,27 +17,44 @@ export class CategoryAddComponent implements OnInit {
     private categoryService: CategoryService,
     private fb: FormBuilder
   ) {
-    // Khởi tạo form
+    // Khởi tạo form với các trường cần thiết
     this.editCategoryForm = this.fb.group({
-      categoryId: [''],
-      name: [''],
+      name: ['', Validators.required],
+      slug: ['', Validators.required], // Thêm trường slug
       image: [''],
-      createOn: [''],
-      totalProduct: ['']
+      isActive: [true], // Thêm trường isActive
+      createOn: ['', Validators.required], // Đảm bảo trường này là bắt buộc
+      totalProduct: [0, [Validators.required, Validators.min(0)]] // Đảm bảo trường này là bắt buộc và lớn hơn hoặc bằng 0
     });
   }
 
   ngOnInit() {
     // Thêm bất kỳ logic khởi tạo nào nếu cần
+    this.editCategoryForm.get('name')?.valueChanges.subscribe(value => {
+      this.updateSlug(value);
+    });
+  }
+
+  private updateSlug(name: string) {
+    // Chuyển đổi tên thành slug
+    const slug = name
+      .toLowerCase()
+      .replace(/\s+/g, '-') // Thay thế khoảng trắng bằng dấu '-'
+      .replace(/[^\w\-]+/g, '') // Xóa các ký tự không phải chữ cái, số và dấu '-'
+      .replace(/\--+/g, '-') // Thay thế nhiều dấu '-' bằng một dấu '-'
+      .trim(); // Loại bỏ khoảng trắng ở đầu và cuối
+
+    this.editCategoryForm.patchValue({ slug });
   }
 
   onSubmit() {
     if (this.editCategoryForm.valid) {
       // Lấy dữ liệu từ form
       const newCategory = {
-        categoryId: this.editCategoryForm.get('categoryId')?.value || null,
         name: this.editCategoryForm.get('name')?.value || null,
+        slug: this.editCategoryForm.get('slug')?.value || null, // Lấy slug
         image: this.editCategoryForm.get('image')?.value || null,
+        isActive: this.editCategoryForm.get('isActive')?.value || true, // Thêm isActive
         createOn: this.editCategoryForm.get('createOn')?.value || null,
         totalProduct: this.editCategoryForm.get('totalProduct')?.value || null
       };
@@ -52,7 +69,6 @@ export class CategoryAddComponent implements OnInit {
               text: rs.body.message,
               confirmButtonText: 'OK'
             }).then(() => {
-              // Điều hướng về trang danh sách danh mục sau khi bấm OK
               this.router.navigate(['/manages/category/category-list']);
             });
           } else {
@@ -65,7 +81,13 @@ export class CategoryAddComponent implements OnInit {
           }
         },
         error: (error) => {
-          console.error('Có lỗi xảy ra:', error); // Log lỗi chi tiết
+          console.error('Có lỗi xảy ra:', error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Có lỗi xảy ra',
+            text: 'Vui lòng kiểm tra thông tin và thử lại.',
+            confirmButtonText: 'OK'
+          });
         }
       });
     } else {
@@ -73,7 +95,6 @@ export class CategoryAddComponent implements OnInit {
     }
   }
 
-  // Hàm xử lý thay đổi hình ảnh
   onImageChange(event: any) {
     const file = event.target.files[0];
     if (file) {

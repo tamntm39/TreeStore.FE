@@ -19,7 +19,14 @@ export class CategoryListComponent implements OnInit {
   ngOnInit(): void {
     this.loadCategories();
   }
+  navigateToAddCategory() {
+    console.log("Navigating to Add Category"); // Thêm log để kiểm tra
+    this.router.navigate(['/manages/category/category-add']);
+  }
 
+  navigateToEditCategory(categoryId: number): void {
+    this.router.navigate(['/manages/category/category-edit', categoryId]);
+  } 
   loadCategories(): void {
     this.categoryService.apiCategoryGetAllGet$Json$Response().subscribe((rs) => {
       const response = rs.body;
@@ -31,11 +38,5 @@ export class CategoryListComponent implements OnInit {
     });
   }
 
-  navigateToAddCategory(): void {
-    this.router.navigate(['/manages/category/category-add']);
-  }
-
-  navigateToEditCategory(categoryId: number): void {
-    this.router.navigate(['/manages/category/category-edit', categoryId]);
-  }
+ 
 }

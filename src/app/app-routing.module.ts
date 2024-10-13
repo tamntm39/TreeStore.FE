@@ -8,6 +8,7 @@ import { GuestComponent } from './theme/layouts/guest/guest.component';
 
 const routes: Routes = [
   {
+    
     path: '',
     component: AdminComponent,
     children: [

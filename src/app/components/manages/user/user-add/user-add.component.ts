@@ -5,6 +5,7 @@ import { CreateUserRequest } from 'src/app/api/models';
 import { UserService } from 'src/app/api/services';
 import Swal from 'sweetalert2';
 
+
 @Component({
   selector: 'app-user-add',
   templateUrl: './user-add.component.html',
