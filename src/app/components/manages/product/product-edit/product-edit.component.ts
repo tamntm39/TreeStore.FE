@@ -15,8 +15,8 @@ export class ProductEditComponent implements OnInit {
   product = {
     name: '',
     type: '',
-    quantity: 0,
-    price: 0,
+    quantity: '',
+    price: '',
     image: null
   };
   productDB = undefined as ProductResponse;
