@@ -8,12 +8,12 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { UserListResultCustomModel } from '../../models/user-list-result-custom-model';
+import { UpdateUserResponseListResultCustomModel } from '../../models/update-user-response-list-result-custom-model';
 
 export interface ApiUserListUserGet$Plain$Params {
 }
 
-export function apiUserListUserGet$Plain(http: HttpClient, rootUrl: string, params?: ApiUserListUserGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<UserListResultCustomModel>> {
+export function apiUserListUserGet$Plain(http: HttpClient, rootUrl: string, params?: ApiUserListUserGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<UpdateUserResponseListResultCustomModel>> {
   const rb = new RequestBuilder(rootUrl, apiUserListUserGet$Plain.PATH, 'get');
   if (params) {
   }
@@ -23,7 +23,7 @@ export function apiUserListUserGet$Plain(http: HttpClient, rootUrl: string, para
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<UserListResultCustomModel>;
+      return r as StrictHttpResponse<UpdateUserResponseListResultCustomModel>;
     })
   );
 }

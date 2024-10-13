@@ -5,16 +5,6 @@
 import { Product } from '../models/product';
 export interface Category {
   categoryId?: number;
-  name?: string;
-  slug?: string;
-  image?: string | null;
-  isActive?: boolean;
-  createOn?: string;  // Ngày tạo (dạng chuỗi hoặc ISO 8601 date string)
-  totalProduct?: number;
-}
-
-export interface Category {
-  categoryId?: number;
   createOn?: string;
   image?: string | null;
   isActive?: boolean;
@@ -23,13 +13,3 @@ export interface Category {
   slug?: string | null;
   totalProduct?: number | null;
 }
-<<<<<<< HEAD
-=======
-export interface UpdateCategoryRequest {
-  categoryId: number;
-  name: string | null;
-  image: string | null;
-  createOn: string | null;
-  totalProduct: number;
-}
->>>>>>> origin/BaoPhung

@@ -34,12 +34,9 @@ import { ApiCategoryUpdatePut$Plain$Params } from '../fn/category/api-category-u
 import { BooleanResultCustomModel } from '../models/boolean-result-custom-model';
 import { CategoryListResultCustomModel } from '../models/category-list-result-custom-model';
 import { CategoryResultCustomModel } from '../models/category-result-custom-model';
-import { Category } from '../models';
-
 
 @Injectable({ providedIn: 'root' })
 export class CategoryService extends BaseService {
-  baseUrl: any;
   constructor(config: ApiConfiguration, http: HttpClient) {
     super(config, http);
   }
@@ -137,9 +134,6 @@ export class CategoryService extends BaseService {
       map((r: StrictHttpResponse<CategoryResultCustomModel>): CategoryResultCustomModel => r.body)
     );
   }
-  
-   // Lấy thể loại theo ID
-
 
   /** Path part for operation `apiCategoryDeleteCategoryIdDelete()` */
   static readonly ApiCategoryDeleteCategoryIdDeletePath = '/api/Category/Delete/{categoryId}';

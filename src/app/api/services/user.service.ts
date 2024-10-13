@@ -44,8 +44,8 @@ import { ApiUserUpdateUserPut$Plain$Params } from '../fn/user/api-user-update-us
 import { BooleanResultCustomModel } from '../models/boolean-result-custom-model';
 import { RoleListResultCustomModel } from '../models/role-list-result-custom-model';
 import { StringResultCustomModel } from '../models/string-result-custom-model';
+import { UpdateUserResponseListResultCustomModel } from '../models/update-user-response-list-result-custom-model';
 import { UpdateUserResponseResultCustomModel } from '../models/update-user-response-result-custom-model';
-import { UserListResultCustomModel } from '../models/user-list-result-custom-model';
 import { UserResponseResultCustomModel } from '../models/user-response-result-custom-model';
 
 @Injectable({ providedIn: 'root' })
@@ -110,7 +110,7 @@ export class UserService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiUserListUserGet$Plain$Response(params?: ApiUserListUserGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<UserListResultCustomModel>> {
+  apiUserListUserGet$Plain$Response(params?: ApiUserListUserGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<UpdateUserResponseListResultCustomModel>> {
     return apiUserListUserGet$Plain(this.http, this.rootUrl, params, context);
   }
 
@@ -120,9 +120,9 @@ export class UserService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiUserListUserGet$Plain(params?: ApiUserListUserGet$Plain$Params, context?: HttpContext): Observable<UserListResultCustomModel> {
+  apiUserListUserGet$Plain(params?: ApiUserListUserGet$Plain$Params, context?: HttpContext): Observable<UpdateUserResponseListResultCustomModel> {
     return this.apiUserListUserGet$Plain$Response(params, context).pipe(
-      map((r: StrictHttpResponse<UserListResultCustomModel>): UserListResultCustomModel => r.body)
+      map((r: StrictHttpResponse<UpdateUserResponseListResultCustomModel>): UpdateUserResponseListResultCustomModel => r.body)
     );
   }
 
@@ -132,7 +132,7 @@ export class UserService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiUserListUserGet$Json$Response(params?: ApiUserListUserGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<UserListResultCustomModel>> {
+  apiUserListUserGet$Json$Response(params?: ApiUserListUserGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<UpdateUserResponseListResultCustomModel>> {
     return apiUserListUserGet$Json(this.http, this.rootUrl, params, context);
   }
 
@@ -142,9 +142,9 @@ export class UserService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiUserListUserGet$Json(params?: ApiUserListUserGet$Json$Params, context?: HttpContext): Observable<UserListResultCustomModel> {
+  apiUserListUserGet$Json(params?: ApiUserListUserGet$Json$Params, context?: HttpContext): Observable<UpdateUserResponseListResultCustomModel> {
     return this.apiUserListUserGet$Json$Response(params, context).pipe(
-      map((r: StrictHttpResponse<UserListResultCustomModel>): UserListResultCustomModel => r.body)
+      map((r: StrictHttpResponse<UpdateUserResponseListResultCustomModel>): UpdateUserResponseListResultCustomModel => r.body)
     );
   }
 

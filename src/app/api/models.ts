@@ -39,9 +39,9 @@ export { UpdateProductReponseResultCustomModel } from './models/update-product-r
 export { UpdateProductRequest } from './models/update-product-request';
 export { UpdateUserRequest } from './models/update-user-request';
 export { UpdateUserResponse } from './models/update-user-response';
+export { UpdateUserResponseListResultCustomModel } from './models/update-user-response-list-result-custom-model';
 export { UpdateUserResponseResultCustomModel } from './models/update-user-response-result-custom-model';
 export { User } from './models/user';
-export { UserListResultCustomModel } from './models/user-list-result-custom-model';
 export { UserResponse } from './models/user-response';
 export { UserResponseResultCustomModel } from './models/user-response-result-custom-model';
 export { UserRole } from './models/user-role';

@@ -23,21 +23,14 @@ import { apiProductGetAllGet$Json } from '../fn/product/api-product-get-all-get-
 import { ApiProductGetAllGet$Json$Params } from '../fn/product/api-product-get-all-get-json';
 import { apiProductGetAllGet$Plain } from '../fn/product/api-product-get-all-get-plain';
 import { ApiProductGetAllGet$Plain$Params } from '../fn/product/api-product-get-all-get-plain';
-<<<<<<< HEAD
 import { apiProductGetProductByIdGet$Json } from '../fn/product/api-product-get-product-by-id-get-json';
 import { ApiProductGetProductByIdGet$Json$Params } from '../fn/product/api-product-get-product-by-id-get-json';
 import { apiProductGetProductByIdGet$Plain } from '../fn/product/api-product-get-product-by-id-get-plain';
 import { ApiProductGetProductByIdGet$Plain$Params } from '../fn/product/api-product-get-product-by-id-get-plain';
-=======
-import { apiProductGetByIdProductIdGet$Json } from '../fn/product/api-product-get-by-id-product-id-get-json';
-import { ApiProductGetByIdProductIdGet$Json$Params } from '../fn/product/api-product-get-by-id-product-id-get-json';
-import { apiProductGetByIdProductIdGet$Plain } from '../fn/product/api-product-get-by-id-product-id-get-plain';
-import { ApiProductGetByIdProductIdGet$Plain$Params } from '../fn/product/api-product-get-by-id-product-id-get-plain';
 import { apiProductSearchByNameSearchByNameGet$Json } from '../fn/product/api-product-search-by-name-search-by-name-get-json';
 import { ApiProductSearchByNameSearchByNameGet$Json$Params } from '../fn/product/api-product-search-by-name-search-by-name-get-json';
 import { apiProductSearchByNameSearchByNameGet$Plain } from '../fn/product/api-product-search-by-name-search-by-name-get-plain';
 import { ApiProductSearchByNameSearchByNameGet$Plain$Params } from '../fn/product/api-product-search-by-name-search-by-name-get-plain';
->>>>>>> origin/BaoPhung
 import { apiProductUpdatePut$Json } from '../fn/product/api-product-update-put-json';
 import { ApiProductUpdatePut$Json$Params } from '../fn/product/api-product-update-put-json';
 import { apiProductUpdatePut$Plain } from '../fn/product/api-product-update-put-plain';
