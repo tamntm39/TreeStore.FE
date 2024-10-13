@@ -5,10 +5,8 @@
 export interface UpdateCustomerRequest {
   address?: string | null;
   avatar?: string | null;
-  birthday?: string | null;
   customerId?: number;
   email?: string | null;
   fullname?: string | null;
-  password?: string | null;
   phone?: string | null;
 }

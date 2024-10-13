@@ -8,14 +8,14 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
+import { CustomerResponseResultCustomModel } from '../../models/customer-response-result-custom-model';
 import { UpdateCustomerRequest } from '../../models/update-customer-request';
-import { UpdateCustomerResponseResultCustomModel } from '../../models/update-customer-response-result-custom-model';
 
 export interface ApiCustomerUpdateCustomerPut$Plain$Params {
       body?: UpdateCustomerRequest
 }
 
-export function apiCustomerUpdateCustomerPut$Plain(http: HttpClient, rootUrl: string, params?: ApiCustomerUpdateCustomerPut$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<UpdateCustomerResponseResultCustomModel>> {
+export function apiCustomerUpdateCustomerPut$Plain(http: HttpClient, rootUrl: string, params?: ApiCustomerUpdateCustomerPut$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<CustomerResponseResultCustomModel>> {
   const rb = new RequestBuilder(rootUrl, apiCustomerUpdateCustomerPut$Plain.PATH, 'put');
   if (params) {
     rb.body(params.body, 'application/*+json');
@@ -26,7 +26,7 @@ export function apiCustomerUpdateCustomerPut$Plain(http: HttpClient, rootUrl: st
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<UpdateCustomerResponseResultCustomModel>;
+      return r as StrictHttpResponse<CustomerResponseResultCustomModel>;
     })
   );
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UpdateCategoryRequest,Category, CategoryResponse } from 'src/app/api/models/category';
+import { Category } from 'src/app/api/models/category';
 import { CategoryService } from 'src/app/api/services';
 import Swal from 'sweetalert2';
 
@@ -42,15 +42,14 @@ export class CategoryEditComponent implements OnInit {
       reader.readAsDataURL(file); // Đọc file hình ảnh
     }
   }
-  
 
   ngOnInit() {
     // Lấy ID danh mục từ route
     this.categoryId = +this.route.snapshot.paramMap.get('id')!;
-    
+
     // Lấy dữ liệu danh mục theo ID
     this.categoryService.apiCategoryGetByIdCategoryIdGet$Json$Response({ categoryId: this.categoryId }).subscribe((rs) => {
-      if (rs.body.success==true) {
+      if (rs.body.success == true) {
         this.categoryDB = rs.body.data;
         this.editCategoryForm.patchValue({
           name: this.categoryDB.name,
@@ -77,12 +76,12 @@ export class CategoryEditComponent implements OnInit {
         image: this.editCategoryForm.get('image')?.value || null,
         createOn: this.editCategoryForm.get('createOn')?.value || null,
         totalProduct: this.editCategoryForm.get('totalProduct')?.value || 0 // Mặc định là 0 nếu không cung cấp
-      } as UpdateCategoryRequest;
+      };
 
       // Gọi API cập nhật danh mục
       this.categoryService.apiCategoryUpdatePut$Json$Response({ body: updatedCategory }).subscribe({
         next: (rs) => {
-          if (rs.body.success==true) {
+          if (rs.body.success == true) {
             Swal.fire({
               icon: 'success',
               title: 'Cập nhật thành công',
@@ -104,4 +103,3 @@ export class CategoryEditComponent implements OnInit {
     }
   }
 }
-

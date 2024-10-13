@@ -1,12 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CreateProductRequest } from 'src/app/api/models';
+import { ProductService } from 'src/app/api/services';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-product-add',
   templateUrl: './product-add.component.html',
   styleUrls: ['./product-add.component.scss']
 })
-export class ProductAddComponent {
+export class ProductAddComponent implements OnInit {
+  editProductForm: FormGroup;
   product = {
     type: '',
     name: '',
@@ -15,22 +20,60 @@ export class ProductAddComponent {
     image: null
   };
 
-  successMessage: string = ''; // Biến để lưu thông báo thành công
-
-  constructor(private router: Router) {}
-
+  constructor(
+    private router: Router,
+    private productService: ProductService,
+    private fb: FormBuilder
+  ) {
+    this.editProductForm = this.fb.group({
+      name: [''],
+      quantity: [''],
+      priceOutput: [''],
+      description: [''],
+      categoryId: ['']
+    });
+  }
+  ngOnInit() {}
   onSubmit() {
-    // Logic thêm sản phẩm
-    console.log('Thêm sản phẩm:', this.product);
+    if (this.editProductForm.valid) {
+      // Lấy dữ liệu từ form
+      const newProduct = {
+        name: this.editProductForm.get('name')?.value || null,
+        quantity: this.editProductForm.get('quantity')?.value || null,
+        priceOutput: this.editProductForm.get('priceOutput')?.value || null,
+        description: this.editProductForm.get('description')?.value || null,
+        categoryId: this.editProductForm.get('categoryId')?.value || null,
+      } as CreateProductRequest;
 
-    // Thiết lập thông báo thành công
-    this.successMessage = 'Đã thêm sản phẩm thành công!'; 
-
-    // Reset thông báo sau 3 giây
-    setTimeout(() => {
-      this.successMessage = ''; // Đặt lại thông báo
-      this.router.navigate(['/manages/product/product-list']); // Điều hướng về danh sách sản phẩm
-    }, 3000);
+      // Gọi API để thêm người dùng mới
+      this.productService.apiProductCreatePost$Json$Response({ body: newProduct }).subscribe({
+        next: (rs) => {
+          if (rs.body.success) {
+            Swal.fire({
+              icon: 'success',
+              title: 'Thêm thông tin cây thành công',
+              text: rs.body.message,
+              confirmButtonText: 'OK'
+            }).then(() => {
+              // Điều hướng về trang danh sách người dùng sau khi bấm OK
+              this.router.navigate(['/manages/product/product-list']);
+            });
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Thêm thông tin cây thất bại thất bại',
+              text: rs.body.message,
+              confirmButtonText: 'OK'
+            });
+          }
+        },
+        error: (error) => {
+          console.error('Có lỗi xảy ra:', error); // Log lỗi chi tiết
+        }
+      });
+    } else {
+      console.log('Form không hợp lệ');
+    }
   }
 
   cancel() {

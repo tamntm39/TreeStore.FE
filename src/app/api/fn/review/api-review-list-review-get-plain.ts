@@ -8,12 +8,12 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { ReviewListResultCustomModel } from '../../models/review-list-result-custom-model';
+import { ReviewResponseListResultCustomModel } from '../../models/review-response-list-result-custom-model';
 
 export interface ApiReviewListReviewGet$Plain$Params {
 }
 
-export function apiReviewListReviewGet$Plain(http: HttpClient, rootUrl: string, params?: ApiReviewListReviewGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<ReviewListResultCustomModel>> {
+export function apiReviewListReviewGet$Plain(http: HttpClient, rootUrl: string, params?: ApiReviewListReviewGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<ReviewResponseListResultCustomModel>> {
   const rb = new RequestBuilder(rootUrl, apiReviewListReviewGet$Plain.PATH, 'get');
   if (params) {
   }
@@ -23,7 +23,7 @@ export function apiReviewListReviewGet$Plain(http: HttpClient, rootUrl: string, 
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<ReviewListResultCustomModel>;
+      return r as StrictHttpResponse<ReviewResponseListResultCustomModel>;
     })
   );
 }

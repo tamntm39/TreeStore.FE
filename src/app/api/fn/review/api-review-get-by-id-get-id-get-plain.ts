@@ -8,14 +8,14 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { ReviewResultCustomModel } from '../../models/review-result-custom-model';
+import { ReviewResponseResultCustomModel } from '../../models/review-response-result-custom-model';
 
 export interface ApiReviewGetByIdGetIdGet$Plain$Params {
   reviewId?: number;
   GetId: string;
 }
 
-export function apiReviewGetByIdGetIdGet$Plain(http: HttpClient, rootUrl: string, params: ApiReviewGetByIdGetIdGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<ReviewResultCustomModel>> {
+export function apiReviewGetByIdGetIdGet$Plain(http: HttpClient, rootUrl: string, params: ApiReviewGetByIdGetIdGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<ReviewResponseResultCustomModel>> {
   const rb = new RequestBuilder(rootUrl, apiReviewGetByIdGetIdGet$Plain.PATH, 'get');
   if (params) {
     rb.query('reviewId', params.reviewId, {});
@@ -27,7 +27,7 @@ export function apiReviewGetByIdGetIdGet$Plain(http: HttpClient, rootUrl: string
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<ReviewResultCustomModel>;
+      return r as StrictHttpResponse<ReviewResponseResultCustomModel>;
     })
   );
 }

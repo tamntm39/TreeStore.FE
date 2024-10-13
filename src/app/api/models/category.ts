@@ -13,16 +13,3 @@ export interface Category {
   slug?: string | null;
   totalProduct?: number | null;
 }
-export interface UpdateCategoryRequest {
-  categoryId: number;
-  name: string | null;
-  image: string | null;
-  createOn: string | null;
-  totalProduct: number;
-}
-
-export interface CategoryResponse {
-  success: boolean;
-  message: string;
-  data: Category;
-}

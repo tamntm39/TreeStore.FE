@@ -22,8 +22,3 @@ export interface Customer {
   reviews?: Array<Review> | null;
   username?: string | null;
 }
-export interface CustomerResponse {
-  success: boolean;
-  message: string;
-  data: Customer; // Hoặc là một đối tượng hoặc mảng tùy thuộc vào API của bạn
-}

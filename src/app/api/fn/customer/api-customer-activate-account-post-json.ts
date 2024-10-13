@@ -8,15 +8,14 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { BooleanResultCustomModel } from '../../models/boolean-result-custom-model';
-import { CreateProductRequest } from '../../models/create-product-request';
+import { StringResultCustomModel } from '../../models/string-result-custom-model';
 
-export interface ApiProductCreatePost$Json$Params {
-      body?: CreateProductRequest
+export interface ApiCustomerActivateAccountPost$Json$Params {
+      body?: number
 }
 
-export function apiProductCreatePost$Json(http: HttpClient, rootUrl: string, params?: ApiProductCreatePost$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<BooleanResultCustomModel>> {
-  const rb = new RequestBuilder(rootUrl, apiProductCreatePost$Json.PATH, 'post');
+export function apiCustomerActivateAccountPost$Json(http: HttpClient, rootUrl: string, params?: ApiCustomerActivateAccountPost$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<StringResultCustomModel>> {
+  const rb = new RequestBuilder(rootUrl, apiCustomerActivateAccountPost$Json.PATH, 'post');
   if (params) {
     rb.body(params.body, 'application/*+json');
   }
@@ -26,9 +25,9 @@ export function apiProductCreatePost$Json(http: HttpClient, rootUrl: string, par
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<BooleanResultCustomModel>;
+      return r as StrictHttpResponse<StringResultCustomModel>;
     })
   );
 }
 
-apiProductCreatePost$Json.PATH = '/api/Product/Create';
+apiCustomerActivateAccountPost$Json.PATH = '/api/Customer/ActivateAccount';

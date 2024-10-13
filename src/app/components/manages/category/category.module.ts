@@ -35,4 +35,4 @@ const routes: Routes = [
     ReactiveFormsModule 
   ]
 })
-export class CategoryModule { }
+export class CategoryModule { } 

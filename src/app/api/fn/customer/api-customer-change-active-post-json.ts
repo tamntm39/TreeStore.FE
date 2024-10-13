@@ -9,20 +9,19 @@ import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
 import { BooleanResultCustomModel } from '../../models/boolean-result-custom-model';
-import { CreateProductRequest } from '../../models/create-product-request';
 
-export interface ApiProductCreatePost$Plain$Params {
-      body?: CreateProductRequest
+export interface ApiCustomerChangeActivePost$Json$Params {
+  customerId?: number;
 }
 
-export function apiProductCreatePost$Plain(http: HttpClient, rootUrl: string, params?: ApiProductCreatePost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<BooleanResultCustomModel>> {
-  const rb = new RequestBuilder(rootUrl, apiProductCreatePost$Plain.PATH, 'post');
+export function apiCustomerChangeActivePost$Json(http: HttpClient, rootUrl: string, params?: ApiCustomerChangeActivePost$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<BooleanResultCustomModel>> {
+  const rb = new RequestBuilder(rootUrl, apiCustomerChangeActivePost$Json.PATH, 'post');
   if (params) {
-    rb.body(params.body, 'application/*+json');
+    rb.query('customerId', params.customerId, {});
   }
 
   return http.request(
-    rb.build({ responseType: 'text', accept: 'text/plain', context })
+    rb.build({ responseType: 'json', accept: 'text/json', context })
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
@@ -31,4 +30,4 @@ export function apiProductCreatePost$Plain(http: HttpClient, rootUrl: string, pa
   );
 }
 
-apiProductCreatePost$Plain.PATH = '/api/Product/Create';
+apiCustomerChangeActivePost$Json.PATH = '/api/Customer/ChangeActive';

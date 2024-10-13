@@ -8,12 +8,12 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { CustomerListResultCustomModel } from '../../models/customer-list-result-custom-model';
+import { CustomerResponseListResultCustomModel } from '../../models/customer-response-list-result-custom-model';
 
 export interface ApiCustomerListCustomerGet$Json$Params {
 }
 
-export function apiCustomerListCustomerGet$Json(http: HttpClient, rootUrl: string, params?: ApiCustomerListCustomerGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<CustomerListResultCustomModel>> {
+export function apiCustomerListCustomerGet$Json(http: HttpClient, rootUrl: string, params?: ApiCustomerListCustomerGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<CustomerResponseListResultCustomModel>> {
   const rb = new RequestBuilder(rootUrl, apiCustomerListCustomerGet$Json.PATH, 'get');
   if (params) {
   }
@@ -23,7 +23,7 @@ export function apiCustomerListCustomerGet$Json(http: HttpClient, rootUrl: strin
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<CustomerListResultCustomModel>;
+      return r as StrictHttpResponse<CustomerResponseListResultCustomModel>;
     })
   );
 }

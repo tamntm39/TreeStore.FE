@@ -52,7 +52,7 @@ export class ProductListComponent implements OnInit {
       confirmButtonText: 'Có, xóa nó!'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.productService.apiProductDeleteProductIdDelete$Json$Response({ productId }).subscribe((rs) => {
+        this.productService.apiProductDeleteDelete$Json$Response({ productId }).subscribe((rs) => {
           const response = rs.body;
           if (response.success) {
             Swal.fire('Đã xóa!', 'Sản phẩm đã được xóa.', 'success').then(() => {

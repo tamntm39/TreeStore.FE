@@ -10,14 +10,14 @@ import { RequestBuilder } from '../../request-builder';
 
 import { BooleanResultCustomModel } from '../../models/boolean-result-custom-model';
 
-export interface ApiUserChangeActivePost$Json$Params {
-  userId?: number;
+export interface ApiProductDeleteDelete$Json$Params {
+  productId?: number;
 }
 
-export function apiUserChangeActivePost$Json(http: HttpClient, rootUrl: string, params?: ApiUserChangeActivePost$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<BooleanResultCustomModel>> {
-  const rb = new RequestBuilder(rootUrl, apiUserChangeActivePost$Json.PATH, 'post');
+export function apiProductDeleteDelete$Json(http: HttpClient, rootUrl: string, params?: ApiProductDeleteDelete$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<BooleanResultCustomModel>> {
+  const rb = new RequestBuilder(rootUrl, apiProductDeleteDelete$Json.PATH, 'delete');
   if (params) {
-    rb.query('userId', params.userId, {});
+    rb.query('productId', params.productId, {});
   }
 
   return http.request(
@@ -30,4 +30,4 @@ export function apiUserChangeActivePost$Json(http: HttpClient, rootUrl: string, 
   );
 }
 
-apiUserChangeActivePost$Json.PATH = '/api/User/ChangeActive';
+apiProductDeleteDelete$Json.PATH = '/api/Product/Delete';

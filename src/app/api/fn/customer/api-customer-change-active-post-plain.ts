@@ -10,14 +10,14 @@ import { RequestBuilder } from '../../request-builder';
 
 import { BooleanResultCustomModel } from '../../models/boolean-result-custom-model';
 
-export interface ApiProductDeleteProductIdDelete$Plain$Params {
-  productId: number;
+export interface ApiCustomerChangeActivePost$Plain$Params {
+  customerId?: number;
 }
 
-export function apiProductDeleteProductIdDelete$Plain(http: HttpClient, rootUrl: string, params: ApiProductDeleteProductIdDelete$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<BooleanResultCustomModel>> {
-  const rb = new RequestBuilder(rootUrl, apiProductDeleteProductIdDelete$Plain.PATH, 'delete');
+export function apiCustomerChangeActivePost$Plain(http: HttpClient, rootUrl: string, params?: ApiCustomerChangeActivePost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<BooleanResultCustomModel>> {
+  const rb = new RequestBuilder(rootUrl, apiCustomerChangeActivePost$Plain.PATH, 'post');
   if (params) {
-    rb.path('productId', params.productId, {});
+    rb.query('customerId', params.customerId, {});
   }
 
   return http.request(
@@ -30,4 +30,4 @@ export function apiProductDeleteProductIdDelete$Plain(http: HttpClient, rootUrl:
   );
 }
 
-apiProductDeleteProductIdDelete$Plain.PATH = '/api/Product/Delete/{productId}';
+apiCustomerChangeActivePost$Plain.PATH = '/api/Customer/ChangeActive';

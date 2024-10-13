@@ -11,6 +11,16 @@ import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
 import { StrictHttpResponse } from '../strict-http-response';
 
+import { apiCustomerActivateAccountPost$Json } from '../fn/customer/api-customer-activate-account-post-json';
+import { ApiCustomerActivateAccountPost$Json$Params } from '../fn/customer/api-customer-activate-account-post-json';
+import { apiCustomerActivateAccountPost$Plain } from '../fn/customer/api-customer-activate-account-post-plain';
+import { ApiCustomerActivateAccountPost$Plain$Params } from '../fn/customer/api-customer-activate-account-post-plain';
+import { apiCustomerChangeActivePost$Json } from '../fn/customer/api-customer-change-active-post-json';
+import { ApiCustomerChangeActivePost$Json$Params } from '../fn/customer/api-customer-change-active-post-json';
+import { apiCustomerChangeActivePost$Plain } from '../fn/customer/api-customer-change-active-post-plain';
+import { ApiCustomerChangeActivePost$Plain$Params } from '../fn/customer/api-customer-change-active-post-plain';
+import { apiCustomerDeactivateAccountPost } from '../fn/customer/api-customer-deactivate-account-post';
+import { ApiCustomerDeactivateAccountPost$Params } from '../fn/customer/api-customer-deactivate-account-post';
 import { apiCustomerGetCustomerByIdGet$Json } from '../fn/customer/api-customer-get-customer-by-id-get-json';
 import { ApiCustomerGetCustomerByIdGet$Json$Params } from '../fn/customer/api-customer-get-customer-by-id-get-json';
 import { apiCustomerGetCustomerByIdGet$Plain } from '../fn/customer/api-customer-get-customer-by-id-get-plain';
@@ -23,9 +33,10 @@ import { apiCustomerUpdateCustomerPut$Json } from '../fn/customer/api-customer-u
 import { ApiCustomerUpdateCustomerPut$Json$Params } from '../fn/customer/api-customer-update-customer-put-json';
 import { apiCustomerUpdateCustomerPut$Plain } from '../fn/customer/api-customer-update-customer-put-plain';
 import { ApiCustomerUpdateCustomerPut$Plain$Params } from '../fn/customer/api-customer-update-customer-put-plain';
-import { CustomerListResultCustomModel } from '../models/customer-list-result-custom-model';
-import { CustomerResultCustomModel } from '../models/customer-result-custom-model';
-import { UpdateCustomerResponseResultCustomModel } from '../models/update-customer-response-result-custom-model';
+import { BooleanResultCustomModel } from '../models/boolean-result-custom-model';
+import { CustomerResponseListResultCustomModel } from '../models/customer-response-list-result-custom-model';
+import { CustomerResponseResultCustomModel } from '../models/customer-response-result-custom-model';
+import { StringResultCustomModel } from '../models/string-result-custom-model';
 
 @Injectable({ providedIn: 'root' })
 export class CustomerService extends BaseService {
@@ -42,7 +53,7 @@ export class CustomerService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiCustomerListCustomerGet$Plain$Response(params?: ApiCustomerListCustomerGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<CustomerListResultCustomModel>> {
+  apiCustomerListCustomerGet$Plain$Response(params?: ApiCustomerListCustomerGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<CustomerResponseListResultCustomModel>> {
     return apiCustomerListCustomerGet$Plain(this.http, this.rootUrl, params, context);
   }
 
@@ -52,9 +63,9 @@ export class CustomerService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiCustomerListCustomerGet$Plain(params?: ApiCustomerListCustomerGet$Plain$Params, context?: HttpContext): Observable<CustomerListResultCustomModel> {
+  apiCustomerListCustomerGet$Plain(params?: ApiCustomerListCustomerGet$Plain$Params, context?: HttpContext): Observable<CustomerResponseListResultCustomModel> {
     return this.apiCustomerListCustomerGet$Plain$Response(params, context).pipe(
-      map((r: StrictHttpResponse<CustomerListResultCustomModel>): CustomerListResultCustomModel => r.body)
+      map((r: StrictHttpResponse<CustomerResponseListResultCustomModel>): CustomerResponseListResultCustomModel => r.body)
     );
   }
 
@@ -64,7 +75,7 @@ export class CustomerService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiCustomerListCustomerGet$Json$Response(params?: ApiCustomerListCustomerGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<CustomerListResultCustomModel>> {
+  apiCustomerListCustomerGet$Json$Response(params?: ApiCustomerListCustomerGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<CustomerResponseListResultCustomModel>> {
     return apiCustomerListCustomerGet$Json(this.http, this.rootUrl, params, context);
   }
 
@@ -74,9 +85,9 @@ export class CustomerService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiCustomerListCustomerGet$Json(params?: ApiCustomerListCustomerGet$Json$Params, context?: HttpContext): Observable<CustomerListResultCustomModel> {
+  apiCustomerListCustomerGet$Json(params?: ApiCustomerListCustomerGet$Json$Params, context?: HttpContext): Observable<CustomerResponseListResultCustomModel> {
     return this.apiCustomerListCustomerGet$Json$Response(params, context).pipe(
-      map((r: StrictHttpResponse<CustomerListResultCustomModel>): CustomerListResultCustomModel => r.body)
+      map((r: StrictHttpResponse<CustomerResponseListResultCustomModel>): CustomerResponseListResultCustomModel => r.body)
     );
   }
 
@@ -89,7 +100,7 @@ export class CustomerService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiCustomerGetCustomerByIdGet$Plain$Response(params?: ApiCustomerGetCustomerByIdGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<CustomerResultCustomModel>> {
+  apiCustomerGetCustomerByIdGet$Plain$Response(params?: ApiCustomerGetCustomerByIdGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<CustomerResponseResultCustomModel>> {
     return apiCustomerGetCustomerByIdGet$Plain(this.http, this.rootUrl, params, context);
   }
 
@@ -99,9 +110,9 @@ export class CustomerService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiCustomerGetCustomerByIdGet$Plain(params?: ApiCustomerGetCustomerByIdGet$Plain$Params, context?: HttpContext): Observable<CustomerResultCustomModel> {
+  apiCustomerGetCustomerByIdGet$Plain(params?: ApiCustomerGetCustomerByIdGet$Plain$Params, context?: HttpContext): Observable<CustomerResponseResultCustomModel> {
     return this.apiCustomerGetCustomerByIdGet$Plain$Response(params, context).pipe(
-      map((r: StrictHttpResponse<CustomerResultCustomModel>): CustomerResultCustomModel => r.body)
+      map((r: StrictHttpResponse<CustomerResponseResultCustomModel>): CustomerResponseResultCustomModel => r.body)
     );
   }
 
@@ -111,7 +122,7 @@ export class CustomerService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiCustomerGetCustomerByIdGet$Json$Response(params?: ApiCustomerGetCustomerByIdGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<CustomerResultCustomModel>> {
+  apiCustomerGetCustomerByIdGet$Json$Response(params?: ApiCustomerGetCustomerByIdGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<CustomerResponseResultCustomModel>> {
     return apiCustomerGetCustomerByIdGet$Json(this.http, this.rootUrl, params, context);
   }
 
@@ -121,9 +132,9 @@ export class CustomerService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiCustomerGetCustomerByIdGet$Json(params?: ApiCustomerGetCustomerByIdGet$Json$Params, context?: HttpContext): Observable<CustomerResultCustomModel> {
+  apiCustomerGetCustomerByIdGet$Json(params?: ApiCustomerGetCustomerByIdGet$Json$Params, context?: HttpContext): Observable<CustomerResponseResultCustomModel> {
     return this.apiCustomerGetCustomerByIdGet$Json$Response(params, context).pipe(
-      map((r: StrictHttpResponse<CustomerResultCustomModel>): CustomerResultCustomModel => r.body)
+      map((r: StrictHttpResponse<CustomerResponseResultCustomModel>): CustomerResponseResultCustomModel => r.body)
     );
   }
 
@@ -136,7 +147,7 @@ export class CustomerService extends BaseService {
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiCustomerUpdateCustomerPut$Plain$Response(params?: ApiCustomerUpdateCustomerPut$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<UpdateCustomerResponseResultCustomModel>> {
+  apiCustomerUpdateCustomerPut$Plain$Response(params?: ApiCustomerUpdateCustomerPut$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<CustomerResponseResultCustomModel>> {
     return apiCustomerUpdateCustomerPut$Plain(this.http, this.rootUrl, params, context);
   }
 
@@ -146,9 +157,9 @@ export class CustomerService extends BaseService {
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiCustomerUpdateCustomerPut$Plain(params?: ApiCustomerUpdateCustomerPut$Plain$Params, context?: HttpContext): Observable<UpdateCustomerResponseResultCustomModel> {
+  apiCustomerUpdateCustomerPut$Plain(params?: ApiCustomerUpdateCustomerPut$Plain$Params, context?: HttpContext): Observable<CustomerResponseResultCustomModel> {
     return this.apiCustomerUpdateCustomerPut$Plain$Response(params, context).pipe(
-      map((r: StrictHttpResponse<UpdateCustomerResponseResultCustomModel>): UpdateCustomerResponseResultCustomModel => r.body)
+      map((r: StrictHttpResponse<CustomerResponseResultCustomModel>): CustomerResponseResultCustomModel => r.body)
     );
   }
 
@@ -158,7 +169,7 @@ export class CustomerService extends BaseService {
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiCustomerUpdateCustomerPut$Json$Response(params?: ApiCustomerUpdateCustomerPut$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<UpdateCustomerResponseResultCustomModel>> {
+  apiCustomerUpdateCustomerPut$Json$Response(params?: ApiCustomerUpdateCustomerPut$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<CustomerResponseResultCustomModel>> {
     return apiCustomerUpdateCustomerPut$Json(this.http, this.rootUrl, params, context);
   }
 
@@ -168,9 +179,128 @@ export class CustomerService extends BaseService {
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiCustomerUpdateCustomerPut$Json(params?: ApiCustomerUpdateCustomerPut$Json$Params, context?: HttpContext): Observable<UpdateCustomerResponseResultCustomModel> {
+  apiCustomerUpdateCustomerPut$Json(params?: ApiCustomerUpdateCustomerPut$Json$Params, context?: HttpContext): Observable<CustomerResponseResultCustomModel> {
     return this.apiCustomerUpdateCustomerPut$Json$Response(params, context).pipe(
-      map((r: StrictHttpResponse<UpdateCustomerResponseResultCustomModel>): UpdateCustomerResponseResultCustomModel => r.body)
+      map((r: StrictHttpResponse<CustomerResponseResultCustomModel>): CustomerResponseResultCustomModel => r.body)
+    );
+  }
+
+  /** Path part for operation `apiCustomerDeactivateAccountPost()` */
+  static readonly ApiCustomerDeactivateAccountPostPath = '/api/Customer/DeactivateAccount';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiCustomerDeactivateAccountPost()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiCustomerDeactivateAccountPost$Response(params?: ApiCustomerDeactivateAccountPost$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+    return apiCustomerDeactivateAccountPost(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiCustomerDeactivateAccountPost$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiCustomerDeactivateAccountPost(params?: ApiCustomerDeactivateAccountPost$Params, context?: HttpContext): Observable<void> {
+    return this.apiCustomerDeactivateAccountPost$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `apiCustomerActivateAccountPost()` */
+  static readonly ApiCustomerActivateAccountPostPath = '/api/Customer/ActivateAccount';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiCustomerActivateAccountPost$Plain()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiCustomerActivateAccountPost$Plain$Response(params?: ApiCustomerActivateAccountPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<StringResultCustomModel>> {
+    return apiCustomerActivateAccountPost$Plain(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiCustomerActivateAccountPost$Plain$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiCustomerActivateAccountPost$Plain(params?: ApiCustomerActivateAccountPost$Plain$Params, context?: HttpContext): Observable<StringResultCustomModel> {
+    return this.apiCustomerActivateAccountPost$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<StringResultCustomModel>): StringResultCustomModel => r.body)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiCustomerActivateAccountPost$Json()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiCustomerActivateAccountPost$Json$Response(params?: ApiCustomerActivateAccountPost$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<StringResultCustomModel>> {
+    return apiCustomerActivateAccountPost$Json(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiCustomerActivateAccountPost$Json$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiCustomerActivateAccountPost$Json(params?: ApiCustomerActivateAccountPost$Json$Params, context?: HttpContext): Observable<StringResultCustomModel> {
+    return this.apiCustomerActivateAccountPost$Json$Response(params, context).pipe(
+      map((r: StrictHttpResponse<StringResultCustomModel>): StringResultCustomModel => r.body)
+    );
+  }
+
+  /** Path part for operation `apiCustomerChangeActivePost()` */
+  static readonly ApiCustomerChangeActivePostPath = '/api/Customer/ChangeActive';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiCustomerChangeActivePost$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiCustomerChangeActivePost$Plain$Response(params?: ApiCustomerChangeActivePost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<BooleanResultCustomModel>> {
+    return apiCustomerChangeActivePost$Plain(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiCustomerChangeActivePost$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiCustomerChangeActivePost$Plain(params?: ApiCustomerChangeActivePost$Plain$Params, context?: HttpContext): Observable<BooleanResultCustomModel> {
+    return this.apiCustomerChangeActivePost$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<BooleanResultCustomModel>): BooleanResultCustomModel => r.body)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiCustomerChangeActivePost$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiCustomerChangeActivePost$Json$Response(params?: ApiCustomerChangeActivePost$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<BooleanResultCustomModel>> {
+    return apiCustomerChangeActivePost$Json(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiCustomerChangeActivePost$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiCustomerChangeActivePost$Json(params?: ApiCustomerChangeActivePost$Json$Params, context?: HttpContext): Observable<BooleanResultCustomModel> {
+    return this.apiCustomerChangeActivePost$Json$Response(params, context).pipe(
+      map((r: StrictHttpResponse<BooleanResultCustomModel>): BooleanResultCustomModel => r.body)
     );
   }
 

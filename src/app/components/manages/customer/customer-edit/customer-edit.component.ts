@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UpdateCustomerRequest } from 'src/app/api/models'; // Chắc chắn bạn có mô hình này
-import { CustomerResponse, Customer } from 'src/app/api/models/customer'; // Cập nhật đường dẫn
+import { Customer } from 'src/app/api/models/customer'; // Cập nhật đường dẫn
 import { CustomerService } from 'src/app/api/services';
 import Swal from 'sweetalert2';
 
@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
 })
 export class CustomerEditComponent implements OnInit {
   customerId: number;
-  customerDB: Customer | undefined; // Chỉ cần lưu Customer ở đây
+  // customerDB: Customer | undefined; // Chỉ cần lưu Customer ở đây
   editCustomerForm: FormGroup;
 
   constructor(

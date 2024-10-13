@@ -10,18 +10,18 @@ import { RequestBuilder } from '../../request-builder';
 
 import { BooleanResultCustomModel } from '../../models/boolean-result-custom-model';
 
-export interface ApiProductDeleteProductIdDelete$Json$Params {
-  productId: number;
+export interface ApiProductDeleteDelete$Plain$Params {
+  productId?: number;
 }
 
-export function apiProductDeleteProductIdDelete$Json(http: HttpClient, rootUrl: string, params: ApiProductDeleteProductIdDelete$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<BooleanResultCustomModel>> {
-  const rb = new RequestBuilder(rootUrl, apiProductDeleteProductIdDelete$Json.PATH, 'delete');
+export function apiProductDeleteDelete$Plain(http: HttpClient, rootUrl: string, params?: ApiProductDeleteDelete$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<BooleanResultCustomModel>> {
+  const rb = new RequestBuilder(rootUrl, apiProductDeleteDelete$Plain.PATH, 'delete');
   if (params) {
-    rb.path('productId', params.productId, {});
+    rb.query('productId', params.productId, {});
   }
 
   return http.request(
-    rb.build({ responseType: 'json', accept: 'text/json', context })
+    rb.build({ responseType: 'text', accept: 'text/plain', context })
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
@@ -30,4 +30,4 @@ export function apiProductDeleteProductIdDelete$Json(http: HttpClient, rootUrl: 
   );
 }
 
-apiProductDeleteProductIdDelete$Json.PATH = '/api/Product/Delete/{productId}';
+apiProductDeleteDelete$Plain.PATH = '/api/Product/Delete';

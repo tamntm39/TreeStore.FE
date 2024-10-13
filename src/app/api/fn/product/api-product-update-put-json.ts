@@ -8,14 +8,14 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { BooleanResultCustomModel } from '../../models/boolean-result-custom-model';
-import { Product } from '../../models/product';
+import { UpdateProductReponseResultCustomModel } from '../../models/update-product-reponse-result-custom-model';
+import { UpdateProductRequest } from '../../models/update-product-request';
 
 export interface ApiProductUpdatePut$Json$Params {
-      body?: Product
+      body?: UpdateProductRequest
 }
 
-export function apiProductUpdatePut$Json(http: HttpClient, rootUrl: string, params?: ApiProductUpdatePut$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<BooleanResultCustomModel>> {
+export function apiProductUpdatePut$Json(http: HttpClient, rootUrl: string, params?: ApiProductUpdatePut$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<UpdateProductReponseResultCustomModel>> {
   const rb = new RequestBuilder(rootUrl, apiProductUpdatePut$Json.PATH, 'put');
   if (params) {
     rb.body(params.body, 'application/*+json');
@@ -26,7 +26,7 @@ export function apiProductUpdatePut$Json(http: HttpClient, rootUrl: string, para
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<BooleanResultCustomModel>;
+      return r as StrictHttpResponse<UpdateProductReponseResultCustomModel>;
     })
   );
 }

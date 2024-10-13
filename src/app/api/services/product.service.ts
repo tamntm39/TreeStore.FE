@@ -15,25 +15,26 @@ import { apiProductCreatePost$Json } from '../fn/product/api-product-create-post
 import { ApiProductCreatePost$Json$Params } from '../fn/product/api-product-create-post-json';
 import { apiProductCreatePost$Plain } from '../fn/product/api-product-create-post-plain';
 import { ApiProductCreatePost$Plain$Params } from '../fn/product/api-product-create-post-plain';
-import { apiProductDeleteProductIdDelete$Json } from '../fn/product/api-product-delete-product-id-delete-json';
-import { ApiProductDeleteProductIdDelete$Json$Params } from '../fn/product/api-product-delete-product-id-delete-json';
-import { apiProductDeleteProductIdDelete$Plain } from '../fn/product/api-product-delete-product-id-delete-plain';
-import { ApiProductDeleteProductIdDelete$Plain$Params } from '../fn/product/api-product-delete-product-id-delete-plain';
+import { apiProductDeleteDelete$Json } from '../fn/product/api-product-delete-delete-json';
+import { ApiProductDeleteDelete$Json$Params } from '../fn/product/api-product-delete-delete-json';
+import { apiProductDeleteDelete$Plain } from '../fn/product/api-product-delete-delete-plain';
+import { ApiProductDeleteDelete$Plain$Params } from '../fn/product/api-product-delete-delete-plain';
 import { apiProductGetAllGet$Json } from '../fn/product/api-product-get-all-get-json';
 import { ApiProductGetAllGet$Json$Params } from '../fn/product/api-product-get-all-get-json';
 import { apiProductGetAllGet$Plain } from '../fn/product/api-product-get-all-get-plain';
 import { ApiProductGetAllGet$Plain$Params } from '../fn/product/api-product-get-all-get-plain';
-import { apiProductGetByIdProductIdGet$Json } from '../fn/product/api-product-get-by-id-product-id-get-json';
-import { ApiProductGetByIdProductIdGet$Json$Params } from '../fn/product/api-product-get-by-id-product-id-get-json';
-import { apiProductGetByIdProductIdGet$Plain } from '../fn/product/api-product-get-by-id-product-id-get-plain';
-import { ApiProductGetByIdProductIdGet$Plain$Params } from '../fn/product/api-product-get-by-id-product-id-get-plain';
+import { apiProductGetProductByIdGet$Json } from '../fn/product/api-product-get-product-by-id-get-json';
+import { ApiProductGetProductByIdGet$Json$Params } from '../fn/product/api-product-get-product-by-id-get-json';
+import { apiProductGetProductByIdGet$Plain } from '../fn/product/api-product-get-product-by-id-get-plain';
+import { ApiProductGetProductByIdGet$Plain$Params } from '../fn/product/api-product-get-product-by-id-get-plain';
 import { apiProductUpdatePut$Json } from '../fn/product/api-product-update-put-json';
 import { ApiProductUpdatePut$Json$Params } from '../fn/product/api-product-update-put-json';
 import { apiProductUpdatePut$Plain } from '../fn/product/api-product-update-put-plain';
 import { ApiProductUpdatePut$Plain$Params } from '../fn/product/api-product-update-put-plain';
 import { BooleanResultCustomModel } from '../models/boolean-result-custom-model';
 import { ProductListResultCustomModel } from '../models/product-list-result-custom-model';
-import { ProductResultCustomModel } from '../models/product-result-custom-model';
+import { ProductResponseResultCustomModel } from '../models/product-response-result-custom-model';
+import { UpdateProductReponseResultCustomModel } from '../models/update-product-reponse-result-custom-model';
 
 @Injectable({ providedIn: 'root' })
 export class ProductService extends BaseService {
@@ -88,96 +89,96 @@ export class ProductService extends BaseService {
     );
   }
 
-  /** Path part for operation `apiProductGetByIdProductIdGet()` */
-  static readonly ApiProductGetByIdProductIdGetPath = '/api/Product/GetById/{productId}';
+  /** Path part for operation `apiProductGetProductByIdGet()` */
+  static readonly ApiProductGetProductByIdGetPath = '/api/Product/GetProductById';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiProductGetByIdProductIdGet$Plain()` instead.
+   * To access only the response body, use `apiProductGetProductByIdGet$Plain()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiProductGetByIdProductIdGet$Plain$Response(params: ApiProductGetByIdProductIdGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<ProductResultCustomModel>> {
-    return apiProductGetByIdProductIdGet$Plain(this.http, this.rootUrl, params, context);
+  apiProductGetProductByIdGet$Plain$Response(params?: ApiProductGetProductByIdGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<ProductResponseResultCustomModel>> {
+    return apiProductGetProductByIdGet$Plain(this.http, this.rootUrl, params, context);
   }
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiProductGetByIdProductIdGet$Plain$Response()` instead.
+   * To access the full response (for headers, for example), `apiProductGetProductByIdGet$Plain$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiProductGetByIdProductIdGet$Plain(params: ApiProductGetByIdProductIdGet$Plain$Params, context?: HttpContext): Observable<ProductResultCustomModel> {
-    return this.apiProductGetByIdProductIdGet$Plain$Response(params, context).pipe(
-      map((r: StrictHttpResponse<ProductResultCustomModel>): ProductResultCustomModel => r.body)
+  apiProductGetProductByIdGet$Plain(params?: ApiProductGetProductByIdGet$Plain$Params, context?: HttpContext): Observable<ProductResponseResultCustomModel> {
+    return this.apiProductGetProductByIdGet$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<ProductResponseResultCustomModel>): ProductResponseResultCustomModel => r.body)
     );
   }
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiProductGetByIdProductIdGet$Json()` instead.
+   * To access only the response body, use `apiProductGetProductByIdGet$Json()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiProductGetByIdProductIdGet$Json$Response(params: ApiProductGetByIdProductIdGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<ProductResultCustomModel>> {
-    return apiProductGetByIdProductIdGet$Json(this.http, this.rootUrl, params, context);
+  apiProductGetProductByIdGet$Json$Response(params?: ApiProductGetProductByIdGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<ProductResponseResultCustomModel>> {
+    return apiProductGetProductByIdGet$Json(this.http, this.rootUrl, params, context);
   }
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiProductGetByIdProductIdGet$Json$Response()` instead.
+   * To access the full response (for headers, for example), `apiProductGetProductByIdGet$Json$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiProductGetByIdProductIdGet$Json(params: ApiProductGetByIdProductIdGet$Json$Params, context?: HttpContext): Observable<ProductResultCustomModel> {
-    return this.apiProductGetByIdProductIdGet$Json$Response(params, context).pipe(
-      map((r: StrictHttpResponse<ProductResultCustomModel>): ProductResultCustomModel => r.body)
+  apiProductGetProductByIdGet$Json(params?: ApiProductGetProductByIdGet$Json$Params, context?: HttpContext): Observable<ProductResponseResultCustomModel> {
+    return this.apiProductGetProductByIdGet$Json$Response(params, context).pipe(
+      map((r: StrictHttpResponse<ProductResponseResultCustomModel>): ProductResponseResultCustomModel => r.body)
     );
   }
 
-  /** Path part for operation `apiProductDeleteProductIdDelete()` */
-  static readonly ApiProductDeleteProductIdDeletePath = '/api/Product/Delete/{productId}';
+  /** Path part for operation `apiProductDeleteDelete()` */
+  static readonly ApiProductDeleteDeletePath = '/api/Product/Delete';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiProductDeleteProductIdDelete$Plain()` instead.
+   * To access only the response body, use `apiProductDeleteDelete$Plain()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiProductDeleteProductIdDelete$Plain$Response(params: ApiProductDeleteProductIdDelete$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<BooleanResultCustomModel>> {
-    return apiProductDeleteProductIdDelete$Plain(this.http, this.rootUrl, params, context);
+  apiProductDeleteDelete$Plain$Response(params?: ApiProductDeleteDelete$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<BooleanResultCustomModel>> {
+    return apiProductDeleteDelete$Plain(this.http, this.rootUrl, params, context);
   }
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiProductDeleteProductIdDelete$Plain$Response()` instead.
+   * To access the full response (for headers, for example), `apiProductDeleteDelete$Plain$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiProductDeleteProductIdDelete$Plain(params: ApiProductDeleteProductIdDelete$Plain$Params, context?: HttpContext): Observable<BooleanResultCustomModel> {
-    return this.apiProductDeleteProductIdDelete$Plain$Response(params, context).pipe(
+  apiProductDeleteDelete$Plain(params?: ApiProductDeleteDelete$Plain$Params, context?: HttpContext): Observable<BooleanResultCustomModel> {
+    return this.apiProductDeleteDelete$Plain$Response(params, context).pipe(
       map((r: StrictHttpResponse<BooleanResultCustomModel>): BooleanResultCustomModel => r.body)
     );
   }
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiProductDeleteProductIdDelete$Json()` instead.
+   * To access only the response body, use `apiProductDeleteDelete$Json()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiProductDeleteProductIdDelete$Json$Response(params: ApiProductDeleteProductIdDelete$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<BooleanResultCustomModel>> {
-    return apiProductDeleteProductIdDelete$Json(this.http, this.rootUrl, params, context);
+  apiProductDeleteDelete$Json$Response(params?: ApiProductDeleteDelete$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<BooleanResultCustomModel>> {
+    return apiProductDeleteDelete$Json(this.http, this.rootUrl, params, context);
   }
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiProductDeleteProductIdDelete$Json$Response()` instead.
+   * To access the full response (for headers, for example), `apiProductDeleteDelete$Json$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiProductDeleteProductIdDelete$Json(params: ApiProductDeleteProductIdDelete$Json$Params, context?: HttpContext): Observable<BooleanResultCustomModel> {
-    return this.apiProductDeleteProductIdDelete$Json$Response(params, context).pipe(
+  apiProductDeleteDelete$Json(params?: ApiProductDeleteDelete$Json$Params, context?: HttpContext): Observable<BooleanResultCustomModel> {
+    return this.apiProductDeleteDelete$Json$Response(params, context).pipe(
       map((r: StrictHttpResponse<BooleanResultCustomModel>): BooleanResultCustomModel => r.body)
     );
   }
@@ -191,7 +192,7 @@ export class ProductService extends BaseService {
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiProductUpdatePut$Plain$Response(params?: ApiProductUpdatePut$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<BooleanResultCustomModel>> {
+  apiProductUpdatePut$Plain$Response(params?: ApiProductUpdatePut$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<UpdateProductReponseResultCustomModel>> {
     return apiProductUpdatePut$Plain(this.http, this.rootUrl, params, context);
   }
 
@@ -201,9 +202,9 @@ export class ProductService extends BaseService {
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiProductUpdatePut$Plain(params?: ApiProductUpdatePut$Plain$Params, context?: HttpContext): Observable<BooleanResultCustomModel> {
+  apiProductUpdatePut$Plain(params?: ApiProductUpdatePut$Plain$Params, context?: HttpContext): Observable<UpdateProductReponseResultCustomModel> {
     return this.apiProductUpdatePut$Plain$Response(params, context).pipe(
-      map((r: StrictHttpResponse<BooleanResultCustomModel>): BooleanResultCustomModel => r.body)
+      map((r: StrictHttpResponse<UpdateProductReponseResultCustomModel>): UpdateProductReponseResultCustomModel => r.body)
     );
   }
 
@@ -213,7 +214,7 @@ export class ProductService extends BaseService {
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiProductUpdatePut$Json$Response(params?: ApiProductUpdatePut$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<BooleanResultCustomModel>> {
+  apiProductUpdatePut$Json$Response(params?: ApiProductUpdatePut$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<UpdateProductReponseResultCustomModel>> {
     return apiProductUpdatePut$Json(this.http, this.rootUrl, params, context);
   }
 
@@ -223,9 +224,9 @@ export class ProductService extends BaseService {
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiProductUpdatePut$Json(params?: ApiProductUpdatePut$Json$Params, context?: HttpContext): Observable<BooleanResultCustomModel> {
+  apiProductUpdatePut$Json(params?: ApiProductUpdatePut$Json$Params, context?: HttpContext): Observable<UpdateProductReponseResultCustomModel> {
     return this.apiProductUpdatePut$Json$Response(params, context).pipe(
-      map((r: StrictHttpResponse<BooleanResultCustomModel>): BooleanResultCustomModel => r.body)
+      map((r: StrictHttpResponse<UpdateProductReponseResultCustomModel>): UpdateProductReponseResultCustomModel => r.body)
     );
   }
 

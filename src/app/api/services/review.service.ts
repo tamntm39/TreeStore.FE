@@ -24,8 +24,8 @@ import { ApiReviewListReviewGet$Json$Params } from '../fn/review/api-review-list
 import { apiReviewListReviewGet$Plain } from '../fn/review/api-review-list-review-get-plain';
 import { ApiReviewListReviewGet$Plain$Params } from '../fn/review/api-review-list-review-get-plain';
 import { BooleanResultCustomModel } from '../models/boolean-result-custom-model';
-import { ReviewListResultCustomModel } from '../models/review-list-result-custom-model';
-import { ReviewResultCustomModel } from '../models/review-result-custom-model';
+import { ReviewResponseListResultCustomModel } from '../models/review-response-list-result-custom-model';
+import { ReviewResponseResultCustomModel } from '../models/review-response-result-custom-model';
 
 @Injectable({ providedIn: 'root' })
 export class ReviewService extends BaseService {
@@ -42,7 +42,7 @@ export class ReviewService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiReviewListReviewGet$Plain$Response(params?: ApiReviewListReviewGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<ReviewListResultCustomModel>> {
+  apiReviewListReviewGet$Plain$Response(params?: ApiReviewListReviewGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<ReviewResponseListResultCustomModel>> {
     return apiReviewListReviewGet$Plain(this.http, this.rootUrl, params, context);
   }
 
@@ -52,9 +52,9 @@ export class ReviewService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiReviewListReviewGet$Plain(params?: ApiReviewListReviewGet$Plain$Params, context?: HttpContext): Observable<ReviewListResultCustomModel> {
+  apiReviewListReviewGet$Plain(params?: ApiReviewListReviewGet$Plain$Params, context?: HttpContext): Observable<ReviewResponseListResultCustomModel> {
     return this.apiReviewListReviewGet$Plain$Response(params, context).pipe(
-      map((r: StrictHttpResponse<ReviewListResultCustomModel>): ReviewListResultCustomModel => r.body)
+      map((r: StrictHttpResponse<ReviewResponseListResultCustomModel>): ReviewResponseListResultCustomModel => r.body)
     );
   }
 
@@ -64,7 +64,7 @@ export class ReviewService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiReviewListReviewGet$Json$Response(params?: ApiReviewListReviewGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<ReviewListResultCustomModel>> {
+  apiReviewListReviewGet$Json$Response(params?: ApiReviewListReviewGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<ReviewResponseListResultCustomModel>> {
     return apiReviewListReviewGet$Json(this.http, this.rootUrl, params, context);
   }
 
@@ -74,9 +74,9 @@ export class ReviewService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiReviewListReviewGet$Json(params?: ApiReviewListReviewGet$Json$Params, context?: HttpContext): Observable<ReviewListResultCustomModel> {
+  apiReviewListReviewGet$Json(params?: ApiReviewListReviewGet$Json$Params, context?: HttpContext): Observable<ReviewResponseListResultCustomModel> {
     return this.apiReviewListReviewGet$Json$Response(params, context).pipe(
-      map((r: StrictHttpResponse<ReviewListResultCustomModel>): ReviewListResultCustomModel => r.body)
+      map((r: StrictHttpResponse<ReviewResponseListResultCustomModel>): ReviewResponseListResultCustomModel => r.body)
     );
   }
 
@@ -89,7 +89,7 @@ export class ReviewService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiReviewGetByIdGetIdGet$Plain$Response(params: ApiReviewGetByIdGetIdGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<ReviewResultCustomModel>> {
+  apiReviewGetByIdGetIdGet$Plain$Response(params: ApiReviewGetByIdGetIdGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<ReviewResponseResultCustomModel>> {
     return apiReviewGetByIdGetIdGet$Plain(this.http, this.rootUrl, params, context);
   }
 
@@ -99,9 +99,9 @@ export class ReviewService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiReviewGetByIdGetIdGet$Plain(params: ApiReviewGetByIdGetIdGet$Plain$Params, context?: HttpContext): Observable<ReviewResultCustomModel> {
+  apiReviewGetByIdGetIdGet$Plain(params: ApiReviewGetByIdGetIdGet$Plain$Params, context?: HttpContext): Observable<ReviewResponseResultCustomModel> {
     return this.apiReviewGetByIdGetIdGet$Plain$Response(params, context).pipe(
-      map((r: StrictHttpResponse<ReviewResultCustomModel>): ReviewResultCustomModel => r.body)
+      map((r: StrictHttpResponse<ReviewResponseResultCustomModel>): ReviewResponseResultCustomModel => r.body)
     );
   }
 
@@ -111,7 +111,7 @@ export class ReviewService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiReviewGetByIdGetIdGet$Json$Response(params: ApiReviewGetByIdGetIdGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<ReviewResultCustomModel>> {
+  apiReviewGetByIdGetIdGet$Json$Response(params: ApiReviewGetByIdGetIdGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<ReviewResponseResultCustomModel>> {
     return apiReviewGetByIdGetIdGet$Json(this.http, this.rootUrl, params, context);
   }
 
@@ -121,9 +121,9 @@ export class ReviewService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiReviewGetByIdGetIdGet$Json(params: ApiReviewGetByIdGetIdGet$Json$Params, context?: HttpContext): Observable<ReviewResultCustomModel> {
+  apiReviewGetByIdGetIdGet$Json(params: ApiReviewGetByIdGetIdGet$Json$Params, context?: HttpContext): Observable<ReviewResponseResultCustomModel> {
     return this.apiReviewGetByIdGetIdGet$Json$Response(params, context).pipe(
-      map((r: StrictHttpResponse<ReviewResultCustomModel>): ReviewResultCustomModel => r.body)
+      map((r: StrictHttpResponse<ReviewResponseResultCustomModel>): ReviewResponseResultCustomModel => r.body)
     );
   }
 
