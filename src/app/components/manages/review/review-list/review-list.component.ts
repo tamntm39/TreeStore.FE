@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 interface Review {
   customerName: string;
-  rating: number;
+
   comment: string;
 }
 
@@ -13,8 +13,8 @@ interface Review {
 })
 export class ReviewListComponent implements OnInit {
   reviews: Review[] = [
-    { customerName: 'Nguyễn Văn A', rating: 5, comment: 'Sản phẩm tuyệt vời!' },
-    { customerName: 'Trần Thị B', rating: 4, comment: 'Dịch vụ tốt, sẽ quay lại!' },
+    { customerName: 'Nguyễn Văn A', comment: 'Sản phẩm tuyệt vời!' },
+    { customerName: 'Trần Thị B', comment: 'Dịch vụ tốt, sẽ quay lại!' },
   ];
 
   constructor() {}

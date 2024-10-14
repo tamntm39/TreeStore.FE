@@ -14,8 +14,8 @@
         <tbody>
           <tr *ngFor="let review of reviews; let i = index">
             <td>{{ i + 1 }}</td> <!-- Hiển thị STT -->
-       
-            <td>{{ review.rating }}/5</td> <!-- Xếp Hạng -->
+            <td>{{ review.customerName }}</td> <!-- Tên Khách Hàng -->
+         
             <td>{{ review.comment }}</td> <!-- Bình Luận -->
             <td>
               <button 
