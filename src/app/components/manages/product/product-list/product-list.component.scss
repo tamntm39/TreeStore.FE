@@ -65,4 +65,52 @@
   .review-item p {
     margin-bottom: 10px; /* Khoảng cách giữa nội dung đánh giá và nút xóa */
   }
+  button.edit-button {
+    background-color: #ffc107; /* Màu nền cho nút Sửa */
+    color: white; /* Màu chữ */
+    border: none;
+    padding: 8px 16px;
+    border-radius: 1px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 80px; /* Đặt chiều rộng cố định */
+    text-align: center; /* Căn giữa chữ */
+  }
   
+  button.edit-button:hover {
+    background-color: #e0a800; /* Hiệu ứng khi hover nút Sửa */
+  }
+  
+  button.delete-button {
+    background-color: #dc3545; /* Màu nền cho nút Xóa */
+    color: white; /* Màu chữ */
+    border: none;
+    padding: 8px 16px;
+    border-radius: 1px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 80px; /* Đặt chiều rộng cố định để giống với nút Sửa */
+    text-align: center; /* Căn giữa chữ */
+  }
+  
+  button.delete-button:hover {
+    background-color: #c82333; /* Hiệu ứng khi hover nút Xóa */
+  }
+  
+  /* Chỉnh khung tìm kiếm nhỏ lại */
+/* Chỉnh khung tìm kiếm nhỏ lại */
+#search {
+  width: 200px; /* Điều chỉnh kích thước theo ý muốn */
+  padding: 8px; 
+}
+
+/* Chỉnh button tìm kiếm */
+.btn-success {
+  background-color: #2662b1; /* Màu button (có thể thay đổi theo ý muốn) */
+ 
+}
+
+.btn-success:hover {
+  background-color: #7a9bc8; /* Màu khi hover */
+
+}

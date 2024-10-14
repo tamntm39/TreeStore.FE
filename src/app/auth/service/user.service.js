@@ -20,7 +20,7 @@ let UserService = class UserService {
      */
     getById(id) {
         return this._http.get(`${environment.apiUrl}/users/${id}`);
-    }
+    }e
 };
 UserService = __decorate([
     Injectable({ providedIn: 'root' })

@@ -65,3 +65,18 @@ tr:hover {
 .review-item p {
   margin-bottom: 10px; /* Khoảng cách giữa nội dung đánh giá và nút xóa */
 }
+button.delete-button {
+  background-color: #dc3545; /* Màu nền cho nút Xóa */
+  color: white; /* Màu chữ */
+  border: none;
+  padding: 8px 16px;
+  border-radius: 1px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 80px; /* Đặt chiều rộng cố định để giống với nút Active/Unactive */
+  text-align: center; /* Căn giữa chữ */
+}
+
+button.delete-button:hover {
+  background-color: #c82333; /* Hiệu ứng khi hover */
+}

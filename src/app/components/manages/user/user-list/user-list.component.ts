@@ -10,12 +10,9 @@ import Swal from 'sweetalert2';
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent implements OnInit {
-  listUsersDB = [] as User[];
-  // listUsers = [
-  // Dữ liệu mẫu, bạn có thể thay thế bằng dữ liệu thực từ API
-  //   { id: 1, fullname: 'Ngô Gia Bảo', email: 'a@example.com', position: 'Admin', birthday: '2000-01-01' },
-  //   { id: 2, fullname: 'Nhất DUy', email: 'b@example.com', position: 'Gay', birthday: '1995-05-05' }
-  // ];
+  listUsersDB: User[] = [];
+  filteredUsers: User[] = []; // To hold the filtered user list
+  searchTerm: string = ''; // Search term for filtering users
 
   constructor(
     private router: Router,
@@ -25,16 +22,19 @@ export class UserListComponent implements OnInit {
   ngOnInit(): void {
     this.loadUsers();
   }
+
   loadUsers(): void {
     this.userService.apiUserListUserGet$Json$Response().subscribe((rs) => {
       const response = rs.body;
       if (response.success) {
         this.listUsersDB = response.data;
+        this.filteredUsers = this.listUsersDB; // Initialize filteredUsers
       } else {
         console.log('Lấy dữ liệu ds user thất bại');
       }
     });
   }
+
   navigateToAddUser() {
     console.log('Navigating to Add User');
     this.router.navigate(['/manages/user/user-add']);
@@ -55,7 +55,7 @@ export class UserListComponent implements OnInit {
       confirmButtonText: 'Thực hiện!',
       cancelButtonText: 'Hủy bỏ'
     }).then((result) => {
-      if (result.isConfirmed) {
+      if (result.isConfirmed) {         
         this.userService.apiUserChangeActivePost$Json$Response({ userId: user.userId }).subscribe((rs) => {
           const response = rs.body;
           if (response.success) {
@@ -65,7 +65,6 @@ export class UserListComponent implements OnInit {
               'success'
             ).then(() => {
               this.loadUsers();
-              // window.location.reload();
             });
           } else {
             Swal.fire('Cập nhật thất bại!', response.message, 'error');
@@ -73,5 +72,17 @@ export class UserListComponent implements OnInit {
         });
       }
     });
+  }
+
+  onSearch(): void {
+    if (this.searchTerm.trim() === '') {
+      // Nếu không có từ khóa tìm kiếm, trả lại toàn bộ danh sách người dùng
+      this.filteredUsers = this.listUsersDB;
+    } else {
+      // Lọc danh sách người dùng theo tên người dùng
+      this.filteredUsers = this.listUsersDB.filter(user =>
+        user.fullname.toLowerCase().includes(this.searchTerm.toLowerCase())
+      );
+    }
   }
 }

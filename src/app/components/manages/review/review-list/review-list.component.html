@@ -7,7 +7,6 @@
           <tr>
             <th>STT</th>
             <th>Tên Khách Hàng</th>
-            <th>Xếp Hạng</th>
             <th>Bình Luận</th>
             <th>Thao Tác</th>
           </tr>
@@ -15,13 +14,17 @@
         <tbody>
           <tr *ngFor="let review of reviews; let i = index">
             <td>{{ i + 1 }}</td> <!-- Hiển thị STT -->
-            <td>{{ review.customerName }}</td> <!-- Tên Khách Hàng -->
+       
             <td>{{ review.rating }}/5</td> <!-- Xếp Hạng -->
             <td>{{ review.comment }}</td> <!-- Bình Luận -->
             <td>
-              <button (click)="deleteReview(review)" class="btn btn-danger btn-sm">Xóa</button>
-
+              <button 
+                (click)="deleteReview(review)" 
+                class="btn btn-danger btn-sm delete-button">
+                Xóa
+              </button>
             </td>
+            
           </tr>
         </tbody>
       </table>

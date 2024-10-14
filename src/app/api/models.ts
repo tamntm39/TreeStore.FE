@@ -18,6 +18,11 @@ export { Order } from './models/order';
 export { Product } from './models/product';
 export { ProductListResultCustomModel } from './models/product-list-result-custom-model';
 export { ProductOrder } from './models/product-order';
+
+// src/app/api/models/index.ts (hoặc models.ts, tùy vào cấu trúc của bạn)
+export { CreateProductRequest } from './models/create-product-request';
+
+
 export { ProductResultCustomModel } from './models/product-result-custom-model';
 export { RegisterRequest } from './models/register-request';
 export { RegisterResponse } from './models/register-response';

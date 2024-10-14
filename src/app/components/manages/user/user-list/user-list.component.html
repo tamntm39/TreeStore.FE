@@ -1,8 +1,23 @@
 <div class="col-md-12 col-xl-8">
   <h5 class="mb-3">Danh sách người dùng</h5>
 
-  <!-- Nút thêm người dùng -->
-  <button (click)="navigateToAddUser()" class="btn btn-primary mb-3">Thêm người dùng</button>
+  <div class="d-flex align-items-center mb-3">
+    <!-- Nút thêm người dùng mới -->
+    <button (click)="navigateToAddUser()" class="btn btn-primary me-2">Thêm người dùng mới</button>
+
+    <!-- Form tìm kiếm -->
+    <form (ngSubmit)="onSearch()" #searchForm="ngForm" class="d-flex ms-auto">
+      <input 
+        type="text" 
+        id="search" 
+        class="form-control me-2" 
+        [(ngModel)]="searchTerm" 
+        name="search" 
+        placeholder="Tìm kiếm người dùng" 
+        required>
+      <button type="submit" class="btn btn-success">Tìm kiếm</button>
+    </form>
+  </div>
 
   <div class="card tbl-card">
     <div class="table-responsive">
@@ -22,7 +37,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let user of listUsersDB; let i = index">
+          <tr *ngFor="let user of filteredUsers; let i = index"> <!-- Updated to use filteredUsers -->
             <td>{{ i + 1 }}</td>
             <td><img [src]="user.avatar" alt="User Avatar" width="100" height="100" /></td>
             <td>{{ user.fullname }}</td>
@@ -31,12 +46,20 @@
             <td>{{ user.position }}</td>
             <td>{{ user.birthday }}</td>
             <td>
-              <button (click)="toggleUserActiveStatus(user)">{{ user.isActive ? 'Active' : 'Unactive' }}</button>
+              <button 
+                (click)="toggleUserActiveStatus(user)"
+                [ngClass]="{'toggle-status-btn': true, 'unactive': !user.isActive}">
+                {{ user.isActive ? 'Active' : 'Unactive' }}
+              </button>
             </td>
             <td>{{ user.createOn }}</td>
             <td>
               <!-- Nút sửa -->
-              <button (click)="navigateToEditUser(user.userId)" class="btn btn-warning btn-sm">Sửa</button> 
+              <button 
+                (click)="navigateToEditUser(user.userId)" 
+                class="btn btn-warning btn-sm edit-button">
+                Sửa
+              </button> 
             </td>
           </tr>
         </tbody>
