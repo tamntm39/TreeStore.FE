@@ -1,36 +1,30 @@
 <div class="col-md-12 col-xl-8">
-    <h5 class="mb-3">Danh sách danh mục</h5>
-  
-    <!-- Nút thêm danh mục -->
-    <button (click)="navigateToAddCategory()" class="btn btn-primary mb-3">Thêm danh mục</button>
+  <h5 class="mb-3">Danh sách danh mục</h5>
 
-    <div class="card tbl-card">
-      <div class="table-responsive">
-        <table class="table table-hover mb-0">
-          <thead>
-            <tr>
-              <th>STT</th>
-              <th>Tên danh mục</th>
-              <th>Hình ảnh</th>
-              <th>Thời gian tạo</th>
-              <th>Tổng sản phẩm</th>
-              <th>Thao tác</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let category of listCategoriesDB; let i = index">
-              <td>{{ i + 1 }}</td>
-              <td>{{ category.name }}</td>
-              <td><img [src]="category.image" alt="Category Image" width="100" height="100" /></td>
-              <td>{{ category.createOn }}</td>
-              <td>{{ category.totalProduct }}</td>
-              <td>
-                <button (click)="navigateToEditCategory(category.categoryId)" class="btn btn-warning btn-sm">Sửa</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+  <!-- Nút thêm danh mục -->
+  <button (click)="navigateToAddCategory()" class="btn btn-primary mb-3">Thêm danh mục</button>
+
+  <div class="card tbl-card">
+    <div class="table-responsive">
+      <table class="table table-hover mb-0">
+        <thead>
+          <tr>
+            <th>STT</th>
+            <th>Tên danh mục</th>
+            <th>Thao tác</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let category of listCategoriesDB; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ category.name }}</td>
+            <td>
+              <!-- Nút sửa danh mục -->
+              <button (click)="navigateToEditCategory(category.categoryId)" class="btn btn-warning btn-sm">Sửa</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-  </div>h22222bj
-  
+  </div>
+</div>

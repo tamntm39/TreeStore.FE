@@ -8,15 +8,14 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { BooleanResultCustomModel } from '../../models/boolean-result-custom-model';
-import { CreateCategoryRequest } from '../../models/create-category-request';
+import { StringResultCustomModel } from '../../models/string-result-custom-model';
 
-export interface ApiCategoryCreatePost$Json$Params {
-      body?: CreateCategoryRequest
+export interface ApiCategoryActivateCategoryPost$Json$Params {
+      body?: number
 }
 
-export function apiCategoryCreatePost$Json(http: HttpClient, rootUrl: string, params?: ApiCategoryCreatePost$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<BooleanResultCustomModel>> {
-  const rb = new RequestBuilder(rootUrl, apiCategoryCreatePost$Json.PATH, 'post');
+export function apiCategoryActivateCategoryPost$Json(http: HttpClient, rootUrl: string, params?: ApiCategoryActivateCategoryPost$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<StringResultCustomModel>> {
+  const rb = new RequestBuilder(rootUrl, apiCategoryActivateCategoryPost$Json.PATH, 'post');
   if (params) {
     rb.body(params.body, 'application/*+json');
   }
@@ -26,9 +25,9 @@ export function apiCategoryCreatePost$Json(http: HttpClient, rootUrl: string, pa
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<BooleanResultCustomModel>;
+      return r as StrictHttpResponse<StringResultCustomModel>;
     })
   );
 }
 
-apiCategoryCreatePost$Json.PATH = '/api/Category/Create';
+apiCategoryActivateCategoryPost$Json.PATH = '/api/Category/ActivateCategory';

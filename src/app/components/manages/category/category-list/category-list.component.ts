@@ -1,7 +1,10 @@
+// src/app/components/category-list/category-list.component.ts
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Category } from 'src/app/api/models';
-import { CategoryService } from 'src/app/api/services';
+import { Category } from 'src/app/api/models/category'; // Nhập mô hình Category
+import { CategoryService } from 'src/app/api/services/category.service'; // Nhập CategoryService
+import Swal from 'sweetalert2';
+import { BooleanResultCustomModel } from 'src/app/api/models/boolean-result-custom-model'; // Nhập mô hình BooleanResultCustomModel
 
 @Component({
   selector: 'app-category-list',
@@ -9,7 +12,7 @@ import { CategoryService } from 'src/app/api/services';
   styleUrls: ['./category-list.component.scss']
 })
 export class CategoryListComponent implements OnInit {
-  listCategoriesDB: Array<Category> = [];
+  listCategoriesDB: Category[] = []; // Danh sách danh mục
 
   constructor(
     private router: Router,
@@ -17,26 +20,36 @@ export class CategoryListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loadCategories();
-  }
-  navigateToAddCategory() {
-    console.log("Navigating to Add Category"); // Thêm log để kiểm tra
-    this.router.navigate(['/manages/category/category-add']);
+    this.loadCategories(); // Tải danh sách danh mục khi khởi tạo
   }
 
-  navigateToEditCategory(categoryId: number): void {
-    this.router.navigate(['/manages/category/category-edit', categoryId]);
-  } 
   loadCategories(): void {
-    this.categoryService.apiCategoryGetAllGet$Json$Response().subscribe((rs) => {
-      const response = rs.body;
-      if (response.success== true) {
-        this.listCategoriesDB = response.data; // Giả sử response.data là mảng
-      } else {
-        console.log('Lấy ds danh mục thất bại!');
+    this.categoryService.apiCategoryGetAllGet$Json$Response().subscribe({
+      next: (rs: any) => {
+        const response = rs.body; // Lấy phản hồi từ API
+        console.log('Response from API:', response); // Theo dõi phản hồi
+        if (response && response.success) {
+          this.listCategoriesDB = response.data || []; // Cập nhật danh sách danh mục
+          console.log('Categories loaded:', this.listCategoriesDB); // Theo dõi danh sách
+        } else {
+          console.log('Lấy danh sách danh mục thất bại:', response?.message || 'Không có thông tin thêm.');
+          Swal.fire('Lỗi', response?.message || 'Không thể tải danh sách danh mục.', 'error');
+        }
+      },
+      error: (error) => {
+        console.error('Lỗi khi gọi API:', error);
+        Swal.fire('Lỗi', 'Không thể tải danh sách danh mục.', 'error');
       }
     });
   }
 
- 
+  navigateToAddCategory(): void {
+    this.router.navigate(['/manages/category/category-add']); // Đường dẫn đến trang thêm danh mục
+  }
+
+  navigateToEditCategory(categoryId: number): void {
+    this.router.navigate(['/manages/category/category-edit', categoryId]); // Đường dẫn đến trang chỉnh sửa danh mục
+  }
+
+  
 }
