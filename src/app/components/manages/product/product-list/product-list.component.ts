@@ -32,6 +32,36 @@ export class ProductListComponent implements OnInit {
     });
   }
 
+  toggleProductActiveStatus(product: Product) {
+    Swal.fire({
+      title: 'Bạn chắc chứ?',
+      text: `Bạn có muốn chuyển trạng thái người dùng này thành ${product.isActive ? 'vô hiệu khóa' : 'kích hoạt'}.`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Thực hiện!',
+      cancelButtonText: 'Hủy bỏ'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.productService.apiProductChangeActivePost$Json$Response({ productId: product.productId }).subscribe((rs) => {
+          const response = rs.body;
+          if (response.success) {
+            Swal.fire(
+              'Cập nhật!',
+              `Đã cập nhật thành công thành trạng thái ${product.isActive ? 'Vô hiệu khóa' : 'Kích hoạt'}.`,
+              'success'
+            ).then(() => {
+              this.loadProducts();
+              // window.location.reload();
+            });
+          } else {
+            Swal.fire('Cập nhật thất bại!', response.message, 'error');
+          }
+        });
+      }
+    });
+  }
   navigateToAddProduct() {
     console.log('Navigating to Add Product');
     this.router.navigate(['/manages/product/product-add']); // Đường dẫn đến trang thêm sản phẩm
@@ -44,7 +74,7 @@ export class ProductListComponent implements OnInit {
   deleteProduct(productId: number) {
     Swal.fire({
       title: 'Bạn chắc chứ?',
-      text: "Bạn có chắc chắn muốn xóa sản phẩm này?",
+      text: 'Bạn có chắc chắn muốn xóa sản phẩm này?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',

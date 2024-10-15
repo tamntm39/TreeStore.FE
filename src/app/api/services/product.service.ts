@@ -11,6 +11,10 @@ import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
 import { StrictHttpResponse } from '../strict-http-response';
 
+import { apiProductChangeActivePost$Json } from '../fn/product/api-product-change-active-post-json';
+import { ApiProductChangeActivePost$Json$Params } from '../fn/product/api-product-change-active-post-json';
+import { apiProductChangeActivePost$Plain } from '../fn/product/api-product-change-active-post-plain';
+import { ApiProductChangeActivePost$Plain$Params } from '../fn/product/api-product-change-active-post-plain';
 import { apiProductCreatePost$Json } from '../fn/product/api-product-create-post-json';
 import { ApiProductCreatePost$Json$Params } from '../fn/product/api-product-create-post-json';
 import { apiProductCreatePost$Plain } from '../fn/product/api-product-create-post-plain';
@@ -325,6 +329,53 @@ export class ProductService extends BaseService {
   apiProductSearchByNameSearchByNameGet$Json(params?: ApiProductSearchByNameSearchByNameGet$Json$Params, context?: HttpContext): Observable<ProductListResultCustomModel> {
     return this.apiProductSearchByNameSearchByNameGet$Json$Response(params, context).pipe(
       map((r: StrictHttpResponse<ProductListResultCustomModel>): ProductListResultCustomModel => r.body)
+    );
+  }
+
+  /** Path part for operation `apiProductChangeActivePost()` */
+  static readonly ApiProductChangeActivePostPath = '/api/Product/ChangeActive';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiProductChangeActivePost$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiProductChangeActivePost$Plain$Response(params?: ApiProductChangeActivePost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<BooleanResultCustomModel>> {
+    return apiProductChangeActivePost$Plain(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiProductChangeActivePost$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiProductChangeActivePost$Plain(params?: ApiProductChangeActivePost$Plain$Params, context?: HttpContext): Observable<BooleanResultCustomModel> {
+    return this.apiProductChangeActivePost$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<BooleanResultCustomModel>): BooleanResultCustomModel => r.body)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiProductChangeActivePost$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiProductChangeActivePost$Json$Response(params?: ApiProductChangeActivePost$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<BooleanResultCustomModel>> {
+    return apiProductChangeActivePost$Json(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiProductChangeActivePost$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiProductChangeActivePost$Json(params?: ApiProductChangeActivePost$Json$Params, context?: HttpContext): Observable<BooleanResultCustomModel> {
+    return this.apiProductChangeActivePost$Json$Response(params, context).pipe(
+      map((r: StrictHttpResponse<BooleanResultCustomModel>): BooleanResultCustomModel => r.body)
     );
   }
 

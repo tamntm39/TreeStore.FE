@@ -36,7 +36,10 @@
             <td>
               <button (click)="navigateToEditProduct(product.productId)" class="btn btn-warning btn-sm">Sửa</button>
               <!-- Sử dụng productId -->
-              <button (click)="deleteProduct(product.productId)" class="btn btn-danger btn-sm">Xóa</button>
+              <!-- <td> -->
+                <button (click)="toggleProductActiveStatus(product)">{{ product.isActive ? 'Kích hoạt' : 'Vô hiệu khóa' }}</button>
+              <!-- </td> -->
+              <!-- <button (click)="deleteProduct(product.productId)" class="btn btn-danger btn-sm">Xóa</button> -->
               <!-- Sử dụng productId -->
             </td>
           </tr>

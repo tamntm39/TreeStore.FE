@@ -47,7 +47,7 @@ export class UserListComponent implements OnInit {
   toggleUserActiveStatus(user: User) {
     Swal.fire({
       title: 'Bạn chắc chứ?',
-      text: `Bạn có muốn chuyển trạng thái người dùng này thành ${user.isActive ? 'unactive' : 'active'}.`,
+      text: `Bạn có muốn chuyển trạng thái người dùng này thành ${user.isActive ? 'vô hiệu khóa' : 'kích hoạt'}.`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -61,7 +61,7 @@ export class UserListComponent implements OnInit {
           if (response.success) {
             Swal.fire(
               'Cập nhật!',
-              `Đã cập nhật thành công thành trạng thái ${user.isActive ? 'Unactivated' : 'Activated'}.`,
+              `Đã cập nhật thành công thành trạng thái ${user.isActive ? 'Vô hiệu khóa' : 'Kích hoạt'}.`,
               'success'
             ).then(() => {
               this.loadUsers();

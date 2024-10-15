@@ -7,6 +7,7 @@ export interface UpdateUserRequest {
   birthday?: string | null;
   email?: string | null;
   fullname?: string | null;
+  isActive?: boolean | null;
   listRoles?: Array<number> | null;
   phone?: string | null;
   userId?: number;
