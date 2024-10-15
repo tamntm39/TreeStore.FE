@@ -8,6 +8,7 @@ export interface UpdateUserResponse {
   birthday?: string | null;
   email?: string | null;
   fullname?: string | null;
+  isActive?: boolean | null;
   phone?: string | null;
   userId?: number;
   username?: string | null;

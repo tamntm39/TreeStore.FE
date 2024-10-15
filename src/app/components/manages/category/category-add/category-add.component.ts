@@ -17,34 +17,14 @@ export class CategoryAddComponent implements OnInit {
     private categoryService: CategoryService,
     private fb: FormBuilder
   ) {
-    // Khởi tạo form với các trường cần thiết
+    // Khởi tạo form với trường tên
     this.editCategoryForm = this.fb.group({
-      name: ['', Validators.required],
-      slug: ['', Validators.required], // Thêm trường slug
-      image: [''],
-      isActive: [true], // Thêm trường isActive
-      createOn: ['', Validators.required], // Đảm bảo trường này là bắt buộc
-      totalProduct: [0, [Validators.required, Validators.min(0)]] // Đảm bảo trường này là bắt buộc và lớn hơn hoặc bằng 0
+      name: ['', Validators.required] // Chỉ cần trường name là bắt buộc
     });
   }
 
   ngOnInit() {
     // Thêm bất kỳ logic khởi tạo nào nếu cần
-    this.editCategoryForm.get('name')?.valueChanges.subscribe(value => {
-      this.updateSlug(value);
-    });
-  }
-
-  private updateSlug(name: string) {
-    // Chuyển đổi tên thành slug
-    const slug = name
-      .toLowerCase()
-      .replace(/\s+/g, '-') // Thay thế khoảng trắng bằng dấu '-'
-      .replace(/[^\w\-]+/g, '') // Xóa các ký tự không phải chữ cái, số và dấu '-'
-      .replace(/\--+/g, '-') // Thay thế nhiều dấu '-' bằng một dấu '-'
-      .trim(); // Loại bỏ khoảng trắng ở đầu và cuối
-
-    this.editCategoryForm.patchValue({ slug });
   }
 
   onSubmit() {
@@ -52,12 +32,14 @@ export class CategoryAddComponent implements OnInit {
       // Lấy dữ liệu từ form
       const newCategory = {
         name: this.editCategoryForm.get('name')?.value || null,
-        slug: this.editCategoryForm.get('slug')?.value || null, // Lấy slug
-        image: this.editCategoryForm.get('image')?.value || null,
-        isActive: this.editCategoryForm.get('isActive')?.value || true, // Thêm isActive
-        createOn: this.editCategoryForm.get('createOn')?.value || null,
-        totalProduct: this.editCategoryForm.get('totalProduct')?.value || null
+        slug: null, // Các trường khác để null
+        image: null,
+        isActive: null,
+        createOn: null,
+        totalProduct: null
       };
+
+      console.log('Dữ liệu sẽ được gửi:', newCategory); // Ghi dữ liệu ra console
 
       // Gọi API để thêm danh mục mới
       this.categoryService.apiCategoryCreatePost$Json$Response({ body: newCategory }).subscribe({
@@ -91,20 +73,7 @@ export class CategoryAddComponent implements OnInit {
         }
       });
     } else {
-      console.log('Form không hợp lệ');
-    }
-  }
-
-  onImageChange(event: any) {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.editCategoryForm.patchValue({
-          image: reader.result
-        });
-      };
-      reader.readAsDataURL(file);
+      console.log('Form không hợp lệ:', this.editCategoryForm.errors);
     }
   }
 

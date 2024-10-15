@@ -10,14 +10,14 @@ import { RequestBuilder } from '../../request-builder';
 
 import { BooleanResultCustomModel } from '../../models/boolean-result-custom-model';
 
-export interface ApiCategoryDeleteCategoryIdDelete$Plain$Params {
-  categoryId: number;
+export interface ApiCategoryChangeActiveCategoryPost$Plain$Params {
+  categoryId?: number;
 }
 
-export function apiCategoryDeleteCategoryIdDelete$Plain(http: HttpClient, rootUrl: string, params: ApiCategoryDeleteCategoryIdDelete$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<BooleanResultCustomModel>> {
-  const rb = new RequestBuilder(rootUrl, apiCategoryDeleteCategoryIdDelete$Plain.PATH, 'delete');
+export function apiCategoryChangeActiveCategoryPost$Plain(http: HttpClient, rootUrl: string, params?: ApiCategoryChangeActiveCategoryPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<BooleanResultCustomModel>> {
+  const rb = new RequestBuilder(rootUrl, apiCategoryChangeActiveCategoryPost$Plain.PATH, 'post');
   if (params) {
-    rb.path('categoryId', params.categoryId, {});
+    rb.query('categoryId', params.categoryId, {});
   }
 
   return http.request(
@@ -30,4 +30,4 @@ export function apiCategoryDeleteCategoryIdDelete$Plain(http: HttpClient, rootUr
   );
 }
 
-apiCategoryDeleteCategoryIdDelete$Plain.PATH = '/api/Category/Delete/{categoryId}';
+apiCategoryChangeActiveCategoryPost$Plain.PATH = '/api/Category/ChangeActiveCategory';

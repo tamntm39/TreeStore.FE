@@ -6,6 +6,7 @@ export { BooleanResultCustomModel } from './models/boolean-result-custom-model';
 export { Category } from './models/category';
 export { CategoryListResultCustomModel } from './models/category-list-result-custom-model';
 export { CategoryResultCustomModel } from './models/category-result-custom-model';
+export { CreateCategoryRequest } from './models/create-category-request';
 export { CreateProductRequest } from './models/create-product-request';
 export { CreateUserRequest } from './models/create-user-request';
 export { Customer } from './models/customer';

@@ -21,13 +21,10 @@ export class CategoryEditComponent implements OnInit {
     private categoryService: CategoryService,
     private fb: FormBuilder
   ) {
-    // Khởi tạo form cho danh mục
+    // Khởi tạo form với trường tên
     this.editCategoryForm = this.fb.group({
-      name: ['', Validators.required],
-      slug: ['', Validators.required],
-      image: [''],
-      createOn: [this.formatDate(new Date()), Validators.required], // Mặc định là hôm nay
-      totalProduct: [0, [Validators.required, Validators.min(0)]]
+      name: ['', Validators.required], // Chỉ cần trường name là bắt buộc
+      slug: [''], // Trường slug sẽ được cập nhật tự động
     });
   }
 
@@ -37,17 +34,13 @@ export class CategoryEditComponent implements OnInit {
 
     // Lấy dữ liệu danh mục theo ID
     this.categoryService.apiCategoryGetByIdCategoryIdGet$Json$Response({ categoryId: this.categoryId }).subscribe((rs) => {
-      if (rs.body.success == true) {
+      if (rs.body.success === true) {
         this.categoryDB = rs.body.data;
 
         // Cập nhật form với dữ liệu từ backend
-        const createOnDate = new Date(this.categoryDB.createOn);
         this.editCategoryForm.patchValue({
           name: this.categoryDB.name,
           slug: this.slugify(this.categoryDB.name), // Tạo slug từ tên
-          image: this.categoryDB.image,
-          createOn: this.formatDate(createOnDate), // Định dạng ngày
-          totalProduct: this.categoryDB.totalProduct
         });
 
         // Đăng ký lắng nghe thay đổi trên tên
@@ -76,25 +69,6 @@ export class CategoryEditComponent implements OnInit {
     this.editCategoryForm.patchValue({ slug });
   }
 
-  // Hàm định dạng ngày để hiển thị
-  private formatDate(date: Date): string {
-    const d = new Date(date);
-    return d.toISOString().substring(0, 10); // Trả về định dạng YYYY-MM-DD
-  }
-
-  onImageChange(event: any) {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        this.editCategoryForm.patchValue({
-          image: e.target.result // Lưu URL của hình ảnh
-        });
-      };
-      reader.readAsDataURL(file); // Đọc file hình ảnh
-    }
-  }
-
   cancel() {
     this.router.navigate(['/manages/category/category-list']); // Quay lại danh sách danh mục
   }
@@ -103,18 +77,15 @@ export class CategoryEditComponent implements OnInit {
     if (this.editCategoryForm.valid) {
       // Chuẩn bị dữ liệu cập nhật danh mục
       const updatedCategory = {
-        categoryId: this.categoryId, // Thêm categoryId vào payload
+        categoryId: this.categoryId,
         name: this.editCategoryForm.get('name')?.value || null,
-        slug: this.editCategoryForm.get('slug')?.value || null,
-        image: this.editCategoryForm.get('image')?.value || null,
-        createOn: this.editCategoryForm.get('createOn')?.value || null,
-        totalProduct: this.editCategoryForm.get('totalProduct')?.value || 0 // Mặc định là 0 nếu không cung cấp
+        slug: this.editCategoryForm.get('slug')?.value || null, // Slug sẽ được cập nhật tự động
       };
 
       // Gọi API cập nhật danh mục
       this.categoryService.apiCategoryUpdatePut$Json$Response({ body: updatedCategory }).subscribe({
         next: (rs) => {
-          if (rs.body.success == true) {
+          if (rs.body.success === true) {
             Swal.fire({
               icon: 'success',
               title: 'Cập nhật thành công',
