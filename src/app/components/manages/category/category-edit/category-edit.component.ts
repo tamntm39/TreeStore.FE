@@ -79,7 +79,7 @@ export class CategoryEditComponent implements OnInit {
       const updatedCategory = {
         categoryId: this.categoryId,
         name: this.editCategoryForm.get('name')?.value || null,
-        slug: this.editCategoryForm.get('slug')?.value || null, // Slug sẽ được cập nhật tự động
+        // slug: this.editCategoryForm.get('slug')?.value || null, // Slug sẽ được cập nhật tự động
       };
 
       // Gọi API cập nhật danh mục

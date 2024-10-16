@@ -9,10 +9,10 @@ import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
 import { BooleanResultCustomModel } from '../../models/boolean-result-custom-model';
-import { Category } from '../../models/category';
+import { UpdateCategoryRequest } from '../../models/update-category-request';
 
 export interface ApiCategoryUpdatePut$Json$Params {
-      body?: Category
+      body?: UpdateCategoryRequest
 }
 
 export function apiCategoryUpdatePut$Json(http: HttpClient, rootUrl: string, params?: ApiCategoryUpdatePut$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<BooleanResultCustomModel>> {

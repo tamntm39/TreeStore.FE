@@ -30,6 +30,7 @@ export class UserListComponent implements OnInit {
       const response = rs.body;
       if (response.success) {
         this.listUsersDB = response.data;
+        console.log(this.listUsersDB);
       } else {
         console.log('Lấy dữ liệu ds user thất bại');
       }

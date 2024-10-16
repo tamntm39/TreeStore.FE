@@ -17,7 +17,7 @@
             <th>Quyền hạn</th>
             <th>Ngày sinh</th>
             <th>Trạng thái</th>
-            <th>Thời gian tạo</th>
+            <!-- <th>Thời gian tạo</th> -->
             <th>Thao tác</th>
           </tr>
         </thead>
@@ -33,7 +33,7 @@
             <td>
               <button (click)="toggleUserActiveStatus(user)">{{ user.isActive ? 'Kích hoạt' : 'Vô hiệu khóa' }}</button>
             </td>
-            <td>{{ user.createOn }}</td>
+            <!-- <td>{{ user.createOn }}</td> -->
             <td>
               <!-- Nút sửa -->
               <button (click)="navigateToEditUser(user.userId)" class="btn btn-warning btn-sm">Sửa</button> 

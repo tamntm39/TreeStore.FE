@@ -11,6 +11,7 @@
           <tr>
             <th>STT</th>
             <th>Tên danh mục</th>
+            <th>Trạng thái</th>
             <th>Thao tác</th>
           </tr>
         </thead>
@@ -18,6 +19,9 @@
           <tr *ngFor="let category of listCategoriesDB; let i = index">
             <td>{{ i + 1 }}</td>
             <td>{{ category.name }}</td>
+           <td>
+             <button (click)="toggleCategoryActiveStatus(category)">{{ category.isActive ? 'Kích hoạt' : 'Vô hiệu khóa' }}</button>
+            </td>
             <td>
               <!-- Nút sửa danh mục -->
               <button (click)="navigateToEditCategory(category.categoryId)" class="btn btn-warning btn-sm">Sửa</button>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductResponse, UpdateProductRequest } from 'src/app/api/models';
-import { ProductService } from 'src/app/api/services';
+import { CategoryService, ProductService } from 'src/app/api/services';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -21,10 +21,12 @@ export class ProductEditComponent implements OnInit {
   };
   productDB = undefined as ProductResponse;
   editProductForm: FormGroup;
+  listCategory = [];
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private productService: ProductService,
+    private categoryService: CategoryService,
     private fb: FormBuilder
   ) {
     this.editProductForm = this.fb.group({
@@ -32,29 +34,41 @@ export class ProductEditComponent implements OnInit {
       quantity: [''],
       priceOutput: [''],
       category: [''],
-      description: ['']
+      description: [''],
+      lstCategoryId: this.fb.array([]) // Thêm lstRolesId
+
       // img: ['']
     });
   }
 
   ngOnInit() {
-    this.productId = +this.route.snapshot.paramMap.get('id')!;
-    console.log(this.productId);
+    this.categoryService.apiCategoryGetAllGet$Json$Response().subscribe((response) => {
+      if (response.body.success) {
+        this.listCategory = response.body.data.map((category) => ({
+          id: category.categoryId,
+          name: category.name
+        }));
 
-    this.productService.apiProductGetProductByIdGet$Json$Response({ productId: this.productId }).subscribe((rs) => {
-      const response = rs.body;
-      console.log(response);
-      if (response.success == true) {
-        this.productDB = rs.body.data;
-        this.editProductForm.patchValue({
-          name: this.productDB.name,
-          quantity: this.productDB.quantity,
-          priceOutput: this.productDB.priceOutput,
-          category: this.productDB.categoryId,
-          // img: this.productDB.img,
-          description: this.productDB.description
+        this.productId = +this.route.snapshot.paramMap.get('id')!;
+
+        this.productService.apiProductGetProductByIdGet$Json$Response({ productId: this.productId }).subscribe((rs) => {
+          const response = rs.body;
+          console.log(response);
+          if (response.success == true) {
+            this.productDB = rs.body.data;
+            this.editProductForm.patchValue({
+              name: this.productDB.name,
+              quantity: this.productDB.quantity,
+              priceOutput: this.productDB.priceOutput,
+              category: this.productDB.categoryId,
+              // img: this.productDB.img,
+              description: this.productDB.description
+            });
+            console.log(this.editProductForm, 'Du lieu');
+          }
         });
-        console.log(this.editProductForm, 'Du lieu');
+      } else {
+        console.error('Lấy danh sách loại thất bại:', response.body.message);
       }
     });
   }
@@ -80,7 +94,7 @@ export class ProductEditComponent implements OnInit {
         priceOutput: this.editProductForm.get('priceOutput')?.value || null,
         description: this.editProductForm.get('description')?.value || null,
         // img: this.editProductForm.get('img')?.value || null,
-        categoryId: this.editProductForm.get('category')?.value || [] // Lấy lstRolesId từ form
+        categoryId:  parseInt(this.editProductForm.get('category')?.value, 10) || null
       } as UpdateProductRequest;
       this.productService.apiProductUpdatePut$Json$Response({ body: updatedProduct }).subscribe((rs) => {
         if (rs.body.success == true) {

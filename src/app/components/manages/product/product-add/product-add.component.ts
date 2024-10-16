@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CreateProductRequest } from 'src/app/api/models';
-import { ProductService } from 'src/app/api/services';
+import { CategoryService, ProductService } from 'src/app/api/services';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -19,10 +19,11 @@ export class ProductAddComponent implements OnInit {
     price: 0,
     image: null
   };
-
+  listCategory = [];
   constructor(
     private router: Router,
     private productService: ProductService,
+    private categoryService: CategoryService,
     private fb: FormBuilder
   ) {
     this.editProductForm = this.fb.group({
@@ -33,7 +34,18 @@ export class ProductAddComponent implements OnInit {
       categoryId: ['']
     });
   }
-  ngOnInit() {}
+  ngOnInit() {
+    this.categoryService.apiCategoryGetAllGet$Json$Response().subscribe((response) => {
+      if (response.body.success) {
+        this.listCategory = response.body.data.map((category) => ({
+          id: category.categoryId,
+          name: category.name
+        }));
+      } else {
+        console.error('Lấy danh sách loại thất bại:', response.body.message);
+      }
+    });
+  }
   onSubmit() {
     if (this.editProductForm.valid) {
       // Lấy dữ liệu từ form
@@ -42,7 +54,7 @@ export class ProductAddComponent implements OnInit {
         quantity: this.editProductForm.get('quantity')?.value || null,
         priceOutput: this.editProductForm.get('priceOutput')?.value || null,
         description: this.editProductForm.get('description')?.value || null,
-        categoryId: this.editProductForm.get('categoryId')?.value || null,
+        categoryId: parseInt(this.editProductForm.get('categoryId')?.value, 10) || null
       } as CreateProductRequest;
 
       // Gọi API để thêm người dùng mới

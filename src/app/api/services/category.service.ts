@@ -11,10 +11,6 @@ import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
 import { StrictHttpResponse } from '../strict-http-response';
 
-import { apiCategoryActivateCategoryPost$Json } from '../fn/category/api-category-activate-category-post-json';
-import { ApiCategoryActivateCategoryPost$Json$Params } from '../fn/category/api-category-activate-category-post-json';
-import { apiCategoryActivateCategoryPost$Plain } from '../fn/category/api-category-activate-category-post-plain';
-import { ApiCategoryActivateCategoryPost$Plain$Params } from '../fn/category/api-category-activate-category-post-plain';
 import { apiCategoryChangeActiveCategoryPost$Json } from '../fn/category/api-category-change-active-category-post-json';
 import { ApiCategoryChangeActiveCategoryPost$Json$Params } from '../fn/category/api-category-change-active-category-post-json';
 import { apiCategoryChangeActiveCategoryPost$Plain } from '../fn/category/api-category-change-active-category-post-plain';
@@ -23,10 +19,6 @@ import { apiCategoryCreatePost$Json } from '../fn/category/api-category-create-p
 import { ApiCategoryCreatePost$Json$Params } from '../fn/category/api-category-create-post-json';
 import { apiCategoryCreatePost$Plain } from '../fn/category/api-category-create-post-plain';
 import { ApiCategoryCreatePost$Plain$Params } from '../fn/category/api-category-create-post-plain';
-import { apiCategoryDeactivateCategoryPost$Json } from '../fn/category/api-category-deactivate-category-post-json';
-import { ApiCategoryDeactivateCategoryPost$Json$Params } from '../fn/category/api-category-deactivate-category-post-json';
-import { apiCategoryDeactivateCategoryPost$Plain } from '../fn/category/api-category-deactivate-category-post-plain';
-import { ApiCategoryDeactivateCategoryPost$Plain$Params } from '../fn/category/api-category-deactivate-category-post-plain';
 import { apiCategoryGetAllGet$Json } from '../fn/category/api-category-get-all-get-json';
 import { ApiCategoryGetAllGet$Json$Params } from '../fn/category/api-category-get-all-get-json';
 import { apiCategoryGetAllGet$Plain } from '../fn/category/api-category-get-all-get-plain';
@@ -42,7 +34,6 @@ import { ApiCategoryUpdatePut$Plain$Params } from '../fn/category/api-category-u
 import { BooleanResultCustomModel } from '../models/boolean-result-custom-model';
 import { CategoryListResultCustomModel } from '../models/category-list-result-custom-model';
 import { CategoryResultCustomModel } from '../models/category-result-custom-model';
-import { StringResultCustomModel } from '../models/string-result-custom-model';
 
 @Injectable({ providedIn: 'root' })
 export class CategoryService extends BaseService {
@@ -87,7 +78,7 @@ export class CategoryService extends BaseService {
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiCategoryGetAllGet$Json$Respo nse()` instead.
+   * To access the full response (for headers, for example), `apiCategoryGetAllGet$Json$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
@@ -141,100 +132,6 @@ export class CategoryService extends BaseService {
   apiCategoryGetByIdCategoryIdGet$Json(params: ApiCategoryGetByIdCategoryIdGet$Json$Params, context?: HttpContext): Observable<CategoryResultCustomModel> {
     return this.apiCategoryGetByIdCategoryIdGet$Json$Response(params, context).pipe(
       map((r: StrictHttpResponse<CategoryResultCustomModel>): CategoryResultCustomModel => r.body)
-    );
-  }
-
-  /** Path part for operation `apiCategoryDeactivateCategoryPost()` */
-  static readonly ApiCategoryDeactivateCategoryPostPath = '/api/Category/DeactivateCategory';
-
-  /**
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiCategoryDeactivateCategoryPost$Plain()` instead.
-   *
-   * This method sends `application/*+json` and handles request body of type `application/*+json`.
-   */
-  apiCategoryDeactivateCategoryPost$Plain$Response(params?: ApiCategoryDeactivateCategoryPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<StringResultCustomModel>> {
-    return apiCategoryDeactivateCategoryPost$Plain(this.http, this.rootUrl, params, context);
-  }
-
-  /**
-   * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiCategoryDeactivateCategoryPost$Plain$Response()` instead.
-   *
-   * This method sends `application/*+json` and handles request body of type `application/*+json`.
-   */
-  apiCategoryDeactivateCategoryPost$Plain(params?: ApiCategoryDeactivateCategoryPost$Plain$Params, context?: HttpContext): Observable<StringResultCustomModel> {
-    return this.apiCategoryDeactivateCategoryPost$Plain$Response(params, context).pipe(
-      map((r: StrictHttpResponse<StringResultCustomModel>): StringResultCustomModel => r.body)
-    );
-  }
-
-  /**
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiCategoryDeactivateCategoryPost$Json()` instead.
-   *
-   * This method sends `application/*+json` and handles request body of type `application/*+json`.
-   */
-  apiCategoryDeactivateCategoryPost$Json$Response(params?: ApiCategoryDeactivateCategoryPost$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<StringResultCustomModel>> {
-    return apiCategoryDeactivateCategoryPost$Json(this.http, this.rootUrl, params, context);
-  }
-
-  /**
-   * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiCategoryDeactivateCategoryPost$Json$Response()` instead.
-   *
-   * This method sends `application/*+json` and handles request body of type `application/*+json`.
-   */
-  apiCategoryDeactivateCategoryPost$Json(params?: ApiCategoryDeactivateCategoryPost$Json$Params, context?: HttpContext): Observable<StringResultCustomModel> {
-    return this.apiCategoryDeactivateCategoryPost$Json$Response(params, context).pipe(
-      map((r: StrictHttpResponse<StringResultCustomModel>): StringResultCustomModel => r.body)
-    );
-  }
-
-  /** Path part for operation `apiCategoryActivateCategoryPost()` */
-  static readonly ApiCategoryActivateCategoryPostPath = '/api/Category/ActivateCategory';
-
-  /**
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiCategoryActivateCategoryPost$Plain()` instead.
-   *
-   * This method sends `application/*+json` and handles request body of type `application/*+json`.
-   */
-  apiCategoryActivateCategoryPost$Plain$Response(params?: ApiCategoryActivateCategoryPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<StringResultCustomModel>> {
-    return apiCategoryActivateCategoryPost$Plain(this.http, this.rootUrl, params, context);
-  }
-
-  /**
-   * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiCategoryActivateCategoryPost$Plain$Response()` instead.
-   *
-   * This method sends `application/*+json` and handles request body of type `application/*+json`.
-   */
-  apiCategoryActivateCategoryPost$Plain(params?: ApiCategoryActivateCategoryPost$Plain$Params, context?: HttpContext): Observable<StringResultCustomModel> {
-    return this.apiCategoryActivateCategoryPost$Plain$Response(params, context).pipe(
-      map((r: StrictHttpResponse<StringResultCustomModel>): StringResultCustomModel => r.body)
-    );
-  }
-
-  /**
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiCategoryActivateCategoryPost$Json()` instead.
-   *
-   * This method sends `application/*+json` and handles request body of type `application/*+json`.
-   */
-  apiCategoryActivateCategoryPost$Json$Response(params?: ApiCategoryActivateCategoryPost$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<StringResultCustomModel>> {
-    return apiCategoryActivateCategoryPost$Json(this.http, this.rootUrl, params, context);
-  }
-
-  /**
-   * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiCategoryActivateCategoryPost$Json$Response()` instead.
-   *
-   * This method sends `application/*+json` and handles request body of type `application/*+json`.
-   */
-  apiCategoryActivateCategoryPost$Json(params?: ApiCategoryActivateCategoryPost$Json$Params, context?: HttpContext): Observable<StringResultCustomModel> {
-    return this.apiCategoryActivateCategoryPost$Json$Response(params, context).pipe(
-      map((r: StrictHttpResponse<StringResultCustomModel>): StringResultCustomModel => r.body)
     );
   }
 

@@ -10,6 +10,7 @@ export interface UpdateUserResponse {
   fullname?: string | null;
   isActive?: boolean | null;
   phone?: string | null;
+  position?: string | null;
   userId?: number;
   username?: string | null;
 }

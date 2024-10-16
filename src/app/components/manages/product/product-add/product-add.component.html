@@ -5,10 +5,14 @@
       <div class="form-group">
         <label for="productName">Tên sản phẩm:</label>
         <input type="text" id="productName" class="form-control" formControlName="name" name="name" required />
-      </div>
-      <div class="form-group">
-        <label for="productType">Loại sản phẩm:</label>
-        <input type="text" id="productType" class="form-control" formControlName="categoryId" name="type" required />
+      </div> 
+      <div class="mb-3">
+        <label for="productType" class="form-label">Loại sản phẩm:</label>
+        <select class="form-select" id="productType" formControlName="categoryId">
+          <option *ngFor="let category of listCategory" [value]="category.id">
+            {{ category.name }}
+          </option>
+        </select>
       </div>
       <div class="form-group">
         <label for="quantity">Số lượng:</label>
@@ -20,7 +24,7 @@
       </div>
       <div class="form-group">
         <label for="image">Hình ảnh:</label>
-        <input type="file" id="image" class="form-control"  name="image" required />
+        <input type="file" id="image" class="form-control" name="image" required />
       </div>
       <div class="form-group">
         <label for="image">Mô tả:</label>

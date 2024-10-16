@@ -5,7 +5,6 @@ import { CreateUserRequest } from 'src/app/api/models';
 import { UserService } from 'src/app/api/services';
 import Swal from 'sweetalert2';
 
-
 @Component({
   selector: 'app-user-add',
   templateUrl: './user-add.component.html',
@@ -35,20 +34,15 @@ export class UserAddComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userService.apiUserGetRolesGet$Json$Response().subscribe({
-      next: (response) => {
-        if (response.body.success) {
-          // Áp dụng danh sách vai trò từ API vào availableRoles
-          this.availableRoles = response.body.data.map((role) => ({
-            id: role.roleId,
-            name: role.name
-          }));
-        } else {
-          console.error('Lấy danh sách vai trò thất bại:', response.body.message);
-        }
-      },
-      error: (error) => {
-        console.error('Có lỗi xảy ra khi lấy danh sách vai trò:', error);
+    this.userService.apiUserGetRolesGet$Json$Response().subscribe((response) => {
+      if (response.body.success) {
+        // Áp dụng danh sách vai trò từ API vào availableRoles
+        this.availableRoles = response.body.data.map((role) => ({
+          id: role.roleId,
+          name: role.name
+        }));
+      } else {
+        console.error('Lấy danh sách vai trò thất bại:', response.body.message);
       }
     });
   }

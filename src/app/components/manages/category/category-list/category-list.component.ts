@@ -43,6 +43,37 @@ export class CategoryListComponent implements OnInit {
     });
   }
 
+  toggleCategoryActiveStatus(category: Category) {
+    Swal.fire({
+      title: 'Bạn chắc chứ?',
+      text: `Bạn có muốn chuyển trạng thái người dùng này thành ${category.isActive ? 'vô hiệu khóa' : 'kích hoạt'}.`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Thực hiện!',
+      cancelButtonText: 'Hủy bỏ'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.categoryService.apiCategoryChangeActiveCategoryPost$Json$Response({ categoryId: category.categoryId }).subscribe((rs) => {
+          const response = rs.body;
+          if (response.success) {
+            Swal.fire(
+              'Cập nhật!',
+              `Đã cập nhật thành công thành trạng thái ${category.isActive ? 'Vô hiệu khóa' : 'Kích hoạt'}.`,
+              'success'
+            ).then(() => {
+              this.loadCategories();
+              // window.location.reload();
+            });
+          } else {
+            Swal.fire('Cập nhật thất bại!', response.message, 'error');
+          }
+        });
+      }
+    });
+  }
+
   navigateToAddCategory(): void {
     this.router.navigate(['/manages/category/category-add']); // Đường dẫn đến trang thêm danh mục
   }

@@ -7,6 +7,7 @@ export { Category } from './models/category';
 export { CategoryListResultCustomModel } from './models/category-list-result-custom-model';
 export { CategoryResultCustomModel } from './models/category-result-custom-model';
 export { CreateCategoryRequest } from './models/create-category-request';
+export { CreateCategoryRequestListResultCustomModel } from './models/create-category-request-list-result-custom-model';
 export { CreateProductRequest } from './models/create-product-request';
 export { CreateUserRequest } from './models/create-user-request';
 export { Customer } from './models/customer';
@@ -15,6 +16,8 @@ export { CustomerResponseListResultCustomModel } from './models/customer-respons
 export { CustomerResponseResultCustomModel } from './models/customer-response-result-custom-model';
 export { DeactivateAccountRequest } from './models/deactivate-account-request';
 export { DeactivateCustomerRequest } from './models/deactivate-customer-request';
+export { GetListProductSpResult } from './models/get-list-product-sp-result';
+export { GetListProductSpResultListResultCustomModel } from './models/get-list-product-sp-result-list-result-custom-model';
 export { LoginRequest } from './models/login-request';
 export { LoginResponse } from './models/login-response';
 export { LoginResponseResultCustomModel } from './models/login-response-result-custom-model';
@@ -34,6 +37,7 @@ export { ReviewResponseResultCustomModel } from './models/review-response-result
 export { Role } from './models/role';
 export { RoleListResultCustomModel } from './models/role-list-result-custom-model';
 export { StringResultCustomModel } from './models/string-result-custom-model';
+export { UpdateCategoryRequest } from './models/update-category-request';
 export { UpdateCustomerRequest } from './models/update-customer-request';
 export { UpdateProductReponse } from './models/update-product-reponse';
 export { UpdateProductReponseResultCustomModel } from './models/update-product-reponse-result-custom-model';

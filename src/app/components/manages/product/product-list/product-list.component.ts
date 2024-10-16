@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Product } from 'src/app/api/models'; // Đảm bảo bạn có mô hình Product
+import { GetListProductSpResult, Product } from 'src/app/api/models'; // Đảm bảo bạn có mô hình Product
 import { ProductService } from 'src/app/api/services'; // Đảm bảo bạn đã nhập đúng ProductService
 import Swal from 'sweetalert2';
 
@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit {
-  listProducts: Product[] = []; // Đảm bảo listProducts là một mảng các sản phẩm
+  listProducts: GetListProductSpResult[] = []; // Đảm bảo listProducts là một mảng các sản phẩm
 
   constructor(
     private router: Router,
@@ -22,7 +22,7 @@ export class ProductListComponent implements OnInit {
   }
 
   loadProducts(): void {
-    this.productService.apiProductGetAllGet$Json$Response().subscribe((rs) => {
+    this.productService.apiProductListProductGet$Json$Response().subscribe((rs) => {
       const response = rs.body;
       if (response.success) {
         this.listProducts = response.data; // Cập nhật danh sách sản phẩm
@@ -49,7 +49,7 @@ export class ProductListComponent implements OnInit {
           if (response.success) {
             Swal.fire(
               'Cập nhật!',
-              `Đã cập nhật thành công thành trạng thái ${product.isActive ? 'Vô hiệu khóa' : 'Kích hoạt'}.`,
+              `Đã cập nhật thành công thành trạng thái ${product.isActive ? 'Vô hiệu khóa' : 'Kích h'}.`,
               'success'
             ).then(() => {
               this.loadProducts();
