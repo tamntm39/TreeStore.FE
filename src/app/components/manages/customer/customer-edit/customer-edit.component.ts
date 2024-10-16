@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UpdateCustomerRequest } from 'src/app/api/models'; // Chắc chắn bạn có mô hình này
+import { CustomerResponse, UpdateCustomerRequest } from 'src/app/api/models'; // Đảm bảo đường dẫn đúng
 import { Customer } from 'src/app/api/models/customer'; // Cập nhật đường dẫn
 import { CustomerService } from 'src/app/api/services';
 import Swal from 'sweetalert2';
@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
 })
 export class CustomerEditComponent implements OnInit {
   customerId: number;
-  // customerDB: Customer | undefined; // Chỉ cần lưu Customer ở đây
+  customerDB: CustomerResponse | undefined;
   editCustomerForm: FormGroup;
 
   constructor(
@@ -22,12 +22,14 @@ export class CustomerEditComponent implements OnInit {
     private customerService: CustomerService,
     private fb: FormBuilder
   ) {
-    // Khởi tạo form với các trường cần thiết
+    // Khởi tạo form
     this.editCustomerForm = this.fb.group({
       fullname: [''],
       email: [''],
       phone: [''],
-      address: ['']
+      address: [''],
+      birthday: [''],
+      avatar: ['']
     });
   }
 
@@ -39,15 +41,17 @@ export class CustomerEditComponent implements OnInit {
     // Gọi API để lấy thông tin khách hàng bằng ID
     this.customerService.apiCustomerGetCustomerByIdGet$Json$Response({ customerId: this.customerId }).subscribe((rs) => {
       if (rs.body.success) {
-        const customerData: Customer = rs.body.data; // Lấy dữ liệu khách hàng
+        this.customerDB = rs.body.data;
+        // Cập nhật giá trị form với dữ liệu khách hàng
         this.editCustomerForm.patchValue({
-          fullName: customerData.fullName,
-          email: customerData.email,
-          phone: customerData.phone,
-          address: customerData.address
+          fullname: this.customerDB.fullname,
+          email: this.customerDB.email,
+          phone: this.customerDB.phone,
+          address: this.customerDB.address,
+
         });
       } else {
-        console.log('Lấy dữ liệu khách hàng thất bại');
+        console.log('Lấy dữ liệu khách hàng thất bại:', rs.body.message);
       }
     });
   }
@@ -60,10 +64,11 @@ export class CustomerEditComponent implements OnInit {
     if (this.editCustomerForm.valid) {
       const updatedCustomer: UpdateCustomerRequest = {
         customerId: this.customerId,
-        fullname: this.editCustomerForm.get('fullname')?.value || null,
-        email: this.editCustomerForm.get('email')?.value || null,
-        phone: this.editCustomerForm.get('phone')?.value || null,
-        address: this.editCustomerForm.get('address')?.value || null
+        fullname: this.editCustomerForm.get('fullname')?.value,
+        email: this.editCustomerForm.get('email')?.value,
+        phone: this.editCustomerForm.get('phone')?.value,
+        address: this.editCustomerForm.get('address')?.value,
+        avatar: this.editCustomerForm.get('avatar')?.value // Nếu cần cập nhật avatar
       };
 
       // Gọi API cập nhật khách hàng
