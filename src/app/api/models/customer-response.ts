@@ -8,5 +8,6 @@ export interface CustomerResponse {
   customerId?: number;
   email?: string | null;
   fullname?: string | null;
+  isActive?: boolean | null;
   phone?: string | null;
 }

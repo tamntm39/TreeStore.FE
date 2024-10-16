@@ -8,6 +8,7 @@ export interface CreateUserRequest {
   birthday?: string | null;
   email?: string | null;
   fullname?: string | null;
+  isActive?: string | null;
   listRoles?: Array<number> | null;
   password?: string | null;
   phone?: string | null;

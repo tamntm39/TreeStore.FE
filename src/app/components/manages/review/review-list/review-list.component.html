@@ -6,21 +6,20 @@
         <thead>
           <tr>
             <th>STT</th>
-            <th>Tên Khách Hàng</th>
-            <th>Xếp Hạng</th>
-            <th>Bình Luận</th>
-            <th>Thao Tác</th>
+            <th>Mã sản phẩm</th>
+            <th>Mã bình luận</th>
+            <th>Bình luận</th>
+            <th>Hành động</th> <!-- Cột cho hành động -->
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let review of reviews; let i = index">
+          <tr *ngFor="let review of listReviewDB; let i = index">
             <td>{{ i + 1 }}</td> <!-- Hiển thị STT -->
-            <td>{{ review.customerName }}</td> <!-- Tên Khách Hàng -->
-            <td>{{ review.rating }}/5</td> <!-- Xếp Hạng -->
-            <td>{{ review.comment }}</td> <!-- Bình Luận -->
+            <td>{{ review.productId }}</td> 
+            <td>{{ review.reviewId }}</td>
+            <td>{{ review.comment }}</td> <!-- Bình luận -->
             <td>
-              <button (click)="deleteReview(review)" class="btn btn-danger btn-sm">Xóa</button>
-
+              <button (click)="deleteReview(review.reviewId)" class="btn btn-danger btn-sm">Xóa</button> <!-- Gọi deleteReview với reviewId -->
             </td>
           </tr>
         </tbody>

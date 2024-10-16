@@ -11,21 +11,28 @@
             <th>Email</th>
             <th>Địa chỉ</th>
             <th>Số điện thoại</th>
+            <th>Trạng thái</th> 
             <th>Thao tác</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let customer of listCustomersDB; let i = index">
             <td>{{ i + 1 }}</td>
-            <td>{{ customer.fullName }}</td>
+            <td>{{ customer.fullname }}</td>
             <td>{{ customer.email }}</td>
             <td>{{ customer.address }}</td>
             <td>{{ customer.phone }}</td>
             <td>
+              <button (click)="toggleCustomerActiveStatus(customer)">{{ customer.isActive ? 'Active' : 'Unactive' }}</button>
+            </td>
+            <td>
               <!-- Nút sửa -->
               <button (click)="navigateToEditCustomer(customer.customerId)" class="btn btn-warning btn-sm">Sửa</button> 
             </td>
+
           </tr>
+
+         
         </tbody>
       </table>
     </div>
