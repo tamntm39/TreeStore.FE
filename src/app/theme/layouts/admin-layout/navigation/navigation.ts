@@ -37,60 +37,112 @@ export const NavigationItems: NavigationItem[] = [
     ]
   },
   {
-    id: 'manages',
-    title: 'Quản lý',
-    type: 'group',
-    icon: 'icon-navigation',
-    children: [
+    "id": "accountManagement",
+    "title": "Quản lý tài khoản",
+    "type": "group",
+    "icon": "icon-user",
+    "children": [
       {
-        id: 'listuser',
-        title: 'Danh sách người dùng',
-        type: 'item',
-        classes: 'nav-item',
-        url: '/manages/user/user-list',
-        icon: 'login',
-        target: false,
-        breadcrumbs: false
+        "id": "listuser",
+        "title": "Danh sách người dùng",
+        "type": "item",
+        "classes": "nav-item",
+        "url": "/manages/user/user-list",
+        "icon": "user",
+        "target": false,
+        "breadcrumbs": false
       },
       {
-        id: 'listcustomer',
-        title: 'Danh sách khách hàng',
-        type: 'item',
-        classes: 'nav-item',
-        url: '/manages/customer/customer-list',
-        icon: 'login',
-        target: false,
-        breadcrumbs: false
+        "id": "listcustomer",
+        "title": "Danh sách khách hàng",
+        "type": "item",
+        "classes": "nav-item",
+        "url": "/manages/customer/customer-list",
+        "icon": "user",
+        "target": false,
+        "breadcrumbs": false
+      }
+    ]
+  },
+  {
+    "id": "productManagement",
+    "title": "Quản lý sản phẩm",
+    "type": "group",
+    "icon": "icon-box",
+    "children": [
+      {
+        "id": "listcategory",
+        "title": "Danh sách loại cây",
+        "type": "item",
+        "classes": "nav-item",
+        "url": "/manages/category/category-list",
+        "icon": "sun",
+        "target": false,
+        "breadcrumbs": false
       },
       {
-        id: 'listcategory',
-        title: 'Danh sách loại cây',
-        type: 'item',
-        classes: 'nav-item',
-        url: '/manages/category/category-list',
-        icon: 'login',
-        target: false,
-        breadcrumbs: false
-      },
+        "id": "listproduct",
+        "title": "Danh sách cây",
+        "type": "item",
+        "classes": "nav-item",
+        "url": "/manages/product/product-list",
+        "icon": "sun",
+        "target": false,
+        "breadcrumbs": false
+      }
+    ]
+  },
+  {
+    "id": "reviewManagement",
+    "title": "Quản lý đánh giá",
+    "type": "group",
+    "icon": "icon-star",
+    "children": [
       {
-        id: 'listproduct',
-        title: 'Danh sách cây',
-        type: 'item',
-        classes: 'nav-item',
-        url: '/manages/product/product-list',
-        icon: 'login',
-        target: false,
-        breadcrumbs: false
-      },
+        "id": "listreview",
+        "title": "Danh sách đánh giá",
+        "type": "item",
+        "classes": "nav-item",
+        "url": "/manages/review/review-list",
+        "icon": "star",
+        "target": false,
+        "breadcrumbs": false
+      }
+    ]
+  },
+  {
+    "id": "orderManagement",
+    "title": "Quản lý đơn hàng",
+    "type": "group",
+    "icon": "icon-shopping-cart",
+    "children": [
       {
-        id: 'listreview',
-        title: 'Danh sách đánh giá',
-        type: 'item',
-        classes: 'nav-item',
-        url: '/manages/review/review-list',
-        icon: 'login',
-        target: false,
-        breadcrumbs: false
+        "id": "listorder",
+        "title": "Danh sách đơn hàng",
+        "type": "item",
+        "classes": "nav-item",
+        "url": "/manages/order/order-list",
+        "icon": "dropbox",
+        "target": false,
+        "breadcrumbs": false
+      }
+    ]
+  },
+  {
+    "id": "inventoryManagement",
+    "title": "Quản lý tồn kho",
+    "type": "group",
+    "icon": "icon-warehouse",
+    "children": [
+      {
+        "id": "listinventory",
+        "title": "Danh sách tồn kho",
+        "type": "item",
+        "classes": "nav-item",
+        "url": "/manages/inventory/inventory-list",
+        "icon": "inbox",
+        "target": false,
+        "breadcrumbs": false
       }
     ]
   },
