@@ -31,3 +31,56 @@ th, td {
 tr:hover {
   background-color: #f1f1f1; // Màu nền khi hover lên hàng
 }
+
+.btn-warning {
+  padding: 8px 16px; /* Điều chỉnh padding */
+  width: 70px; /* Điều chỉnh chiều rộng giống với nút trạng thái */
+  text-align: center; /* Căn giữa chữ */
+  margin-left: 5px; /* Khoảng cách giữa các nút */
+}
+
+.btn-warning:hover {
+  background-color: #ffc107; /* Màu khi hover */
+  opacity: 0.8; /* Hiệu ứng hover */
+  transition: opacity 0.3s ease;
+}
+
+button.toggle-status-btn {
+  background-color: #059766; /* Màu nền cho nút khi trạng thái Active */
+  color: white; /* Màu chữ */
+  border: none;
+  padding: 8px 16px; /* Điều chỉnh padding */
+  border-radius: 1px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 120px; /* Điều chỉnh chiều rộng */
+  text-align: center; /* Căn giữa chữ */
+}
+
+button.toggle-status-btn.unactive {
+  background-color: #f44336; /* Màu nền cho nút khi trạng thái Unactive */
+}
+
+button.toggle-status-btn:hover {
+  background-color: #88cbad; /* Hiệu ứng hover khi trạng thái Active */
+}
+
+button.toggle-status-btn.unactive:hover {
+  background-color: #da9a99; /* Hiệu ứng hover khi trạng thái Unactive */
+}
+
+#search {
+  width: 200px; /* Điều chỉnh kích thước theo ý muốn */
+  padding: 8px; 
+}
+
+/* Chỉnh button tìm kiếm */
+.btn-success {
+  background-color: #2662b1; /* Màu button (có thể thay đổi theo ý muốn) */
+ 
+}
+
+.btn-success:hover {
+  background-color: #7a9bc8; /* Màu khi hover */
+
+}

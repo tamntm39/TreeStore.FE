@@ -11,7 +11,6 @@ import Swal from 'sweetalert2';
 })
 export class CustomerListComponent implements OnInit {
   listCustomersDB: Array<CustomerResponse> = []; // Sử dụng CustomerResponse
-  Customer:Array<Customer> =[]
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -19,18 +18,9 @@ export class CustomerListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.customerService.apiCustomerListCustomerGet$Json$Response().subscribe((rs) => {
-      const response = rs.body;
-      console.log('Dữ liệu trả về từ API:', response); // Kiểm tra dữ liệu nhận được
-
-      if (response.success) {
-        this.listCustomersDB = response.data; // Gán dữ liệu
-        console.log('Danh sách khách hàng:', this.listCustomersDB); // Kiểm tra danh sách đã gán
-      } else {
-        console.error('Lấy danh sách khách hàng thất bại!');
-      }
-    });
+    this.loadCustomers(); // Gọi loadCustomers trong ngOnInit để tải dữ liệu ban đầu
   }
+
   loadCustomers(): void {
     this.customerService.apiCustomerListCustomerGet$Json$Response().subscribe(
       (rs) => {
@@ -51,10 +41,11 @@ export class CustomerListComponent implements OnInit {
     this.router.navigate(['/manages/customer/customer-edit', customerId]);
   }
 
-  toggleCustomerActiveStatus(customer: Customer) {
+  toggleCustomerActiveStatus(customer: CustomerResponse) {
+    const newStatus = !customer.isActive; // Lưu trạng thái mới
     Swal.fire({
-      title: 'Bạn chắc chắn?',
-      text: `Bạn có muốn chuyển trạng thái khách hàng này thành ${customer.isActive ? 'vô hiệu hóa' : 'kích hoạt'}?`,
+      title: 'Bạn chắc chứ?',
+      text: `Bạn có muốn chuyển trạng thái người dùng này thành ${newStatus ? 'kích hoạt' : 'vô hiệu khóa'}.`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -63,31 +54,22 @@ export class CustomerListComponent implements OnInit {
       cancelButtonText: 'Hủy bỏ'
     }).then((result) => {
       if (result.isConfirmed) {
-        // Gọi API để chuyển đổi trạng thái
-        this.customerService.apiCustomerChangeActivePost$Json$Response({ customerId: customer.customerId })
-          .subscribe((rs) => {
-            const response = rs.body;
-            if (response.success) {
-              // Cập nhật trạng thái isActive của customer
-              customer.isActive = !customer.isActive; // Đảo ngược trạng thái
-  
-              Swal.fire(
-                'Cập nhật!',
-                `Đã cập nhật thành công trạng thái ${customer.isActive ? 'kích hoạt' : 'vô hiệu hóa'}.`,
-                'success'
-              );
-            } else {
-              Swal.fire('Cập nhật thất bại!', response.message, 'error');
-            }
-          }, (error) => {
-            console.error('Lỗi khi cập nhật trạng thái:', error);
-            Swal.fire('Lỗi!', 'Có lỗi xảy ra khi cập nhật trạng thái.', 'error');
-          });
+        this.customerService.apiCustomerChangeActivePost$Json$Response({ customerId: customer.customerId }).subscribe((rs) => {
+          const response = rs.body;
+          if (response.success) {
+            // Cập nhật trạng thái isActive
+            customer.isActive = newStatus;
+
+            Swal.fire(
+              'Cập nhật!',
+              `Đã cập nhật thành công thành trạng thái ${newStatus ? 'Kích hoạt' : 'Vô hiệu khóa'}.`,
+              'success'
+            );
+          } else {
+            Swal.fire('Cập nhật thất bại!', response.message, 'error');
+          }
+        });
       }
     });
   }
-  
-
-
-
 }

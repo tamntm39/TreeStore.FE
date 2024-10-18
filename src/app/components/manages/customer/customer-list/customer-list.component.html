@@ -23,8 +23,13 @@
             <td>{{ customer.address }}</td>
             <td>{{ customer.phone }}</td>
             <td>
-              <button (click)="toggleCustomerActiveStatus(customer)">{{ customer.isActive ? 'Active' : 'Unactive' }}</button>
+              <button 
+                (click)="toggleCustomerActiveStatus(customer)" 
+                [ngClass]="{'toggle-status-btn': true, 'unactive': !customer.isActive}">
+                {{ customer.isActive ? 'Kích hoạt' : 'Vô hiệu khóa' }}
+              </button>
             </td>
+            
             <td>
               <!-- Nút sửa -->
               <button (click)="navigateToEditCustomer(customer.customerId)" class="btn btn-warning btn-sm">Sửa</button> 

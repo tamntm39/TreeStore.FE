@@ -20,7 +20,11 @@
             <td>{{ i + 1 }}</td>
             <td>{{ category.name }}</td>
            <td>
-             <button (click)="toggleCategoryActiveStatus(category)">{{ category.isActive ? 'Kích hoạt' : 'Vô hiệu khóa' }}</button>
+              <button 
+              (click)="toggleCategoryActiveStatus(category)"
+              [ngClass]="{'toggle-status-btn': true, 'unactive': !category.isActive}">
+              {{ category.isActive ? 'Kích hoạt' : 'Vô hiệu khóa' }}
+            </button>
             </td>
             <td>
               <!-- Nút sửa danh mục -->

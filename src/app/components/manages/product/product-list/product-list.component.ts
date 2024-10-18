@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
 })
 export class ProductListComponent implements OnInit {
   listProducts: GetListProductSpResult[] = []; // Đảm bảo listProducts là một mảng các sản phẩm
+  searchTerm:string=''
 
   constructor(
     private router: Router,
@@ -95,4 +96,17 @@ export class ProductListComponent implements OnInit {
       }
     });
   }
+  onSearch(): void {
+    if (this.searchTerm.trim() === '') {
+      // Nếu không có từ khóa tìm kiếm, tải lại toàn bộ sản phẩm
+      this.loadProducts();
+      return;
+    }
+
+    // Lọc danh sách sản phẩm theo tên sản phẩm
+    this.listProducts = this.listProducts.filter(product =>
+      product.productName.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
+  }
+
 }
