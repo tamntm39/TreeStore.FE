@@ -1,10 +1,9 @@
 // src/app/components/category-list/category-list.component.ts
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Category } from 'src/app/api/models/category'; // Nhập mô hình Category
-import { CategoryService } from 'src/app/api/services/category.service'; // Nhập CategoryService
+import { Category } from 'src/app/api/models/category';
+import { CategoryService } from 'src/app/api/services/category.service';
 import Swal from 'sweetalert2';
-import { BooleanResultCustomModel } from 'src/app/api/models/boolean-result-custom-model'; // Nhập mô hình BooleanResultCustomModel
 
 @Component({
   selector: 'app-category-list',
@@ -13,6 +12,8 @@ import { BooleanResultCustomModel } from 'src/app/api/models/boolean-result-cust
 })
 export class CategoryListComponent implements OnInit {
   listCategoriesDB: Category[] = []; // Danh sách danh mục
+  filteredCategories: Category[] = []; // Danh sách đã lọc
+  searchTerm: string = ''; // Từ tìm kiếm
 
   constructor(
     private router: Router,
@@ -30,6 +31,7 @@ export class CategoryListComponent implements OnInit {
         console.log('Response from API:', response); // Theo dõi phản hồi
         if (response && response.success) {
           this.listCategoriesDB = response.data || []; // Cập nhật danh sách danh mục
+          this.filteredCategories = this.listCategoriesDB; // Khởi tạo danh sách đã lọc
           console.log('Categories loaded:', this.listCategoriesDB); // Theo dõi danh sách
         } else {
           console.log('Lấy danh sách danh mục thất bại:', response?.message || 'Không có thông tin thêm.');
@@ -42,6 +44,14 @@ export class CategoryListComponent implements OnInit {
       }
     });
   }
+
+  filterCategories(): void {
+    const normalizedSearchTerm = this.searchTerm.toLowerCase().trim();
+    this.filteredCategories = this.listCategoriesDB.filter(category =>
+      category.name.toLowerCase().includes(normalizedSearchTerm)
+    );
+  }
+  
 
   toggleCategoryActiveStatus(category: Category) {
     Swal.fire({
@@ -64,7 +74,6 @@ export class CategoryListComponent implements OnInit {
               'success'
             ).then(() => {
               this.loadCategories();
-              // window.location.reload();
             });
           } else {
             Swal.fire('Cập nhật thất bại!', response.message, 'error');
@@ -81,6 +90,4 @@ export class CategoryListComponent implements OnInit {
   navigateToEditCategory(categoryId: number): void {
     this.router.navigate(['/manages/category/category-edit', categoryId]); // Đường dẫn đến trang chỉnh sửa danh mục
   }
-
-  
 }

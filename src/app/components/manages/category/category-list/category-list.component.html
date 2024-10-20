@@ -1,8 +1,12 @@
 <div class="col-md-12 col-xl-8">
   <h5 class="mb-3">Danh sách danh mục</h5>
 
-  <!-- Nút thêm danh mục -->
-  <button (click)="navigateToAddCategory()" class="btn btn-primary mb-3">Thêm danh mục</button>
+  <!-- Thanh tìm kiếm -->
+  <div class="mb-3" style="display: flex; justify-content: space-between; align-items: center;">
+    <button (click)="navigateToAddCategory()" class="btn btn-primary">Thêm danh mục</button>
+    <input type="text" [(ngModel)]="searchTerm" (input)="filterCategories()" placeholder="Tìm kiếm danh mục..."
+      class="form-control" style="width: 300px; margin-left: 10px;">
+  </div>
 
   <div class="card tbl-card">
     <div class="table-responsive">
@@ -16,14 +20,17 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let category of listCategoriesDB; let i = index">
+          <tr *ngFor="let category of filteredCategories; let i = index">
             <td>{{ i + 1 }}</td>
             <td>{{ category.name }}</td>
-           <td>
-             <button (click)="toggleCategoryActiveStatus(category)">{{ category.isActive ? 'Kích hoạt' : 'Vô hiệu khóa' }}</button>
+            <td>
+              <button (click)="toggleCategoryActiveStatus(category)" class="btn"
+                [ngClass]="category.isActive ? 'btn-success' : 'btn-danger'" style="width: 120px;">
+                <!-- Đặt kích thước cố định cho nút -->
+                {{ category.isActive ? 'Kích hoạt' : 'Vô hiệu hóa' }}
+              </button>
             </td>
             <td>
-              <!-- Nút sửa danh mục -->
               <button (click)="navigateToEditCategory(category.categoryId)" class="btn btn-warning btn-sm">Sửa</button>
             </td>
           </tr>

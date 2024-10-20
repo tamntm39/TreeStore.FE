@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Customer, CustomerResponse } from 'src/app/api/models'; // Đảm bảo bạn import đúng CustomerResponse
+import { Customer, CustomerResponse } from 'src/app/api/models';
 import { CustomerService } from 'src/app/api/services';
 import Swal from 'sweetalert2';
 
@@ -10,42 +10,45 @@ import Swal from 'sweetalert2';
   styleUrls: ['./customer-list.component.scss']
 })
 export class CustomerListComponent implements OnInit {
-  listCustomersDB: Array<CustomerResponse> = []; // Sử dụng CustomerResponse
-  Customer:Array<Customer> =[]
+  listCustomersDB: Array<CustomerResponse> = [];
+  filteredCustomers: Array<CustomerResponse> = []; // Danh sách đã lọc
+  searchTerm: string = ''; // Từ tìm kiếm
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private customerService: CustomerService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
+    this.loadCustomers(); // Tải danh sách khách hàng khi khởi tạo
+  }
+
+  loadCustomers(): void {
     this.customerService.apiCustomerListCustomerGet$Json$Response().subscribe((rs) => {
       const response = rs.body;
-      console.log('Dữ liệu trả về từ API:', response); // Kiểm tra dữ liệu nhận được
+      console.log('Dữ liệu trả về từ API:', response);
 
       if (response.success) {
-        this.listCustomersDB = response.data; // Gán dữ liệu
-        console.log('Danh sách khách hàng:', this.listCustomersDB); // Kiểm tra danh sách đã gán
+        this.listCustomersDB = response.data;
+        this.filteredCustomers = this.listCustomersDB; // Khởi tạo danh sách đã lọc
+        console.log('Danh sách khách hàng:', this.filteredCustomers);
       } else {
         console.error('Lấy danh sách khách hàng thất bại!');
       }
     });
   }
-  loadCustomers(): void {
-    this.customerService.apiCustomerListCustomerGet$Json$Response().subscribe(
-      (rs) => {
-        const response = rs.body; // Kiểm tra phản hồi
-        if (response.success) {
-          this.listCustomersDB = response.data; // Gán dữ liệu
-        } else {
-          console.error('Lấy danh sách khách hàng thất bại!');
-        }
-      },
-      (error) => {
-        console.error('Lỗi khi lấy danh sách khách hàng:', error); // Xử lý lỗi
-      }
+
+  filterCustomers(): void {
+    const normalizedSearchTerm = this.searchTerm.toLowerCase().trim();
+    this.filteredCustomers = this.listCustomersDB.filter(customer =>
+      customer.fullname.toLowerCase().includes(normalizedSearchTerm) ||
+      customer.email.toLowerCase().includes(normalizedSearchTerm) ||
+      customer.phone.includes(normalizedSearchTerm) ||
+      customer.address.toLowerCase().includes(normalizedSearchTerm) // Nếu bạn cũng muốn tìm theo địa chỉ
     );
   }
+  
 
   navigateToEditCustomer(customerId: number) {
     this.router.navigate(['/manages/customer/customer-edit', customerId]);
@@ -63,14 +66,12 @@ export class CustomerListComponent implements OnInit {
       cancelButtonText: 'Hủy bỏ'
     }).then((result) => {
       if (result.isConfirmed) {
-        // Gọi API để chuyển đổi trạng thái
         this.customerService.apiCustomerChangeActivePost$Json$Response({ customerId: customer.customerId })
           .subscribe((rs) => {
             const response = rs.body;
             if (response.success) {
-              // Cập nhật trạng thái isActive của customer
               customer.isActive = !customer.isActive; // Đảo ngược trạng thái
-  
+
               Swal.fire(
                 'Cập nhật!',
                 `Đã cập nhật thành công trạng thái ${customer.isActive ? 'kích hoạt' : 'vô hiệu hóa'}.`,
@@ -86,8 +87,4 @@ export class CustomerListComponent implements OnInit {
       }
     });
   }
-  
-
-
-
 }

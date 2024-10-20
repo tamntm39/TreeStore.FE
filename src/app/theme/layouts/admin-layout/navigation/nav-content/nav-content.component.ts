@@ -22,7 +22,11 @@ import {
   FontSizeOutline,
   ProfileOutline,
   BgColorsOutline,
-  AntDesignOutline
+  AntDesignOutline,
+  StarOutline,
+  SunOutline,
+  DropboxOutline,
+  InboxOutline
 } from '@ant-design/icons-angular/icons';
 
 @Component({
@@ -61,7 +65,11 @@ export class NavContentComponent implements OnInit {
         BgColorsOutline,
         AntDesignOutline,
         ChromeOutline,
-        QuestionOutline
+        QuestionOutline,
+        StarOutline,
+        SunOutline,
+        DropboxOutline,
+        InboxOutline
       ]
     );
     this.navigations = NavigationItems;
