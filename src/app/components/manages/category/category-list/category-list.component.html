@@ -19,9 +19,15 @@
           <tr *ngFor="let category of listCategoriesDB; let i = index">
             <td>{{ i + 1 }}</td>
             <td>{{ category.name }}</td>
-           <td>
-             <button (click)="toggleCategoryActiveStatus(category)">{{ category.isActive ? 'Kích hoạt' : 'Vô hiệu khóa' }}</button>
+
+            <td>
+              <button 
+                (click)="toggleCategoryActiveStatus(category)" 
+                [ngClass]="{'toggle-status-btn': true, 'unactive': !category.isActive}">
+                {{ category.isActive ? 'Kích hoạt' : 'Vô hiệu khóa' }}
+              </button>
             </td>
+
             <td>
               <!-- Nút sửa danh mục -->
               <button (click)="navigateToEditCategory(category.categoryId)" class="btn btn-warning btn-sm">Sửa</button>

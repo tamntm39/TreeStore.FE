@@ -1,14 +1,15 @@
 <div class="col-md-12 col-xl-8">
   <h5 class="mb-3">Danh sách khách hàng</h5>
 
-  <div class="mb-3" style="display: flex; justify-content: space-between; align-items: center;">
-    <input 
-    type="text" 
-    [(ngModel)]="searchTerm" 
-    (input)="filterCustomers()" 
-    placeholder="Tìm kiếm khách hàng..." 
-    class="form-control" 
-    style="width: 300px;">
+  <div class="mb-3" style="display: flex; justify-content: space-between; align-items: center">
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      (input)="filterCustomers()"
+      placeholder="Tìm kiếm khách hàng..."
+      class="form-control"
+      style="width: 300px"
+    />
   </div>
   <div class="card tbl-card">
     <div class="table-responsive">
@@ -31,14 +32,22 @@
             <td>{{ customer.email }}</td>
             <td>{{ customer.address }}</td>
             <td>{{ customer.phone }}</td>
-            <td>
+            <!-- <td>
               <button (click)="toggleCustomerActiveStatus(customer)" class="btn"
                 [ngClass]="customer.isActive ? 'btn-success' : 'btn-danger'" style="width: 120px;">
-                <!-- Đặt kích thước cố định cho nút -->
-                {{ customer.isActive ? 'Kích hoạt' : 'Vô hiệu hóa' }} <!-- Thay đổi văn bản -->
+                {{ customer.isActive ? 'Kích hoạt' : 'Vô hiệu hóa' }}
+              </button>
+            </td> -->
+
+            <td>
+              <button
+                (click)="toggleCustomerActiveStatus(customer)"
+                [ngClass]="{ 'toggle-status-btn': true, unactive: !customer.isActive }"
+              >
+                {{ customer.isActive ? 'Kích hoạt' : 'Vô hiệu khóa' }}
               </button>
             </td>
-            
+
             <td>
               <button (click)="navigateToEditCustomer(customer.customerId)" class="btn btn-warning btn-sm">Sửa</button>
             </td>
