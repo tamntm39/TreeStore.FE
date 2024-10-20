@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
 })
 export class UserListComponent implements OnInit {
   listUsersDB = [] as User[];
+  searchTerm: string = ''; // Search term for filtering users
   // listUsers = [
   // Dữ liệu mẫu, bạn có thể thay thế bằng dữ liệu thực từ API
   //   { id: 1, fullname: 'Ngô Gia Bảo', email: 'a@example.com', position: 'Admin', birthday: '2000-01-01' },
@@ -20,6 +21,7 @@ export class UserListComponent implements OnInit {
   constructor(
     private router: Router,
     private userService: UserService
+    
   ) {}
 
   ngOnInit(): void {
@@ -74,5 +76,16 @@ export class UserListComponent implements OnInit {
         });
       }
     });
+  }
+  onSearch(): void {
+    if (this.searchTerm.trim() === '') {
+      // Nếu không có từ khóa tìm kiếm, trả lại toàn bộ danh sách người dùng
+      this.listUsersDB = this.listUsersDB;
+    } else {
+      // Lọc danh sách người dùng theo tên người dùng
+      this.listUsersDB = this.listUsersDB.filter(user =>
+        user.fullname.toLowerCase().includes(this.searchTerm.toLowerCase())
+      );
+    }
   }
 }

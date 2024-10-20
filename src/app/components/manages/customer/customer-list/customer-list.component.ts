@@ -54,10 +54,11 @@ export class CustomerListComponent implements OnInit {
     this.router.navigate(['/manages/customer/customer-edit', customerId]);
   }
 
-  toggleCustomerActiveStatus(customer: Customer) {
+  toggleCustomerActiveStatus(customer: CustomerResponse) {
+    const newStatus = !customer.isActive; // Lưu trạng thái mới
     Swal.fire({
-      title: 'Bạn chắc chắn?',
-      text: `Bạn có muốn chuyển trạng thái khách hàng này thành ${customer.isActive ? 'vô hiệu hóa' : 'kích hoạt'}?`,
+      title: 'Bạn chắc chứ?',
+      text: `Bạn có muốn chuyển trạng thái người dùng này thành ${newStatus ? 'kích hoạt' : 'vô hiệu khóa'}.`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',

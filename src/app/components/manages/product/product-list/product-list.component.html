@@ -1,9 +1,23 @@
 <div class="col-md-12 col-xl-8">
   <h5 class="mb-3">Danh sách cây</h5>
 
-  <!-- Nút thêm cây mới -->
-  <button (click)="navigateToAddProduct()" class="btn btn-primary mb-3">Thêm cây mới</button>
+  <div class="d-flex align-items-center mb-3">
+    <!-- Nút thêm người dùng mới -->
+    <button (click)="navigateToAddProduct()" class="btn btn-primary me-2">Thêm cây mới</button>
 
+    <!-- Form tìm kiếm -->
+    <form (ngSubmit)="onSearch()" #searchForm="ngForm" class="d-flex ms-auto">
+      <input 
+        type="text" 
+        id="search" 
+        class="form-control me-2" 
+        [(ngModel)]="searchTerm" 
+        name="search" 
+        placeholder="Tìm kiếm cây" 
+        required>
+      <button type="submit" class="btn btn-success">Tìm kiếm</button>
+    </form>
+  </div>
   <div class="card tbl-card">
     <div class="table-responsive">
       <table class="table table-hover mb-0">
@@ -34,11 +48,13 @@
             </td>
 
             <td>
-              <button (click)="toggleProductActiveStatus(product)">{{ product.isActive ? 'Kích hoạt' : 'Vô hiệu khóa' }}</button>
-              <!-- </td> -->
-              <!-- <button (click)="deleteProduct(product.productId)" class="btn btn-danger btn-sm">Xóa</button> -->
-              <!-- Sử dụng productId -->
+              <button 
+                (click)="toggleProductActiveStatus(product)" 
+                [ngClass]="{'toggle-status-btn': true, 'unactive': !product.isActive}">
+                {{ product.isActive ? 'Kích hoạt' : 'Vô hiệu khóa' }}
+              </button>
             </td>
+            
             <td>
               <button (click)="navigateToEditProduct(product.productId)" class="btn btn-warning btn-sm">Sửa</button>
               <!-- Sử dụng productId -->
