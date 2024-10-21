@@ -26,7 +26,8 @@ import {
   StarOutline,
   SunOutline,
   DropboxOutline,
-  InboxOutline
+  InboxOutline,
+  
 } from '@ant-design/icons-angular/icons';
 
 @Component({

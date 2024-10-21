@@ -6,6 +6,7 @@ import { UserModule } from './user/user.module';
 import { CustomerModule } from './customer/customer.module';
 import { CategoryModule } from './category/category.module';
 import { ProductModule } from './product/product.module';
+import { InventoryModule } from './inventory/inventory.module';
 
 
 const routes: Routes = [
@@ -29,6 +30,10 @@ const routes: Routes = [
     path: 'review', // Đường dẫn chính cho user
     loadChildren: () => import('./review/review.module').then((m) => m.ReviewModule)
   },
+  {
+    path: 'inventory', // Đường dẫn chính cho user
+    loadChildren: () => import('./inventory/inventory.module').then((m) => m.InventoryModule)
+  },
 
 ];
 
@@ -41,7 +46,8 @@ const routes: Routes = [
     UserModule, // Import UserModule ở đây
     CustomerModule,
     CategoryModule,
-    ProductModule
+    ProductModule,
+    InventoryModule
   ]
 })
 export class ManagesModule {}
