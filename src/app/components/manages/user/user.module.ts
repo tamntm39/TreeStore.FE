@@ -8,6 +8,11 @@ import { UserEditComponent } from './user-edit/user-edit.component';
 
 const routes: Routes = [
   {
+    path: '', // Nếu không có phần nào được cung cấp, chuyển hướng đến '/user-list'
+    redirectTo: 'user-list',
+    pathMatch: 'full'
+  },
+  {
     path: 'user-list',
     component: UserListComponent
   },

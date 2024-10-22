@@ -24,12 +24,12 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     ReactiveFormsModule, 
     CommonModule,
-    ApiModule.forRoot({ rootUrl: environment.apiUrl })
+    ApiModule.forRoot({ rootUrl: environment.apiUrl }), 
   ],
-  // providers: [
-  //   { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-  //   { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-  // ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  ],  
   bootstrap: [AppComponent]
 })
 export class AppModule {}

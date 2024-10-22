@@ -1,8 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProductResponse, UpdateProductRequest } from 'src/app/api/models';
-import { CategoryService, ProductService } from 'src/app/api/services';
+import { ApiConfiguration } from 'src/app/api/api-configuration';
+import { ProductResponse, UpdateProductRequest, UploadFileModel } from 'src/app/api/models';
+import { CategoryService, ProductService, UploadService } from 'src/app/api/services';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -19,6 +21,7 @@ export class ProductEditComponent implements OnInit {
     price: '',
     image: null
   };
+  productImageUrl: string | null = null; // Thêm thuộc tính để lưu URL hình ảnh
   productDB = undefined as ProductResponse;
   editProductForm: FormGroup;
   listCategory = [];
@@ -27,7 +30,10 @@ export class ProductEditComponent implements OnInit {
     private router: Router,
     private productService: ProductService,
     private categoryService: CategoryService,
-    private fb: FormBuilder
+    private uploadService: UploadService,
+    private fb: FormBuilder,
+    protected config: ApiConfiguration,
+    private http: HttpClient
   ) {
     this.editProductForm = this.fb.group({
       name: [''],
@@ -40,7 +46,11 @@ export class ProductEditComponent implements OnInit {
       // img: ['']
     });
   }
+  private _rootUrl?: string;
 
+  get rootUrl(): string {
+    return this._rootUrl || this.config.rootUrl;
+  }
   ngOnInit() {
     this.categoryService.apiCategoryGetAllGet$Json$Response().subscribe((response) => {
       if (response.body.success) {
@@ -56,6 +66,7 @@ export class ProductEditComponent implements OnInit {
           console.log(response);
           if (response.success == true) {
             this.productDB = rs.body.data;
+            this.productImageUrl = this.productDB.img;
             this.editProductForm.patchValue({
               name: this.productDB.name,
               quantity: this.productDB.quantity,
@@ -93,8 +104,8 @@ export class ProductEditComponent implements OnInit {
         quantity: this.editProductForm.get('quantity')?.value || null,
         priceOutput: this.editProductForm.get('priceOutput')?.value || null,
         description: this.editProductForm.get('description')?.value || null,
-        // img: this.editProductForm.get('img')?.value || null,
-        categoryId:  parseInt(this.editProductForm.get('category')?.value, 10) || null
+        img: this.productImageUrl,
+        categoryId: parseInt(this.editProductForm.get('category')?.value, 10) || null
       } as UpdateProductRequest;
       this.productService.apiProductUpdatePut$Json$Response({ body: updatedProduct }).subscribe((rs) => {
         if (rs.body.success == true) {
@@ -135,13 +146,36 @@ export class ProductEditComponent implements OnInit {
       console.log('Form không hợp lệ');
     }
   }
-
+ 
+  uploadFileModel: UploadFileModel;
   onFileSelected(event: any) {
     const file = event.target.files[0];
     if (file) {
-      // Xử lý file tải lên
-      this.product.image = file;
-      console.log('File hình ảnh đã chọn:', file);
+      let fileToUpload = file;
+      const formData = new FormData();
+      formData.append('file', fileToUpload, fileToUpload.name);
+      this.http.post(`${this.rootUrl}/api/Upload/Upload`, formData).subscribe(
+        (rs) => {
+          console.log(rs);
+          if (rs['success']) {
+            this.uploadFileModel = rs['data'];
+            this.productImageUrl = this.uploadFileModel.pathSave; // Cập nhật URL hình ảnh
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Upload thất bại',
+              text: 'Không thể tải lên hình ảnh!'
+            });
+          }
+        },
+        (err) => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Upload thất bại',
+            text: 'Không thể tải lên hình ảnh!'
+          });
+        }
+      );
     }
   }
 }

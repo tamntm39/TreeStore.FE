@@ -46,6 +46,8 @@ export { UpdateUserRequest } from './models/update-user-request';
 export { UpdateUserResponse } from './models/update-user-response';
 export { UpdateUserResponseListResultCustomModel } from './models/update-user-response-list-result-custom-model';
 export { UpdateUserResponseResultCustomModel } from './models/update-user-response-result-custom-model';
+export { UploadFileModel } from './models/upload-file-model';
+export { UploadFileModelResultCustomModel } from './models/upload-file-model-result-custom-model';
 export { User } from './models/user';
 export { UserResponse } from './models/user-response';
 export { UserResponseResultCustomModel } from './models/user-response-result-custom-model';

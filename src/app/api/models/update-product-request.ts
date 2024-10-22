@@ -5,6 +5,7 @@
 export interface UpdateProductRequest {
   categoryId?: number;
   description?: string | null;
+  img?: string | null;
   name?: string | null;
   priceOutput?: number;
   productId?: number;

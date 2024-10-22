@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 // Project import
 import { AdminComponent } from './theme/layouts/admin-layout/admin-layout.component';
 import { GuestComponent } from './theme/layouts/guest/guest.component';
+import { AuthGuard } from './auth/helpers';
 
 const routes: Routes = [
   {
@@ -19,12 +20,13 @@ const routes: Routes = [
       // },
       {
         path: '',
-        redirectTo: '/login',
+        redirectTo: '/manages', // Điều hướng đến '/manages' nếu truy cập vào '/'
         pathMatch: 'full'
       },
       { 
         path: 'manages', 
-        loadChildren: () => import('./components/manages/manages.module').then((m) => m.ManagesModule) 
+        loadChildren: () => import('./components/manages/manages.module').then((m) => m.ManagesModule),
+        canActivate: [AuthGuard],
       },
       {
         path: 'dashboard/default',
@@ -39,7 +41,7 @@ const routes: Routes = [
         loadComponent: () => import('./demo/ui-component/ui-color/ui-color.component')
       },
       {
-        path: 'sample-page',
+        path: 'not-authorized',
         loadComponent: () => import('./demo/other/sample-page/sample-page.component')
       },
      

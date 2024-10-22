@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ApiConfiguration } from 'src/app/api/api-configuration';
 import { GetListProductSpResult, Product } from 'src/app/api/models'; // Đảm bảo bạn có mô hình Product
 import { ProductService } from 'src/app/api/services'; // Đảm bảo bạn đã nhập đúng ProductService
 import Swal from 'sweetalert2';
@@ -15,13 +16,18 @@ export class ProductListComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private productService: ProductService
+    private productService: ProductService,
+    protected config: ApiConfiguration, 
   ) {}
 
   ngOnInit(): void {
     this.loadProducts();
+  } 
+  private _rootUrl?: string;
+ 
+  get rootUrl(): string {
+    return this._rootUrl || this.config.rootUrl;
   }
-
   loadProducts(): void {
     this.productService.apiProductListProductGet$Json$Response().subscribe((rs) => {
       const response = rs.body;

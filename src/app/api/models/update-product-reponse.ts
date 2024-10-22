@@ -5,6 +5,7 @@
 export interface UpdateProductReponse {
   categoryId?: number;
   description?: string | null;
+  img?: string | null;
   listCategorys?: Array<number> | null;
   name?: string | null;
   priceOutput?: number;

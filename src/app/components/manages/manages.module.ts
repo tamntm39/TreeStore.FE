@@ -11,6 +11,11 @@ import { InventoryModule } from './inventory/inventory.module';
 
 const routes: Routes = [
   {
+    path: '', // Nếu không có phần nào được cung cấp, chuyển hướng đến '/user'
+    redirectTo: 'user',
+    pathMatch: 'full'
+  },
+  {
     path: 'user', // Đường dẫn chính cho user
     loadChildren: () => import('./user/user.module').then((m) => m.UserModule)
   },
@@ -20,8 +25,6 @@ const routes: Routes = [
   { path: 'category', 
     loadChildren: () => import('./category/category.module').then((m) => m.CategoryModule) 
   },
-  
-  // { path: 'customer', loadChildren: () => import('./customer/customer.module').then((m) => m.CustomerModule) },
   {
     path: 'product', // Đường dẫn chính cho user
     loadChildren: () => import('./product/product.module').then((m) => m.ProductModule)
@@ -34,7 +37,6 @@ const routes: Routes = [
     path: 'inventory', // Đường dẫn chính cho user
     loadChildren: () => import('./inventory/inventory.module').then((m) => m.InventoryModule)
   },
-
 ];
 
 @NgModule({

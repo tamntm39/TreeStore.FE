@@ -11,6 +11,7 @@ import { CustomerService } from './services/customer.service';
 import { LoginService } from './services/login.service';
 import { ProductService } from './services/product.service';
 import { ReviewService } from './services/review.service';
+import { UploadService } from './services/upload.service';
 import { UserService } from './services/user.service';
 
 /**
@@ -26,6 +27,7 @@ import { UserService } from './services/user.service';
     LoginService,
     ProductService,
     ReviewService,
+    UploadService,
     UserService,
     ApiConfiguration
   ],

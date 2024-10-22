@@ -24,8 +24,13 @@
     <input type="text" id="description" class="form-control" formControlName="description" name="description" required />
   </div>
   <div class="form-group">
-    <label for="image">Hình ảnh:</label>
-    <input type="file" id="image" class="form-control" (change)="onFileSelected($event)" name="image" required />
+    <label for="image">Hình ảnh hiện tại:</label>
+    <img *ngIf="productImageUrl" [src]="rootUrl + '/' + productImageUrl" alt="Hình ảnh sản phẩm" style="max-width: 200px; max-height: 200px;" />
+  </div>
+
+  <div class="form-group">
+    <label for="image">Chọn hình ảnh mới:</label>
+    <input type="file" id="image" class="form-control" (change)="onFileSelected($event)" name="image" />
   </div>
   <button type="submit" class="btn btn-primary">Cập nhật</button>
   <button type="button" (click)="cancel()" class="btn btn-secondary">Hủy</button>
