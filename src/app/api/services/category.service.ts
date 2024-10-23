@@ -27,6 +27,10 @@ import { apiCategoryGetByIdCategoryIdGet$Json } from '../fn/category/api-categor
 import { ApiCategoryGetByIdCategoryIdGet$Json$Params } from '../fn/category/api-category-get-by-id-category-id-get-json';
 import { apiCategoryGetByIdCategoryIdGet$Plain } from '../fn/category/api-category-get-by-id-category-id-get-plain';
 import { ApiCategoryGetByIdCategoryIdGet$Plain$Params } from '../fn/category/api-category-get-by-id-category-id-get-plain';
+import { apiCategorySearchGet$Json } from '../fn/category/api-category-search-get-json';
+import { ApiCategorySearchGet$Json$Params } from '../fn/category/api-category-search-get-json';
+import { apiCategorySearchGet$Plain } from '../fn/category/api-category-search-get-plain';
+import { ApiCategorySearchGet$Plain$Params } from '../fn/category/api-category-search-get-plain';
 import { apiCategoryUpdatePut$Json } from '../fn/category/api-category-update-put-json';
 import { ApiCategoryUpdatePut$Json$Params } from '../fn/category/api-category-update-put-json';
 import { apiCategoryUpdatePut$Plain } from '../fn/category/api-category-update-put-plain';
@@ -273,6 +277,53 @@ export class CategoryService extends BaseService {
   apiCategoryCreatePost$Json(params?: ApiCategoryCreatePost$Json$Params, context?: HttpContext): Observable<BooleanResultCustomModel> {
     return this.apiCategoryCreatePost$Json$Response(params, context).pipe(
       map((r: StrictHttpResponse<BooleanResultCustomModel>): BooleanResultCustomModel => r.body)
+    );
+  }
+
+  /** Path part for operation `apiCategorySearchGet()` */
+  static readonly ApiCategorySearchGetPath = '/api/Category/Search';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiCategorySearchGet$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiCategorySearchGet$Plain$Response(params?: ApiCategorySearchGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<CategoryListResultCustomModel>> {
+    return apiCategorySearchGet$Plain(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiCategorySearchGet$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiCategorySearchGet$Plain(params?: ApiCategorySearchGet$Plain$Params, context?: HttpContext): Observable<CategoryListResultCustomModel> {
+    return this.apiCategorySearchGet$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<CategoryListResultCustomModel>): CategoryListResultCustomModel => r.body)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiCategorySearchGet$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiCategorySearchGet$Json$Response(params?: ApiCategorySearchGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<CategoryListResultCustomModel>> {
+    return apiCategorySearchGet$Json(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiCategorySearchGet$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiCategorySearchGet$Json(params?: ApiCategorySearchGet$Json$Params, context?: HttpContext): Observable<CategoryListResultCustomModel> {
+    return this.apiCategorySearchGet$Json$Response(params, context).pipe(
+      map((r: StrictHttpResponse<CategoryListResultCustomModel>): CategoryListResultCustomModel => r.body)
     );
   }
 

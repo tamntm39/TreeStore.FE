@@ -45,10 +45,17 @@ export class CustomerListComponent implements OnInit {
       customer.fullname.toLowerCase().includes(normalizedSearchTerm) ||
       customer.email.toLowerCase().includes(normalizedSearchTerm) ||
       customer.phone.includes(normalizedSearchTerm) ||
-      customer.address.toLowerCase().includes(normalizedSearchTerm) // Nếu bạn cũng muốn tìm theo địa chỉ
+      customer.address.toLowerCase().includes(normalizedSearchTerm)
     );
+
+    if (this.filteredCustomers.length === 0) {
+      Swal.fire({
+        icon: 'info',
+        title: 'Không tìm thấy!',
+        text: 'Không có khách hàng nào khớp với từ khóa tìm kiếm của bạn.',
+      });
+    }
   }
-  
 
   navigateToEditCustomer(customerId: number) {
     this.router.navigate(['/manages/customer/customer-edit', customerId]);

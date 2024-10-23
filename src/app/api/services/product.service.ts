@@ -39,10 +39,10 @@ import { apiProductListProductGet$Json } from '../fn/product/api-product-list-pr
 import { ApiProductListProductGet$Json$Params } from '../fn/product/api-product-list-product-get-json';
 import { apiProductListProductGet$Plain } from '../fn/product/api-product-list-product-get-plain';
 import { ApiProductListProductGet$Plain$Params } from '../fn/product/api-product-list-product-get-plain';
-import { apiProductSearchByNameSearchByNameGet$Json } from '../fn/product/api-product-search-by-name-search-by-name-get-json';
-import { ApiProductSearchByNameSearchByNameGet$Json$Params } from '../fn/product/api-product-search-by-name-search-by-name-get-json';
-import { apiProductSearchByNameSearchByNameGet$Plain } from '../fn/product/api-product-search-by-name-search-by-name-get-plain';
-import { ApiProductSearchByNameSearchByNameGet$Plain$Params } from '../fn/product/api-product-search-by-name-search-by-name-get-plain';
+import { apiProductSearchByNameGet$Json } from '../fn/product/api-product-search-by-name-get-json';
+import { ApiProductSearchByNameGet$Json$Params } from '../fn/product/api-product-search-by-name-get-json';
+import { apiProductSearchByNameGet$Plain } from '../fn/product/api-product-search-by-name-get-plain';
+import { ApiProductSearchByNameGet$Plain$Params } from '../fn/product/api-product-search-by-name-get-plain';
 import { apiProductUpdatePut$Json } from '../fn/product/api-product-update-put-json';
 import { ApiProductUpdatePut$Json$Params } from '../fn/product/api-product-update-put-json';
 import { apiProductUpdatePut$Plain } from '../fn/product/api-product-update-put-plain';
@@ -389,50 +389,50 @@ export class ProductService extends BaseService {
     );
   }
 
-  /** Path part for operation `apiProductSearchByNameSearchByNameGet()` */
-  static readonly ApiProductSearchByNameSearchByNameGetPath = '/api/Product/SearchByName/SearchByName';
+  /** Path part for operation `apiProductSearchByNameGet()` */
+  static readonly ApiProductSearchByNameGetPath = '/api/Product/SearchByName';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiProductSearchByNameSearchByNameGet$Plain()` instead.
+   * To access only the response body, use `apiProductSearchByNameGet$Plain()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiProductSearchByNameSearchByNameGet$Plain$Response(params?: ApiProductSearchByNameSearchByNameGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<ProductListResultCustomModel>> {
-    return apiProductSearchByNameSearchByNameGet$Plain(this.http, this.rootUrl, params, context);
+  apiProductSearchByNameGet$Plain$Response(params?: ApiProductSearchByNameGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<GetListProductSpResultListResultCustomModel>> {
+    return apiProductSearchByNameGet$Plain(this.http, this.rootUrl, params, context);
   }
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiProductSearchByNameSearchByNameGet$Plain$Response()` instead.
+   * To access the full response (for headers, for example), `apiProductSearchByNameGet$Plain$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiProductSearchByNameSearchByNameGet$Plain(params?: ApiProductSearchByNameSearchByNameGet$Plain$Params, context?: HttpContext): Observable<ProductListResultCustomModel> {
-    return this.apiProductSearchByNameSearchByNameGet$Plain$Response(params, context).pipe(
-      map((r: StrictHttpResponse<ProductListResultCustomModel>): ProductListResultCustomModel => r.body)
+  apiProductSearchByNameGet$Plain(params?: ApiProductSearchByNameGet$Plain$Params, context?: HttpContext): Observable<GetListProductSpResultListResultCustomModel> {
+    return this.apiProductSearchByNameGet$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<GetListProductSpResultListResultCustomModel>): GetListProductSpResultListResultCustomModel => r.body)
     );
   }
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiProductSearchByNameSearchByNameGet$Json()` instead.
+   * To access only the response body, use `apiProductSearchByNameGet$Json()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiProductSearchByNameSearchByNameGet$Json$Response(params?: ApiProductSearchByNameSearchByNameGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<ProductListResultCustomModel>> {
-    return apiProductSearchByNameSearchByNameGet$Json(this.http, this.rootUrl, params, context);
+  apiProductSearchByNameGet$Json$Response(params?: ApiProductSearchByNameGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<GetListProductSpResultListResultCustomModel>> {
+    return apiProductSearchByNameGet$Json(this.http, this.rootUrl, params, context);
   }
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiProductSearchByNameSearchByNameGet$Json$Response()` instead.
+   * To access the full response (for headers, for example), `apiProductSearchByNameGet$Json$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiProductSearchByNameSearchByNameGet$Json(params?: ApiProductSearchByNameSearchByNameGet$Json$Params, context?: HttpContext): Observable<ProductListResultCustomModel> {
-    return this.apiProductSearchByNameSearchByNameGet$Json$Response(params, context).pipe(
-      map((r: StrictHttpResponse<ProductListResultCustomModel>): ProductListResultCustomModel => r.body)
+  apiProductSearchByNameGet$Json(params?: ApiProductSearchByNameGet$Json$Params, context?: HttpContext): Observable<GetListProductSpResultListResultCustomModel> {
+    return this.apiProductSearchByNameGet$Json$Response(params, context).pipe(
+      map((r: StrictHttpResponse<GetListProductSpResultListResultCustomModel>): GetListProductSpResultListResultCustomModel => r.body)
     );
   }
 

@@ -1,29 +1,39 @@
 <div class="inventory-list">
-    <h2>Danh sách hàng tồn kho</h2>
-  
-    <table class="table">
-      <thead>
-        <tr>
-          <th>STT</th> <!-- Thêm cột cho số thứ tự -->
-          <th>Hình ảnh</th>
-          <th>Tên sản phẩm</th>
-          <th>Số lượng</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of inventoryItems; let i = index"> <!-- Lấy chỉ số với biến i -->
-          <td>{{ i + 1 }}</td> <!-- Hiển thị số thứ tự (bắt đầu từ 1) -->
-          <td>
-            <img [src]="item.img" alt="{{ item.productName }}" class="product-image" />
-          </td>
-          <td>{{ item.productName }}</td>
-          <td>{{ item.quantity }}</td>
-        </tr>
-      </tbody>
-    </table>
-  
-    <div *ngIf="inventoryItems.length === 0" class="no-data">
-      Không có sản phẩm nào trong kho
-    </div>
+  <h2>Danh sách hàng tồn kho</h2>
+
+  <div class="mb-3" style="display: flex; align-items: center">
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      placeholder="Tìm kiếm sản phẩm..."
+      class="form-control"
+      style="width: 300px; margin-right: 5px;" 
+    />
+    <button (click)="searchProducts()" class="btn btn-primary">Tìm kiếm</button>
   </div>
-  
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>STT</th>
+        <th>Hình ảnh</th>
+        <th>Tên sản phẩm</th>
+        <th>Số lượng</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of filteredItems; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>
+          <img [src]="item.img" alt="{{ item.productName }}" class="product-image" />
+        </td>
+        <td>{{ item.productName }}</td>
+        <td>{{ item.quantity }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="filteredItems.length === 0" class="no-data">
+    Không có sản phẩm nào trong kho
+  </div>
+</div>

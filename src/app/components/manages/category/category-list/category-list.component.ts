@@ -50,8 +50,39 @@ export class CategoryListComponent implements OnInit {
     this.filteredCategories = this.listCategoriesDB.filter(category =>
       category.name.toLowerCase().includes(normalizedSearchTerm)
     );
+  
+    // Kiểm tra nếu không có kết quả tìm kiếm
+    if (this.filteredCategories.length === 0 && this.searchTerm) {
+      Swal.fire({
+        title: 'Không tìm thấy danh mục!',
+        text: 'Không có kết quả nào cho từ khóa tìm kiếm của bạn.',
+        icon: 'info',
+        confirmButtonText: 'Đóng'
+      });
+    }
   }
   
+
+  searchCategories(): void {
+    if (this.searchTerm.trim()) {
+      this.categoryService.apiCategorySearchGet$Json$Response({ name: this.searchTerm }).subscribe({
+        next: (rs: any) => {
+          const response = rs.body; // Lấy phản hồi từ API
+          if (response && response.success) {
+            this.filteredCategories = response.data || []; // Cập nhật danh sách đã lọc
+          } else {
+            Swal.fire('Lỗi', response?.message || 'Không tìm thấy danh mục.', 'warning');
+          }
+        },
+        error: (error) => {
+          console.error('Lỗi khi gọi API tìm kiếm:', error);
+          Swal.fire('Lỗi', 'Không thể tìm kiếm danh mục.', 'error');
+        }
+      });
+    } else {
+      this.filteredCategories = this.listCategoriesDB; // Nếu không có từ khóa tìm kiếm, hiển thị tất cả danh mục
+    }
+  }
 
   toggleCategoryActiveStatus(category: Category) {
     Swal.fire({

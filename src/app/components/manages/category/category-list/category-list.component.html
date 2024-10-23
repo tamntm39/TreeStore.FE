@@ -1,8 +1,21 @@
 <div class="col-md-12 col-xl-8">
   <h5 class="mb-3">Danh sách danh mục</h5>
 
-  <!-- Nút thêm danh mục -->
-  <button (click)="navigateToAddCategory()" class="btn btn-primary mb-3">Thêm danh mục</button>
+  <!-- Nút thêm danh mục và khung tìm kiếm cùng hàng -->
+  <div class="mb-3" style="display: flex; justify-content: space-between; align-items: center">
+    <button (click)="navigateToAddCategory()" class="btn btn-primary mb-3">Thêm danh mục</button>
+
+    <div style="display: flex; align-items: center;">
+      <input
+        type="text"
+        [(ngModel)]="searchTerm"
+        placeholder="Tìm kiếm danh mục..."
+        class="form-control"
+        style="width: 300px; margin-right: 10px;"
+      />
+      <button (click)="filterCategories()" class="btn btn-primary">Tìm kiếm</button>
+    </div>
+  </div>
 
   <div class="card tbl-card">
     <div class="table-responsive">
@@ -16,7 +29,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let category of listCategoriesDB; let i = index">
+          <tr *ngFor="let category of filteredCategories; let i = index">
             <td>{{ i + 1 }}</td>
             <td>{{ category.name }}</td>
 

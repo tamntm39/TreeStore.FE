@@ -48,5 +48,6 @@ export { UpdateUserResponseListResultCustomModel } from './models/update-user-re
 export { UpdateUserResponseResultCustomModel } from './models/update-user-response-result-custom-model';
 export { User } from './models/user';
 export { UserResponse } from './models/user-response';
+export { UserResponseListResultCustomModel } from './models/user-response-list-result-custom-model';
 export { UserResponseResultCustomModel } from './models/user-response-result-custom-model';
 export { UserRole } from './models/user-role';

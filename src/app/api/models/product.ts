@@ -24,6 +24,7 @@ export interface Product {
   priceInput?: number;
   priceOutput?: number;
   productId?: number;
+  productName?: string | null;
   productOrders?: Array<ProductOrder> | null;
   quantity?: number;
   reviews?: Array<Review> | null;

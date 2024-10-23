@@ -8,14 +8,14 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { ProductListResultCustomModel } from '../../models/product-list-result-custom-model';
+import { GetListProductSpResultListResultCustomModel } from '../../models/get-list-product-sp-result-list-result-custom-model';
 
-export interface ApiProductSearchByNameSearchByNameGet$Plain$Params {
+export interface ApiProductSearchByNameGet$Plain$Params {
   name?: string;
 }
 
-export function apiProductSearchByNameSearchByNameGet$Plain(http: HttpClient, rootUrl: string, params?: ApiProductSearchByNameSearchByNameGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<ProductListResultCustomModel>> {
-  const rb = new RequestBuilder(rootUrl, apiProductSearchByNameSearchByNameGet$Plain.PATH, 'get');
+export function apiProductSearchByNameGet$Plain(http: HttpClient, rootUrl: string, params?: ApiProductSearchByNameGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<GetListProductSpResultListResultCustomModel>> {
+  const rb = new RequestBuilder(rootUrl, apiProductSearchByNameGet$Plain.PATH, 'get');
   if (params) {
     rb.query('name', params.name, {});
   }
@@ -25,9 +25,9 @@ export function apiProductSearchByNameSearchByNameGet$Plain(http: HttpClient, ro
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<ProductListResultCustomModel>;
+      return r as StrictHttpResponse<GetListProductSpResultListResultCustomModel>;
     })
   );
 }
 
-apiProductSearchByNameSearchByNameGet$Plain.PATH = '/api/Product/SearchByName/SearchByName';
+apiProductSearchByNameGet$Plain.PATH = '/api/Product/SearchByName';
