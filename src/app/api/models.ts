@@ -50,5 +50,6 @@ export { UploadFileModel } from './models/upload-file-model';
 export { UploadFileModelResultCustomModel } from './models/upload-file-model-result-custom-model';
 export { User } from './models/user';
 export { UserResponse } from './models/user-response';
+export { UserResponseListResultCustomModel } from './models/user-response-list-result-custom-model';
 export { UserResponseResultCustomModel } from './models/user-response-result-custom-model';
 export { UserRole } from './models/user-role';

@@ -145,16 +145,17 @@ export const NavigationItems: NavigationItem[] = [
         "breadcrumbs": false
       }
     ]
-  },
+  }
+  ,
   {
     id: 'authentication',
-    title: 'Authentication',
+    title: 'Quản lý mã khuyến mãi',
     type: 'group',
     icon: 'icon-navigation',
     children: [
       {
         id: 'login',
-        title: 'Login',
+        title: 'Danh sách mã khuyến mãi',
         type: 'item',
         classes: 'nav-item',
         url: '/login',
@@ -163,7 +164,7 @@ export const NavigationItems: NavigationItem[] = [
         breadcrumbs: false
       },
       {
-        id: 'register',
+        id: 'Danh sách mã khuyến mãi',
         title: 'Register',
         type: 'item',
         classes: 'nav-item',
@@ -173,66 +174,67 @@ export const NavigationItems: NavigationItem[] = [
         breadcrumbs: false
       }
     ]
-  },
-  {
-    id: 'utilities',
-    title: 'UI Components',
-    type: 'group',
-    icon: 'icon-navigation',
-    children: [
-      {
-        id: 'typography',
-        title: 'Typography',
-        type: 'item',
-        classes: 'nav-item',
-        url: '/typography',
-        icon: 'font-size'
-      },
-      {
-        id: 'color',
-        title: 'Colors',
-        type: 'item',
-        classes: 'nav-item',
-        url: '/color',
-        icon: 'bg-colors'
-      },
-      {
-        id: 'tabler',
-        title: 'Tabler',
-        type: 'item',
-        classes: 'nav-item',
-        url: 'https://ant.design/components/icon',
-        icon: 'ant-design',
-        target: true,
-        external: true
-      }
-    ]
-  },
-
-  {
-    id: 'other',
-    title: 'Other',
-    type: 'group',
-    icon: 'icon-navigation',
-    children: [
-      {
-        id: 'sample-page',
-        title: 'Sample Page',
-        type: 'item',
-        url: '/sample-page',
-        classes: 'nav-item',
-        icon: 'chrome'
-      },
-      {
-        id: 'document',
-        title: 'Document',
-        type: 'item',
-        classes: 'nav-item',
-        url: 'https://codedthemes.gitbook.io/mantis-angular/',
-        icon: 'question',
-        target: true,
-        external: true
-      }
-    ]
   }
+  // ,
+  // {
+  //   id: 'utilities',
+  //   title: 'UI Components',
+  //   type: 'group',
+  //   icon: 'icon-navigation',
+  //   children: [
+  //     {
+  //       id: 'typography',
+  //       title: 'Typography',
+  //       type: 'item',
+  //       classes: 'nav-item',
+  //       url: '/typography',
+  //       icon: 'font-size'
+  //     },
+  //     {
+  //       id: 'color',
+  //       title: 'Colors',
+  //       type: 'item',
+  //       classes: 'nav-item',
+  //       url: '/color',
+  //       icon: 'bg-colors'
+  //     },
+  //     {
+  //       id: 'tabler',
+  //       title: 'Tabler',
+  //       type: 'item',
+  //       classes: 'nav-item',
+  //       url: 'https://ant.design/components/icon',
+  //       icon: 'ant-design',
+  //       target: true,
+  //       external: true
+  //     }
+  //   ]
+  // },
+
+  // {
+  //   id: 'other',
+  //   title: 'Other',
+  //   type: 'group',
+  //   icon: 'icon-navigation',
+  //   children: [
+  //     {
+  //       id: 'sample-page',
+  //       title: 'Sample Page',
+  //       type: 'item',
+  //       url: '/sample-page',
+  //       classes: 'nav-item',
+  //       icon: 'chrome'
+  //     },
+  //     {
+  //       id: 'document',
+  //       title: 'Document',
+  //       type: 'item',
+  //       classes: 'nav-item',
+  //       url: 'https://codedthemes.gitbook.io/mantis-angular/',
+  //       icon: 'question',
+  //       target: true,
+  //       external: true
+  //     }
+  //   ]
+  // }
 ];

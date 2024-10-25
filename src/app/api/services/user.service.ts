@@ -37,6 +37,10 @@ import { apiUserListUserGet$Json } from '../fn/user/api-user-list-user-get-json'
 import { ApiUserListUserGet$Json$Params } from '../fn/user/api-user-list-user-get-json';
 import { apiUserListUserGet$Plain } from '../fn/user/api-user-list-user-get-plain';
 import { ApiUserListUserGet$Plain$Params } from '../fn/user/api-user-list-user-get-plain';
+import { apiUserSearchByNameGet$Json } from '../fn/user/api-user-search-by-name-get-json';
+import { ApiUserSearchByNameGet$Json$Params } from '../fn/user/api-user-search-by-name-get-json';
+import { apiUserSearchByNameGet$Plain } from '../fn/user/api-user-search-by-name-get-plain';
+import { ApiUserSearchByNameGet$Plain$Params } from '../fn/user/api-user-search-by-name-get-plain';
 import { apiUserUpdateUserPut$Json } from '../fn/user/api-user-update-user-put-json';
 import { ApiUserUpdateUserPut$Json$Params } from '../fn/user/api-user-update-user-put-json';
 import { apiUserUpdateUserPut$Plain } from '../fn/user/api-user-update-user-put-plain';
@@ -46,6 +50,7 @@ import { RoleListResultCustomModel } from '../models/role-list-result-custom-mod
 import { StringResultCustomModel } from '../models/string-result-custom-model';
 import { UpdateUserResponseListResultCustomModel } from '../models/update-user-response-list-result-custom-model';
 import { UpdateUserResponseResultCustomModel } from '../models/update-user-response-result-custom-model';
+import { UserResponseListResultCustomModel } from '../models/user-response-list-result-custom-model';
 import { UserResponseResultCustomModel } from '../models/user-response-result-custom-model';
 
 @Injectable({ providedIn: 'root' })
@@ -405,6 +410,53 @@ export class UserService extends BaseService {
   apiUserGetRolesGet$Json(params?: ApiUserGetRolesGet$Json$Params, context?: HttpContext): Observable<RoleListResultCustomModel> {
     return this.apiUserGetRolesGet$Json$Response(params, context).pipe(
       map((r: StrictHttpResponse<RoleListResultCustomModel>): RoleListResultCustomModel => r.body)
+    );
+  }
+
+  /** Path part for operation `apiUserSearchByNameGet()` */
+  static readonly ApiUserSearchByNameGetPath = '/api/User/SearchByName';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiUserSearchByNameGet$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUserSearchByNameGet$Plain$Response(params?: ApiUserSearchByNameGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<UserResponseListResultCustomModel>> {
+    return apiUserSearchByNameGet$Plain(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiUserSearchByNameGet$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUserSearchByNameGet$Plain(params?: ApiUserSearchByNameGet$Plain$Params, context?: HttpContext): Observable<UserResponseListResultCustomModel> {
+    return this.apiUserSearchByNameGet$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<UserResponseListResultCustomModel>): UserResponseListResultCustomModel => r.body)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiUserSearchByNameGet$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUserSearchByNameGet$Json$Response(params?: ApiUserSearchByNameGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<UserResponseListResultCustomModel>> {
+    return apiUserSearchByNameGet$Json(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiUserSearchByNameGet$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUserSearchByNameGet$Json(params?: ApiUserSearchByNameGet$Json$Params, context?: HttpContext): Observable<UserResponseListResultCustomModel> {
+    return this.apiUserSearchByNameGet$Json$Response(params, context).pipe(
+      map((r: StrictHttpResponse<UserResponseListResultCustomModel>): UserResponseListResultCustomModel => r.body)
     );
   }
 

@@ -29,6 +29,8 @@ import { apiCustomerListCustomerGet$Json } from '../fn/customer/api-customer-lis
 import { ApiCustomerListCustomerGet$Json$Params } from '../fn/customer/api-customer-list-customer-get-json';
 import { apiCustomerListCustomerGet$Plain } from '../fn/customer/api-customer-list-customer-get-plain';
 import { ApiCustomerListCustomerGet$Plain$Params } from '../fn/customer/api-customer-list-customer-get-plain';
+import { apiCustomerSearchByNameGet } from '../fn/customer/api-customer-search-by-name-get';
+import { ApiCustomerSearchByNameGet$Params } from '../fn/customer/api-customer-search-by-name-get';
 import { apiCustomerUpdateCustomerPut$Json } from '../fn/customer/api-customer-update-customer-put-json';
 import { ApiCustomerUpdateCustomerPut$Json$Params } from '../fn/customer/api-customer-update-customer-put-json';
 import { apiCustomerUpdateCustomerPut$Plain } from '../fn/customer/api-customer-update-customer-put-plain';
@@ -301,6 +303,31 @@ export class CustomerService extends BaseService {
   apiCustomerChangeActivePost$Json(params?: ApiCustomerChangeActivePost$Json$Params, context?: HttpContext): Observable<BooleanResultCustomModel> {
     return this.apiCustomerChangeActivePost$Json$Response(params, context).pipe(
       map((r: StrictHttpResponse<BooleanResultCustomModel>): BooleanResultCustomModel => r.body)
+    );
+  }
+
+  /** Path part for operation `apiCustomerSearchByNameGet()` */
+  static readonly ApiCustomerSearchByNameGetPath = '/api/Customer/SearchByName';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiCustomerSearchByNameGet()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiCustomerSearchByNameGet$Response(params?: ApiCustomerSearchByNameGet$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+    return apiCustomerSearchByNameGet(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiCustomerSearchByNameGet$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiCustomerSearchByNameGet(params?: ApiCustomerSearchByNameGet$Params, context?: HttpContext): Observable<void> {
+    return this.apiCustomerSearchByNameGet$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
     );
   }
 
