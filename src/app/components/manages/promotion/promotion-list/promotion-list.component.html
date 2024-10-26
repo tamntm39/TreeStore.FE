@@ -1,0 +1,54 @@
+<div class="col-md-12 col-xl-8">
+    <h5 class="mb-3">Danh sách khuyến mãi</h5>
+    <div class="card tbl-card">
+      <div class="table-responsive">
+        <button (click)="navigateToAddPromotion()" class="btn btn-primary me-2">Thêm khuyến mãi mới </button>
+        <table class="table table-hover mb-0">
+  
+          <thead>
+            <tr>
+              <th>STT</th>
+              <th>Mã khuyến mãi</th>
+              <th>Tên khuyến mãi</th>
+              <th>Mô tả</th>
+              <th>Ngày bắt đầu</th>
+              <th>Ngày kết thúc </th>
+              <th>Số tiền giảm </th>
+              <th>Số mua tối thiểu </th>
+             
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let promotion of listPromotionDB; let i = index">
+              <td>{{ i + 1 }}</td> <!-- Hiển thị STT -->
+              <td>{{ promotion.promotionId }}</td> 
+              <td>{{ promotion.programName }}</td>
+              <td>{{ promotion.description }}</td>
+              <td>{{ promotion.startDate}}</td> 
+              <td>{{ promotion.endDate}}</td>
+              <td>{{ promotion.discountAmount}}</td>
+              <td>{{ promotion.minimumPurchaseAmount}}</td>
+              <td>
+                <td>
+                  <button
+                    (click)="togglePromotionActiveStatus(promotion)"
+                    [ngClass]="{ 'toggle-status-btn': true, unactive: !promotion.isActive }"
+                  >
+                    {{ promotion.isActive ? 'Kích hoạt' : 'Vô hiệu khóa' }}
+                  </button>
+                </td>
+                <td>
+                    <!-- Nút sửa -->
+                    <button (click)="navigateToEditPromotion(promotion.promotionId)" class="btn btn-warning btn-sm">Sửa</button> 
+                  </td>
+              
+            </tr>
+          </tbody>
+
+            
+        </table>
+       
+      </div>
+    </div>
+  </div>
+  

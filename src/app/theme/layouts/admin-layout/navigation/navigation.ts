@@ -92,6 +92,28 @@ export const NavigationItems: NavigationItem[] = [
       }
     ]
   },
+
+  {
+    "id": "promotion",
+    "title": "Quản lý khuyến mãi",
+    "type": "group",
+    "icon": "icon-box",
+    "children": [
+      {
+        "id": "listpromotion",
+        "title": "Danh sách khuyến mãi",
+        "type": "item",
+        "classes": "nav-item",
+        "url": "/manages/promotion/promotion-list",
+        "icon": "sun",
+        "target": false,
+        "breadcrumbs": false
+      },
+      
+    ]
+  },
+
+
   {
     "id": "reviewManagement",
     "title": "Quản lý đánh giá",

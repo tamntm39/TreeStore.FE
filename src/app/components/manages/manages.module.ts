@@ -7,6 +7,7 @@ import { CustomerModule } from './customer/customer.module';
 import { CategoryModule } from './category/category.module';
 import { ProductModule } from './product/product.module';
 import { InventoryModule } from './inventory/inventory.module';
+import {PromotionModule} from './promotion/promotion.module'
 
 
 const routes: Routes = [
@@ -37,6 +38,7 @@ const routes: Routes = [
     path: 'inventory', // Đường dẫn chính cho user
     loadChildren: () => import('./inventory/inventory.module').then((m) => m.InventoryModule)
   },
+  { path: 'promotion', loadChildren: () => import('./promotion/promotion.module').then(m => m.PromotionModule) },
 ];
 
 @NgModule({
@@ -49,6 +51,7 @@ const routes: Routes = [
     CustomerModule,
     CategoryModule,
     ProductModule,
+    PromotionModule,
     InventoryModule
   ]
 })

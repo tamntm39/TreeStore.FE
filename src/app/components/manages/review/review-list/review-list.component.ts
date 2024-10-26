@@ -27,19 +27,27 @@ export class ReviewListComponent implements OnInit {
 
   loadReviews(): void {
     this.reviewService.apiReviewListReviewGet$Json$Response().subscribe((rs) => {
-      console.log(rs); // In ra phản hồi từ API
       const response = rs.body;
       if (response.success) {
         this.listReviewDB = response.data;
+        console.log('Danh sách review:', this.listReviewDB); // In ra danh sách review
       } else {
         console.log('Lấy danh sách review thất bại!');
       }
     });
   }
+  
 
 
 
   deleteReview(reviewId: number): void {
+    // Kiểm tra reviewId có hợp lệ không
+    if (reviewId === undefined || reviewId === null) {
+      console.error('reviewId không hợp lệ:', reviewId);
+      Swal.fire('Lỗi!', 'ID đánh giá không hợp lệ.', 'error');
+      return; // Thoát khỏi phương thức nếu reviewId không hợp lệ
+    }
+  
     Swal.fire({
       title: 'Bạn có chắc chắn muốn xóa review này?',
       text: "Hành động này không thể hoàn tác!",
@@ -51,40 +59,38 @@ export class ReviewListComponent implements OnInit {
       cancelButtonText: 'Hủy'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.reviewService.apiReviewDeleteReviewGetIdDelete$Json$Response({ reviewId, GetId: reviewId.toString() })
-          .subscribe((response: StrictHttpResponse<BooleanResultCustomModel>) => {
-            // Đối với StrictHttpResponse, bạn cần truy cập body
+        this.reviewService.apiReviewDeleteReviewGetIdDelete$Json$Response({ 
+          reviewId, 
+          GetId: reviewId.toString() // Gọi toString() chỉ khi chắc chắn reviewId có giá trị
+        })
+        .subscribe({
+          next: (response: StrictHttpResponse<BooleanResultCustomModel>) => {
             const responseBody = response.body;
   
             console.log(responseBody); // In ra toàn bộ phản hồi
   
-            // Kiểm tra thuộc tính 'result' trong responseBody
-            if (responseBody && responseBody.success) { // Kiểm tra nếu result là true
-              Swal.fire(
-                'Đã xóa!',
-                'Review đã được xóa thành công.',
-                'success'
-              );
+            // Kiểm tra thuộc tính 'success' trong responseBody
+            if (responseBody && responseBody.success) {
+              Swal.fire('Đã xóa!', 'Review đã được xóa thành công.', 'success');
               this.loadReviews(); // Tải lại danh sách review
             } else {
-              Swal.fire(
-                'Lỗi!',
-                responseBody.message || 'Xóa review không thành công.', // Hiển thị thông điệp từ phản hồi nếu có
-                'error'
-              );
+              Swal.fire('Lỗi!', responseBody.message || 'Xóa review không thành công.', 'error');
             }
-          }, (error) => {
-            console.error(error); // In lỗi nếu có
-            Swal.fire(
-              'Lỗi!',
-              'Có lỗi xảy ra khi xóa review.',
-              'error'
-            );
-          });
+          },
+          error: (error) => {
+            console.error('Lỗi khi xóa review:', error); // In lỗi nếu có
+            Swal.fire('Lỗi!', 'Có lỗi xảy ra khi xóa review.', 'error');
+          }
+        });
       }
     });
   }
   
+  
+  navigateToAddReview() {
+    console.log('Navigating to Add User');
+    this.router.navigate(['/manages/review/review-add']);
+  }
 
   }
   

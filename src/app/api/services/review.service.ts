@@ -11,6 +11,10 @@ import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
 import { StrictHttpResponse } from '../strict-http-response';
 
+import { apiReviewCreateReviewPost$Json } from '../fn/review/api-review-create-review-post-json';
+import { ApiReviewCreateReviewPost$Json$Params } from '../fn/review/api-review-create-review-post-json';
+import { apiReviewCreateReviewPost$Plain } from '../fn/review/api-review-create-review-post-plain';
+import { ApiReviewCreateReviewPost$Plain$Params } from '../fn/review/api-review-create-review-post-plain';
 import { apiReviewDeleteReviewGetIdDelete$Json } from '../fn/review/api-review-delete-review-get-id-delete-json';
 import { ApiReviewDeleteReviewGetIdDelete$Json$Params } from '../fn/review/api-review-delete-review-get-id-delete-json';
 import { apiReviewDeleteReviewGetIdDelete$Plain } from '../fn/review/api-review-delete-review-get-id-delete-plain';
@@ -170,6 +174,53 @@ export class ReviewService extends BaseService {
    */
   apiReviewDeleteReviewGetIdDelete$Json(params: ApiReviewDeleteReviewGetIdDelete$Json$Params, context?: HttpContext): Observable<BooleanResultCustomModel> {
     return this.apiReviewDeleteReviewGetIdDelete$Json$Response(params, context).pipe(
+      map((r: StrictHttpResponse<BooleanResultCustomModel>): BooleanResultCustomModel => r.body)
+    );
+  }
+
+  /** Path part for operation `apiReviewCreateReviewPost()` */
+  static readonly ApiReviewCreateReviewPostPath = '/api/Review/CreateReview';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiReviewCreateReviewPost$Plain()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiReviewCreateReviewPost$Plain$Response(params?: ApiReviewCreateReviewPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<BooleanResultCustomModel>> {
+    return apiReviewCreateReviewPost$Plain(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiReviewCreateReviewPost$Plain$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiReviewCreateReviewPost$Plain(params?: ApiReviewCreateReviewPost$Plain$Params, context?: HttpContext): Observable<BooleanResultCustomModel> {
+    return this.apiReviewCreateReviewPost$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<BooleanResultCustomModel>): BooleanResultCustomModel => r.body)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiReviewCreateReviewPost$Json()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiReviewCreateReviewPost$Json$Response(params?: ApiReviewCreateReviewPost$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<BooleanResultCustomModel>> {
+    return apiReviewCreateReviewPost$Json(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiReviewCreateReviewPost$Json$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiReviewCreateReviewPost$Json(params?: ApiReviewCreateReviewPost$Json$Params, context?: HttpContext): Observable<BooleanResultCustomModel> {
+    return this.apiReviewCreateReviewPost$Json$Response(params, context).pipe(
       map((r: StrictHttpResponse<BooleanResultCustomModel>): BooleanResultCustomModel => r.body)
     );
   }

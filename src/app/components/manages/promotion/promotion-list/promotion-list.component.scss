@@ -1,0 +1,154 @@
+.col-md-12.col-xl-8 {
+    width: 90%;
+    margin: 0 auto; // Center the container
+  }
+  
+  .btn {
+    margin-right: 20px; // Cách nhau 20px
+  }
+  
+  .btn:hover {
+    opacity: 0.8; // Giảm độ đậm khi hover
+    transition: opacity 0.3s ease; // Hiệu ứng chuyển tiếp
+  }
+  
+  .tbl-card {
+    border-radius: 5px; // Bo góc cho thẻ
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Thêm bóng cho thẻ
+  }
+  
+  .table {
+    width: 100%; // Đảm bảo bảng sử dụng toàn bộ chiều rộng
+    border-collapse: collapse; // Gộp các đường biên
+  }
+  
+  th, td {
+    padding: 12px; // Padding cho các ô
+    text-align: left; // Căn trái
+    border-bottom: 1px solid #ddd; // Đường viền dưới cho các ô
+  }
+  
+  tr:hover {
+    background-color: #f1f1f1; // Màu nền khi hover lên hàng
+  }
+  
+  .modal {
+    display: none; /* Ẩn modal mặc định */
+    position: fixed;
+    z-index: 1050; /* Đảm bảo modal nằm trên các phần khác */
+    left: 0;
+    top: 0;
+    width: 100%; /* Toàn bộ chiều rộng */
+    height: 100%; /* Toàn bộ chiều cao */
+    overflow: auto; /* Thêm thanh cuộn nếu cần */
+    background-color: rgba(0, 0, 0, 0.5); /* Nền mờ */
+  
+  }
+  
+  .modal-dialog {
+    margin: 15% auto; /* Đưa modal vào giữa */
+    width: 100%; /* Chiều rộng modal */
+    
+  }
+  .review-item {
+    margin-bottom: 20px; /* Khoảng cách giữa các đánh giá */
+    padding: 10px; /* Padding cho mỗi đánh giá */
+    border: 1px solid #ddd; /* Viền nhẹ cho mỗi đánh giá */
+    border-radius: 5px; /* Bo tròn góc */
+    background-color: #f9f9f9; /* Màu nền nhẹ cho đánh giá */
+  }
+  
+  .review-item h6 {
+    margin-bottom: 5px; /* Khoảng cách giữa tên người dùng và nội dung đánh giá */
+  }
+  
+  .review-item p {
+    margin-bottom: 10px; /* Khoảng cách giữa nội dung đánh giá và nút xóa */
+  }
+  
+  .col-md-12.col-xl-8 {
+    width: 90%;
+    margin: 0 auto; // Center the container
+  }
+  
+  .btn {
+    margin-right: 20px; // Cách nhau 20px
+  }
+  
+  .btn:hover {
+    opacity: 0.8; // Giảm độ đậm khi hover
+    transition: opacity 0.3s ease; // Hiệu ứng chuyển tiếp
+  }
+  
+  .tbl-card {
+    border-radius: 5px; // Bo góc cho thẻ
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Thêm bóng cho thẻ
+  }
+  
+  .table {
+    width: 100%; // Đảm bảo bảng sử dụng toàn bộ chiều rộng
+    border-collapse: collapse; // Gộp các đường biên
+  }
+  
+  th, td {
+    padding: 12px; // Padding cho các ô
+    text-align: left; // Căn trái
+    border-bottom: 1px solid #ddd; // Đường viền dưới cho các ô
+  }
+  
+  tr:hover {
+    background-color: #f1f1f1; // Màu nền khi hover lên hàng
+  }
+  
+  .btn-warning {
+    padding: 8px 16px; /* Điều chỉnh padding */
+    width: 70px; /* Điều chỉnh chiều rộng giống với nút trạng thái */
+    text-align: center; /* Căn giữa chữ */
+    margin-left: 5px; /* Khoảng cách giữa các nút */
+  }
+  
+  .btn-warning:hover {
+    background-color: #ffc107; /* Màu khi hover */
+    opacity: 0.8; /* Hiệu ứng hover */
+    transition: opacity 0.3s ease;
+  }
+  
+  button.toggle-status-btn {
+    background-color: #059766; /* Màu nền cho nút khi trạng thái Active */
+    color: white; /* Màu chữ */
+    border: none;
+    padding: 8px 16px; /* Điều chỉnh padding */
+    border-radius: 1px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 120px; /* Điều chỉnh chiều rộng */
+    text-align: center; /* Căn giữa chữ */
+  }
+  
+  button.toggle-status-btn.unactive {
+    background-color: #f44336; /* Màu nền cho nút khi trạng thái Unactive */
+  }
+  
+  button.toggle-status-btn:hover {
+    background-color: #88cbad; /* Hiệu ứng hover khi trạng thái Active */
+  }
+  
+  button.toggle-status-btn.unactive:hover {
+    background-color: #da9a99; /* Hiệu ứng hover khi trạng thái Unactive */
+  }
+  
+  #search {
+    width: 200px; /* Điều chỉnh kích thước theo ý muốn */
+    padding: 8px; 
+  }
+  
+  /* Chỉnh button tìm kiếm */
+  .btn-success {
+    background-color: #2662b1; /* Màu button (có thể thay đổi theo ý muốn) */
+   
+  }
+  
+  .btn-success:hover {
+    background-color: #7a9bc8; /* Màu khi hover */
+  
+  }

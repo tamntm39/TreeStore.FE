@@ -1,0 +1,30 @@
+<div class="container mt-4">
+  <div class="card p-4">
+    <h4 class="card-title mb-4">Thêm đánh giá mới</h4>
+    <form [formGroup]="editReviewForm" (ngSubmit)="onSubmit()">
+      
+      <div class="mb-3">
+        <label for="customerid" class="form-label">ID Khách hàng</label>
+        <input type="text" id="customerid" class="form-control" formControlName="customerid" required />
+      </div>
+      
+      <div class="mb-3">
+        <label for="productid" class="form-label">ID Sản phẩm</label>
+        <input type="text" id="productid" class="form-control" formControlName="productid" required />
+      </div>
+
+      <div class="mb-3">
+        <label for="comment" class="form-label">Bình luận</label>
+        <textarea id="comment" class="form-control" formControlName="comment" rows="3" required></textarea>
+      </div>
+
+      <!-- Dữ liệu bổ sung, nếu cần -->
+   
+      
+
+      <div class="d-flex justify-content-end">
+        <button type="submit" class="btn btn-primary">Lưu đánh giá</button>
+      </div>
+    </form>
+  </div>
+</div>
