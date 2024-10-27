@@ -5,6 +5,7 @@
 export interface CreateProductRequest {
   categoryId?: number;
   description?: string | null;
+  img?: string | null;
   name?: string | null;
   priceOutput?: number;
   quantity?: number;

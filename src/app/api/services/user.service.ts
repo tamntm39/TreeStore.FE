@@ -55,6 +55,7 @@ import { UserResponseResultCustomModel } from '../models/user-response-result-cu
 
 @Injectable({ providedIn: 'root' })
 export class UserService extends BaseService {
+  baseUrl: any;
   constructor(config: ApiConfiguration, http: HttpClient) {
     super(config, http);
   }
