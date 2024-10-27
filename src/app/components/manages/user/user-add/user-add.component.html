@@ -2,50 +2,119 @@
   <div class="card p-4">
     <h4 class="card-title mb-4">Thêm người dùng mới</h4>
     <form [formGroup]="editUserForm" (ngSubmit)="onSubmit()">
-      <!-- Avatar -->
-      <div class="mb-3 text-center">
-        <img [src]="editUserForm.get('avatar')?.value || 'default-avatar.png'" alt="User Avatar" class="rounded" width="150" height="150" />
-        <div class="mt-2">
-          <input type="file" accept="image/*" />
-          <!-- (change)="onAvatarChange($event)"  -->
+<!-- Avatar -->
+<div class="mb-3 text-center">
+  <img [src]="editUserForm.get('avatar')?.value || 'default-avatar.png'" alt="User Avatar" class="rounded" width="150" height="150" />
+  <div class="mt-2">
+    <input type="file" accept="image/*" />
+    <!-- (change)="onAvatarChange($event)"  -->
+  </div>
+</div>
+
+      <!-- Tên tài khoản -->
+      <div class="mb-3">
+        <label for="username" class="form-label">Tên tài khoản</label>
+        <input 
+          type="text" 
+          id="username" 
+          class="form-control" 
+          formControlName="username" 
+          required 
+        />
+        <div *ngIf="editUserForm.get('username')?.invalid && (editUserForm.get('username')?.touched || editUserForm.get('username')?.dirty)">
+          <small style="color: red;">Tên tài khoản là bắt buộc.</small>
         </div>
       </div>
-      <div class="mb-3">
-        <label for="fullname" class="form-label">Tên tài khoản</label>
-        <input type="text" id="username" class="form-control" formControlName="username" required />
-      </div>
+
+      <!-- Tên người dùng -->
       <div class="mb-3">
         <label for="fullname" class="form-label">Tên người dùng</label>
-        <input type="text" id="fullname" class="form-control" formControlName="fullname" required />
+        <input 
+          type="text" 
+          id="fullname" 
+          class="form-control" 
+          formControlName="fullname" 
+          required 
+        />
+        <div *ngIf="editUserForm.get('fullname')?.invalid && (editUserForm.get('fullname')?.touched || editUserForm.get('fullname')?.dirty)">
+          <small style="color: red;">Tên người dùng là bắt buộc.</small>
+        </div>
       </div>
+
+      <!-- Email -->
       <div class="mb-3">
         <label for="email" class="form-label">Email</label>
-        <input type="email" id="email" class="form-control" formControlName="email" required />
+        <input 
+          type="email" 
+          id="email" 
+          class="form-control" 
+          formControlName="email" 
+          required 
+        />
+        <div *ngIf="editUserForm.get('email')?.invalid && (editUserForm.get('email')?.touched || editUserForm.get('email')?.dirty)">
+          <small style="color: red;">Email là bắt buộc và phải đúng định dạng.</small>
+        </div>
       </div>
+
+      <!-- Số điện thoại -->
       <div class="mb-3">
-        <label for="phone" class="form-label">Phone</label>
-        <input type="text" id="phone" class="form-control" formControlName="phone" required />
+        <label for="phone" class="form-label">Số điện thoại</label>
+        <input 
+          type="text" 
+          id="phone" 
+          class="form-control" 
+          formControlName="phone" 
+          required 
+        />
+        <div *ngIf="editUserForm.get('phone')?.invalid && (editUserForm.get('phone')?.touched || editUserForm.get('phone')?.dirty)">
+          <small style="color: red;">Số điện thoại là bắt buộc.</small>
+        </div>
       </div>
+
+      <!-- Địa chỉ -->
       <div class="mb-3">
-        <label for="address" class="form-label">Address</label>
-        <input type="text" id="address" class="form-control" formControlName="address" required />
+        <label for="address" class="form-label">Địa chỉ</label>
+        <input 
+          type="text" 
+          id="address" 
+          class="form-control" 
+          formControlName="address" 
+          required 
+        />
+        <div *ngIf="editUserForm.get('address')?.invalid && (editUserForm.get('address')?.touched || editUserForm.get('address')?.dirty)">
+          <small style="color: red;">Địa chỉ là bắt buộc.</small>
+        </div>
       </div>
+
+      <!-- Ngày sinh -->
       <div class="mb-3">
-        <label for="birthday" class="form-label">Birthday</label>
-        <input type="date" id="birthday" class="form-control" formControlName="birthday" required />
+        <label for="birthday" class="form-label">Ngày sinh</label>
+        <input 
+          type="date" 
+          id="birthday" 
+          class="form-control" 
+          formControlName="birthday" 
+          required 
+        />
+        <div *ngIf="editUserForm.get('birthday')?.invalid && (editUserForm.get('birthday')?.touched || editUserForm.get('birthday')?.dirty)">
+          <small style="color: red;">Ngày sinh là bắt buộc.</small>
+        </div>
       </div>
 
       <!-- Dropdown chọn vai trò -->
       <div class="mb-3">
-        <label for="roles" class="form-label">Roles</label>
+        <label class="form-label">Vai trò</label>
         <div *ngFor="let role of availableRoles">
-          <input type="checkbox" [value]="role.id" (change)="onRoleChange($event)" />
+          <input 
+            type="checkbox" 
+            [value]="role.id" 
+            (change)="onRoleChange($event)" 
+          />
           {{ role.name }}
         </div>
       </div>
 
       <div class="d-flex justify-content-end">
-        <!-- <button type="button" (click)="cancel()" class="btn btn-secondary">Hủy</button> -->
         <button type="submit" class="btn btn-primary">Lưu người dùng</button>
       </div>
     </form>

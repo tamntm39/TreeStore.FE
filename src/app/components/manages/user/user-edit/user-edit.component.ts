@@ -36,6 +36,7 @@ export class UserEditComponent implements OnInit {
       birthday: [''],
       avatar: [''],
       position: [''],
+      isActive: [''], // Thêm trường isActive vào đây
       lstRolesId: this.fb.array([]) // Thêm lstRolesId
     });
   }
@@ -72,7 +73,8 @@ export class UserEditComponent implements OnInit {
           address: this.userDB.address,
           birthday: this.userDB.birthday,
           avatar: this.userDB.avatar,
-          position: this.userDB.position
+          position: this.userDB.position,          
+          isActive: this.userDB.isActive // Đảm bảo trường isActive được cập nhật
         });
         // Set giá trị cho lstRolesId
         const lstRolesIdArray = this.editUserForm.get('lstRolesId') as FormArray;
@@ -110,6 +112,7 @@ export class UserEditComponent implements OnInit {
         phone: this.editUserForm.get('phone')?.value || null,
         address: this.editUserForm.get('address')?.value || null,
         birthday: this.editUserForm.get('birthday')?.value || null,
+        isActive: this.editUserForm.get('isActive')?.value, // Lấy giá trị isActive từ form
         listRoles: this.editUserForm.get('lstRolesId')?.value || [] // Lấy lstRolesId từ form
       } as UpdateUserRequest;
 
