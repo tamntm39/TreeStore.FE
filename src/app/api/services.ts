@@ -7,6 +7,7 @@ export { CustomerService } from './services/customer.service';
 export { LoginService } from './services/login.service';
 export { OrderService } from './services/order.service';
 export { ProductService } from './services/product.service';
+export { PromotionService } from './services/promotion.service';
 export { ReviewService } from './services/review.service';
 export { UploadService } from './services/upload.service';
 export { UserService } from './services/user.service';

@@ -8,12 +8,12 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { OrderReponseListResultCustomModel } from '../../models/order-reponse-list-result-custom-model';
+import { GetListOrderSpResultListResultCustomModel } from '../../models/get-list-order-sp-result-list-result-custom-model';
 
 export interface ApiOrderListOrderGet$Json$Params {
 }
 
-export function apiOrderListOrderGet$Json(http: HttpClient, rootUrl: string, params?: ApiOrderListOrderGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<OrderReponseListResultCustomModel>> {
+export function apiOrderListOrderGet$Json(http: HttpClient, rootUrl: string, params?: ApiOrderListOrderGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<GetListOrderSpResultListResultCustomModel>> {
   const rb = new RequestBuilder(rootUrl, apiOrderListOrderGet$Json.PATH, 'get');
   if (params) {
   }
@@ -23,7 +23,7 @@ export function apiOrderListOrderGet$Json(http: HttpClient, rootUrl: string, par
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<OrderReponseListResultCustomModel>;
+      return r as StrictHttpResponse<GetListOrderSpResultListResultCustomModel>;
     })
   );
 }

@@ -7,7 +7,7 @@ import { CustomerModule } from './customer/customer.module';
 import { CategoryModule } from './category/category.module';
 import { ProductModule } from './product/product.module';
 import { InventoryModule } from './inventory/inventory.module';
-
+import { PromotionModule } from './promotion/promotion.module';
 
 const routes: Routes = [
   {
@@ -19,12 +19,8 @@ const routes: Routes = [
     path: 'user', // Đường dẫn chính cho user
     loadChildren: () => import('./user/user.module').then((m) => m.UserModule)
   },
-  { path: 'customer',
-    loadChildren: () => import('./customer/customer.module').then((m) => m.CustomerModule) 
-  },
-  { path: 'category', 
-    loadChildren: () => import('./category/category.module').then((m) => m.CategoryModule) 
-  },
+  { path: 'customer', loadChildren: () => import('./customer/customer.module').then((m) => m.CustomerModule) },
+  { path: 'category', loadChildren: () => import('./category/category.module').then((m) => m.CategoryModule) },
   {
     path: 'product', // Đường dẫn chính cho user
     loadChildren: () => import('./product/product.module').then((m) => m.ProductModule)
@@ -37,7 +33,8 @@ const routes: Routes = [
     path: 'inventory', // Đường dẫn chính cho user
     loadChildren: () => import('./inventory/inventory.module').then((m) => m.InventoryModule)
   },
-  { path: 'order', loadChildren: () => import('./order/order.module').then(m => m.OrderModule) },
+  { path: 'order', loadChildren: () => import('./order/order.module').then((m) => m.OrderModule) },
+  { path: 'promotion', loadChildren: () => import('./promotion/promotion.module').then((m) => m.PromotionModule) }
 ];
 
 @NgModule({
@@ -45,11 +42,12 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     FormsModule,
-    ReactiveFormsModule, 
+    ReactiveFormsModule,
     UserModule, // Import UserModule ở đây
     CustomerModule,
     CategoryModule,
     ProductModule,
+    PromotionModule,
     InventoryModule
   ]
 })

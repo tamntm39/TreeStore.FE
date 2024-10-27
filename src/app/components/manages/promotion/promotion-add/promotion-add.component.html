@@ -1,0 +1,90 @@
+<div class="container mt-4">
+    <div class="card p-4">
+        <h4 class="card-title mb-4">Thêm khuyến mãi mới</h4>
+        <form [formGroup]="addPromotionForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+                <label for="promotionId" class="form-label">Mã Khuyến Mãi</label>
+                <input type="text" id="promotionId" class="form-control" formControlName="promotionId" required />
+                <div *ngIf="addPromotionForm.get('promotionId')?.invalid && (addPromotionForm.get('promotionId')?.touched || addPromotionForm.get('promotionId')?.dirty)" class="text-danger">
+                    ID khuyến mãi là bắt buộc.
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="programName" class="form-label">Tên Chương Trình</label>
+                <input type="text" id="programName" class="form-control" formControlName="programName" required />
+                <div *ngIf="addPromotionForm.get('programName')?.invalid && (addPromotionForm.get('programName')?.touched || addPromotionForm.get('programName')?.dirty)" class="text-danger">
+                    Tên chương trình là bắt buộc.
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="description" class="form-label">Mô Tả</label>
+                <textarea id="description" class="form-control" formControlName="description" rows="3" required></textarea>
+                <div *ngIf="addPromotionForm.get('description')?.invalid && (addPromotionForm.get('description')?.touched || addPromotionForm.get('description')?.dirty)" class="text-danger">
+                    Mô tả là bắt buộc.
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="creationDate" class="form-label">Ngày Tạo</label>
+                <input type="date" id="creationDate" class="form-control" formControlName="creationDate" required />
+                <div *ngIf="addPromotionForm.get('creationDate')?.invalid && (addPromotionForm.get('creationDate')?.touched || addPromotionForm.get('creationDate')?.dirty)" class="text-danger">
+                    Ngày tạo là bắt buộc.
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="startDate" class="form-label">Ngày Bắt Đầu</label>
+                <input type="date" id="startDate" class="form-control" formControlName="startDate" required />
+                <div *ngIf="addPromotionForm.get('startDate')?.invalid && (addPromotionForm.get('startDate')?.touched || addPromotionForm.get('startDate')?.dirty)" class="text-danger">
+                    Ngày bắt đầu là bắt buộc.
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="endDate" class="form-label">Ngày Kết Thúc</label>
+                <input type="date" id="endDate" class="form-control" formControlName="endDate" required />
+                <div *ngIf="addPromotionForm.get('endDate')?.invalid && (addPromotionForm.get('endDate')?.touched || addPromotionForm.get('endDate')?.dirty)" class="text-danger">
+                    Ngày kết thúc là bắt buộc.
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="discountAmount" class="form-label">Số Tiền Giảm</label>
+                <input type="number" id="discountAmount" class="form-control" formControlName="discountAmount" required />
+                <div *ngIf="addPromotionForm.get('discountAmount')?.invalid && (addPromotionForm.get('discountAmount')?.touched || addPromotionForm.get('discountAmount')?.dirty)" class="text-danger">
+                    Số tiền giảm là bắt buộc.
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="minimumPurchaseAmount" class="form-label">Số Tiền Mua Tối Thiểu</label>
+                <input type="number" id="minimumPurchaseAmount" class="form-control" formControlName="minimumPurchaseAmount" required />
+                <div *ngIf="addPromotionForm.get('minimumPurchaseAmount')?.invalid && (addPromotionForm.get('minimumPurchaseAmount')?.touched || addPromotionForm.get('minimumPurchaseAmount')?.dirty)" class="text-danger">
+                    Số tiền mua tối thiểu là bắt buộc.
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="usageLimit" class="form-label">Giới Hạn Sử Dụng</label>
+                <input type="number" id="usageLimit" class="form-control" formControlName="usageLimit" required />
+                <div *ngIf="addPromotionForm.get('usageLimit')?.invalid && (addPromotionForm.get('usageLimit')?.touched || addPromotionForm.get('usageLimit')?.dirty)" class="text-danger">
+                    Giới hạn sử dụng là bắt buộc.
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="isActive" class="form-label">Kích Hoạt</label>
+                <select id="isActive" class="form-control" formControlName="isActive">
+                    <option value="true">Có</option>
+                    <option value="false">Không</option>
+                </select>
+            </div>
+
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary" [disabled]="addPromotionForm.invalid">Lưu Khuyến Mãi</button>
+            </div>
+        </form>
+    </div>
+</div>

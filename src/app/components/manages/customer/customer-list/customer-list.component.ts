@@ -81,7 +81,8 @@ export class CustomerListComponent implements OnInit {
             } else {
               Swal.fire('Cập nhật thất bại!', response.message, 'error');
             }
-          }, (error) => {
+          },
+           (error) => {
             console.error('Lỗi khi cập nhật trạng thái:', error);
             Swal.fire('Lỗi!', 'Có lỗi xảy ra khi cập nhật trạng thái.', 'error');
           });

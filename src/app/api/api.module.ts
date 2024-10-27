@@ -11,6 +11,7 @@ import { CustomerService } from './services/customer.service';
 import { LoginService } from './services/login.service';
 import { OrderService } from './services/order.service';
 import { ProductService } from './services/product.service';
+import { PromotionService } from './services/promotion.service';
 import { ReviewService } from './services/review.service';
 import { UploadService } from './services/upload.service';
 import { UserService } from './services/user.service';
@@ -28,6 +29,7 @@ import { UserService } from './services/user.service';
     LoginService,
     OrderService,
     ProductService,
+    PromotionService,
     ReviewService,
     UploadService,
     UserService,

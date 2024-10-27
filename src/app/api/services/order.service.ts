@@ -24,7 +24,7 @@ import { ApiOrderListOrderGet$Json$Params } from '../fn/order/api-order-list-ord
 import { apiOrderListOrderGet$Plain } from '../fn/order/api-order-list-order-get-plain';
 import { ApiOrderListOrderGet$Plain$Params } from '../fn/order/api-order-list-order-get-plain';
 import { BooleanResultCustomModel } from '../models/boolean-result-custom-model';
-import { OrderReponseListResultCustomModel } from '../models/order-reponse-list-result-custom-model';
+import { GetListOrderSpResultListResultCustomModel } from '../models/get-list-order-sp-result-list-result-custom-model';
 import { OrderReponseResultCustomModel } from '../models/order-reponse-result-custom-model';
 
 @Injectable({ providedIn: 'root' })
@@ -89,7 +89,7 @@ export class OrderService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiOrderListOrderGet$Plain$Response(params?: ApiOrderListOrderGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<OrderReponseListResultCustomModel>> {
+  apiOrderListOrderGet$Plain$Response(params?: ApiOrderListOrderGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<GetListOrderSpResultListResultCustomModel>> {
     return apiOrderListOrderGet$Plain(this.http, this.rootUrl, params, context);
   }
 
@@ -99,9 +99,9 @@ export class OrderService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiOrderListOrderGet$Plain(params?: ApiOrderListOrderGet$Plain$Params, context?: HttpContext): Observable<OrderReponseListResultCustomModel> {
+  apiOrderListOrderGet$Plain(params?: ApiOrderListOrderGet$Plain$Params, context?: HttpContext): Observable<GetListOrderSpResultListResultCustomModel> {
     return this.apiOrderListOrderGet$Plain$Response(params, context).pipe(
-      map((r: StrictHttpResponse<OrderReponseListResultCustomModel>): OrderReponseListResultCustomModel => r.body)
+      map((r: StrictHttpResponse<GetListOrderSpResultListResultCustomModel>): GetListOrderSpResultListResultCustomModel => r.body)
     );
   }
 
@@ -111,7 +111,7 @@ export class OrderService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiOrderListOrderGet$Json$Response(params?: ApiOrderListOrderGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<OrderReponseListResultCustomModel>> {
+  apiOrderListOrderGet$Json$Response(params?: ApiOrderListOrderGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<GetListOrderSpResultListResultCustomModel>> {
     return apiOrderListOrderGet$Json(this.http, this.rootUrl, params, context);
   }
 
@@ -121,9 +121,9 @@ export class OrderService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiOrderListOrderGet$Json(params?: ApiOrderListOrderGet$Json$Params, context?: HttpContext): Observable<OrderReponseListResultCustomModel> {
+  apiOrderListOrderGet$Json(params?: ApiOrderListOrderGet$Json$Params, context?: HttpContext): Observable<GetListOrderSpResultListResultCustomModel> {
     return this.apiOrderListOrderGet$Json$Response(params, context).pipe(
-      map((r: StrictHttpResponse<OrderReponseListResultCustomModel>): OrderReponseListResultCustomModel => r.body)
+      map((r: StrictHttpResponse<GetListOrderSpResultListResultCustomModel>): GetListOrderSpResultListResultCustomModel => r.body)
     );
   }
 

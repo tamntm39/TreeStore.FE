@@ -92,6 +92,28 @@ export const NavigationItems: NavigationItem[] = [
       }
     ]
   },
+
+  {
+    "id": "promotion",
+    "title": "Quản lý khuyến mãi",
+    "type": "group",
+    "icon": "icon-box",
+    "children": [
+      {
+        "id": "listpromotion",
+        "title": "Danh sách khuyến mãi",
+        "type": "item",
+        "classes": "nav-item",
+        "url": "/manages/promotion/promotion-list",
+        "icon": "sun",
+        "target": false,
+        "breadcrumbs": false
+      },
+      
+    ]
+  },
+
+
   {
     "id": "reviewManagement",
     "title": "Quản lý đánh giá",
@@ -154,13 +176,13 @@ export const NavigationItems: NavigationItem[] = [
     icon: 'icon-navigation',
     children: [
       {
-        id: 'login',
+        id: 'listpromotion',
         title: 'Danh sách mã khuyến mãi',
         type: 'item',
         classes: 'nav-item',
-        url: '/login',
+        url: '/manages/promotion/promotion-list',
         icon: 'login',
-        target: true,
+        target: false,
         breadcrumbs: false
       },
       {

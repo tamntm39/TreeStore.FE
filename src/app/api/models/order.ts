@@ -4,6 +4,7 @@
 
 import { Customer } from '../models/customer';
 import { ProductOrder } from '../models/product-order';
+import { Promotion } from '../models/promotion';
 import { User } from '../models/user';
 export interface Order {
   createOn?: string;
@@ -13,6 +14,7 @@ export interface Order {
   orderId?: number;
   productOrders?: Array<ProductOrder> | null;
   promotionId?: number | null;
+  promotions?: Array<Promotion> | null;
   state?: number;
   totalAmount?: number;
   user?: User;

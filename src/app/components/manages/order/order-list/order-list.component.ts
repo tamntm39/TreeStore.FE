@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiConfiguration } from 'src/app/api/api-configuration';
-import { OrderReponse, Order } from 'src/app/api/models'; // Đảm bảo bạn có mô hình Product
+import { GetListOrderSpResult, Order } from 'src/app/api/models'; // Đảm bảo bạn có mô hình Product
 import { OrderService } from 'src/app/api/services'; // Đảm bảo bạn đã nhập đúng OrderService
 import Swal from 'sweetalert2';
 
@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./order-list.component.scss']
 })
 export class OrderListComponent implements OnInit {
-  listOrders: OrderReponse[] ; // Đảm bảo listOrders là một mảng các đơn hàng
+  listOrders: GetListOrderSpResult[] ; // Đảm bảo listOrders là một mảng các đơn hàng
 
   constructor(
     private router: Router,
