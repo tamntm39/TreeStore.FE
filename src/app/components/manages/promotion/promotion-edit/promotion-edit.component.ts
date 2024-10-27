@@ -40,36 +40,39 @@ export class PromotionEditComponent implements OnInit {
   }
 
 
-  ngOnInit() {
-    // Lấy `promotionId` từ URL dưới dạng `string`
-    this.promotionId = this.route.snapshot.paramMap.get('promotionId') || '';
+ ngOnInit() {
   
-    // Kiểm tra xem có `promotionId` không, nếu có thì gọi API lấy dữ liệu
-    if (this.promotionId) {
-      this.promotionService.apiPromotionGetPromotionByIdPromotionIdGet$Json$Response({ promotionId: this.promotionId }).subscribe((rs) => {
-        if (rs.body.success) {
-          this.promotionDB = rs.body.data;
-          
-          // Cập nhật giá trị form với dữ liệu khuyến mãi
-          this.editPromotionForm.patchValue({
-           
-            promotionId: this.promotionDB.promotionId,
-            programName: this.promotionDB.programName,
-            description: this.promotionDB.description,
-            creationDate: this.promotionDB.creationDate,
-            startDate: this.promotionDB.startDate,
-            endDate: this.promotionDB.endDate,
-            discountAmount: this.promotionDB.discountAmount,
-            minimumPurchaseAmount: this.promotionDB.minimumPurchaseAmount,
-            usageLimit: this.promotionDB.usageLimit,
-            isActive: this.promotionDB.isActive
-          });
-        } else {
-          console.log('Lấy dữ liệu khuyến mãi thất bại:', rs.body.message);
-        }
-      });
-    }
+  this.promotionId = this.route.snapshot.paramMap.get('promotionId') || '';
+  console.log( this.promotionId); // Log promotionId mỗi khi component khởi tạo
+  
+  if (this.promotionId) {
+    this.promotionService.apiPromotionGetPromotionByIdPromotionIdGet$Json$Response({ promotionId: this.promotionId }).subscribe((rs) => {
+      console.log('Response:', rs);
+      if (rs.body.success) {
+        this.promotionDB = rs.body.data;
+        console.log('Promotion Data:', this.promotionDB);
+        
+        // Cập nhật giá trị form
+        this.editPromotionForm.patchValue({
+          promotionId: this.promotionDB.promotionId,
+          programName: this.promotionDB.programName,
+          description: this.promotionDB.description,
+          creationDate: new Date(this.promotionDB.creationDate), // Chuyển đổi sang Date
+          startDate: new Date(this.promotionDB.startDate), // Chuyển đổi sang Date
+          endDate: new Date(this.promotionDB.endDate), // Chuyển đổi sang Date
+          discountAmount: this.promotionDB.discountAmount,
+          minimumPurchaseAmount: this.promotionDB.minimumPurchaseAmount,
+          usageLimit: this.promotionDB.usageLimit,
+          isActive: this.promotionDB.isActive
+        });
+        
+      } else {
+        console.log('Lấy dữ liệu khuyến mãi thất bại:', rs.body.message);
+      }
+    });
   }
+}
+
   
   
 
@@ -86,9 +89,9 @@ export class PromotionEditComponent implements OnInit {
         promotionId: this.editPromotionForm.get('promotionId')?.value || '',  // Đảm bảo `promotionId` là string
         programName: this.editPromotionForm.get('programName')?.value || null,
         description: this.editPromotionForm.get('description')?.value || null,
-        creationDate: new Date(this.editPromotionForm.get('creationDate')?.value).toISOString(),
-        startDate: new Date(this.editPromotionForm.get('startDate')?.value).toISOString(),
-        endDate: new Date(this.editPromotionForm.get('endDate')?.value).toISOString(),
+        creationDate: this.editPromotionForm.get('creationDate')?.value || null ,
+        startDate: this.editPromotionForm.get('startDate')?.value || null ,
+        endDate: this.editPromotionForm.get('endDate')?.value || null ,
         discountAmount: this.editPromotionForm.get('discountAmount')?.value || null,
         minimumPurchaseAmount: this.editPromotionForm.get('minimumPurchaseAmount')?.value || null,
         usageLimit: this.editPromotionForm.get('usageLimit')?.value || null,

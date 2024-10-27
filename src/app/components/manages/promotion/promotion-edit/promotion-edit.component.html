@@ -1,66 +1,65 @@
 <!-- promotion-edit.component.html -->
 <div class="container mt-4">
-    <div class="card p-4">
-      <h4 class="card-title mb-4">Cập nhật Khuyến Mãi</h4>
-      <form [formGroup]="editPromotionForm" (ngSubmit)="onSubmit()">
-  
-        <div class="mb-3">
-          <label for="programName" class="form-label">Tên Chương Trình:</label>
-          <input type="text" id="programName" formControlName="programName" class="form-control" required />
-        </div>
+  <div class="card p-4">
+    <h4 class="card-title mb-4">Cập nhật Khuyến Mãi</h4>
+    <form [formGroup]="editPromotionForm" (ngSubmit)="onSubmit()">
 
-        <div class="mb-3">
-          <label for="programEdit" class="form-label">Mã khuyến mãi:</label>
-          <input type="text" id="promotionId" formControlName="promotionId" class="form-control" required />
-
+      <div class="mb-3">
+        <label for="programName" class="form-label">Tên Chương Trình:</label>
+        <input type="text" id="programName" formControlName="programName" class="form-control" required />
       </div>
-      
-        <div class="mb-3">
-          <label for="description" class="form-label">Mô Tả:</label>
-          <textarea id="description" formControlName="description" class="form-control" required></textarea>
-        </div>
-  
-        <div class="mb-3">
-          <label for="creationDate" class="form-label">Ngày Tạo:</label>
-          <input type="date" id="creationDate" formControlName="creationDate" class="form-control" required />
-        </div>
-  
-        <div class="mb-3">
-          <label for="startDate" class="form-label">Ngày Bắt Đầu:</label>
-          <input type="date" id="startDate" formControlName="startDate" class="form-control" required />
-        </div>
-  
-        <div class="mb-3">
-          <label for="endDate" class="form-label">Ngày Kết Thúc:</label>
-          <input type="date" id="endDate" formControlName="endDate" class="form-control" required />
-        </div>
-  
-        <div class="mb-3">
-          <label for="discountAmount" class="form-label">Số Tiền Giảm Giá:</label>
-          <input type="number" id="discountAmount" formControlName="discountAmount" class="form-control" required />
-        </div>
-  
-        <div class="mb-3">
-          <label for="minimumPurchaseAmount" class="form-label">Số Tiền Mua Tối Thiểu:</label>
-          <input type="number" id="minimumPurchaseAmount" formControlName="minimumPurchaseAmount" class="form-control" required />
-        </div>
-  
-        <div class="mb-3">
-          <label for="usageLimit" class="form-label">Giới Hạn Sử Dụng:</label>
-          <input type="number" id="usageLimit" formControlName="usageLimit" class="form-control" />
-        </div>
-  
-        <div class="mb-3 form-check">
-          <input type="checkbox" id="isActive" formControlName="isActive" class="form-check-input" />
-          <label for="isActive" class="form-check-label">Kích Hoạt</label>
-        </div>
-  
-        <div class="d-flex justify-content-end">
-          <button type="button" class="btn btn-secondary me-2" (click)="cancel()">Hủy</button>
-          <button type="submit" class="btn btn-primary" [disabled]="!editPromotionForm.valid">Cập nhật</button>
-        </div>
-  
-      </form>
+
+      <div class="mb-3">
+        <label for="promotionId" class="form-label">Mã khuyến mãi:</label>
+        <input type="text" id="promotionId" formControlName="promotionId" class="form-control" required />
+
     </div>
+    
+      <div class="mb-3">
+        <label for="description" class="form-label">Mô Tả:</label>
+        <textarea id="description" formControlName="description" class="form-control" required></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label for="creationDate" class="form-label">Ngày Tạo:</label>
+        <input type="date" id="creationDate" formControlName="creationDate" class="form-control" required />
+      </div>
+
+      <div class="mb-3">
+        <label for="startDate" class="form-label">Ngày Bắt Đầu:</label>
+        <input type="date" id="startDate" formControlName="startDate" class="form-control" required />
+      </div>
+
+      <div class="mb-3">
+        <label for="endDate" class="form-label">Ngày Kết Thúc:</label>
+        <input type="date" id="endDate" formControlName="endDate" class="form-control" required />
+      </div>
+
+      <div class="mb-3">
+        <label for="discountAmount" class="form-label">Số Tiền Giảm Giá:</label>
+        <input type="number" id="discountAmount" formControlName="discountAmount" class="form-control" required />
+      </div>
+
+      <div class="mb-3">
+        <label for="minimumPurchaseAmount" class="form-label">Số Tiền Mua Tối Thiểu:</label>
+        <input type="number" id="minimumPurchaseAmount" formControlName="minimumPurchaseAmount" class="form-control" required />
+      </div>
+
+      <div class="mb-3">
+        <label for="usageLimit" class="form-label">Giới Hạn Sử Dụng:</label>
+        <input type="number" id="usageLimit" formControlName="usageLimit" class="form-control" />
+      </div>
+
+      <div class="mb-3 form-check">
+        <input type="checkbox" id="isActive" formControlName="isActive" class="form-check-input" />
+        <label for="isActive" class="form-check-label">Kích Hoạt</label>
+      </div>
+
+      <div class="d-flex justify-content-end">
+        <button type="button" class="btn btn-secondary me-2" (click)="cancel()">Hủy</button>
+        <button type="submit" class="btn btn-primary" [disabled]="!editPromotionForm.valid">Cập nhật</button>
+      </div>
+
+    </form>
   </div>
-  
+</div>

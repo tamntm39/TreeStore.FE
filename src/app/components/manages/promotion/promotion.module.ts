@@ -21,8 +21,8 @@ const routes: Routes = [
     component:PromotionAddComponent
    },
    {
-    path:'promotion-edit/:id', 
-    component:PromotionEditComponent
+    path: 'promotion-edit/:promotionId', // Đảm bảo tham số promotionId ở đây
+    component: PromotionEditComponent
    }
 ];
 
@@ -35,6 +35,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     ReactiveFormsModule, 
+    FormsModule,
     RouterModule.forChild(routes)
   ]
 })
