@@ -9,6 +9,7 @@ import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 import { CategoryService } from './services/category.service';
 import { CustomerService } from './services/customer.service';
 import { LoginService } from './services/login.service';
+import { OrderService } from './services/order.service';
 import { ProductService } from './services/product.service';
 import { ReviewService } from './services/review.service';
 import { UploadService } from './services/upload.service';
@@ -25,6 +26,7 @@ import { UserService } from './services/user.service';
     CategoryService,
     CustomerService,
     LoginService,
+    OrderService,
     ProductService,
     ReviewService,
     UploadService,

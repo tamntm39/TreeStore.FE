@@ -8,6 +8,7 @@ export { CategoryListResultCustomModel } from './models/category-list-result-cus
 export { CategoryResultCustomModel } from './models/category-result-custom-model';
 export { CreateCategoryRequest } from './models/create-category-request';
 export { CreateCategoryRequestListResultCustomModel } from './models/create-category-request-list-result-custom-model';
+export { CreateOrderRequest } from './models/create-order-request';
 export { CreateProductRequest } from './models/create-product-request';
 export { CreateUserRequest } from './models/create-user-request';
 export { Customer } from './models/customer';
@@ -22,6 +23,9 @@ export { LoginRequest } from './models/login-request';
 export { LoginResponse } from './models/login-response';
 export { LoginResponseResultCustomModel } from './models/login-response-result-custom-model';
 export { Order } from './models/order';
+export { OrderReponse } from './models/order-reponse';
+export { OrderReponseListResultCustomModel } from './models/order-reponse-list-result-custom-model';
+export { OrderReponseResultCustomModel } from './models/order-reponse-result-custom-model';
 export { Product } from './models/product';
 export { ProductListResultCustomModel } from './models/product-list-result-custom-model';
 export { ProductOrder } from './models/product-order';

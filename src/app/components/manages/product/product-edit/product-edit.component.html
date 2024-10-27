@@ -1,37 +1,59 @@
 <form [formGroup]="editProductForm" (ngSubmit)="onSubmit()">
   <div class="form-group">
     <label for="productName">Tên sản phẩm:</label>
-    <input type="text" id="productName" class="form-control" formControlName="name" name="productName" required />
+    <input type="text" id="productName" class="form-control" formControlName="name" required />
+    <div *ngIf="editProductForm.get('name')?.invalid && (editProductForm.get('name')?.touched || editProductForm.get('name')?.dirty)" class="text-danger">
+      Tên sản phẩm là bắt buộc.
+    </div>
   </div>
+
   <div class="mb-3">
     <label for="productType" class="form-label">Loại sản phẩm:</label>
-    <select class="form-select" id="productType" formControlName="category">
+    <select class="form-select" id="productType" formControlName="category" required>
+      <option value="" disabled selected>Chọn loại sản phẩm</option>
       <option *ngFor="let category of listCategory" [value]="category.id">
         {{ category.name }}
       </option>
     </select>
-  </div> 
+    <div *ngIf="editProductForm.get('category')?.invalid && (editProductForm.get('category')?.touched || editProductForm.get('category')?.dirty)" class="text-danger">
+      Loại sản phẩm là bắt buộc.
+    </div>
+  </div>
+
   <div class="form-group">
     <label for="quantity">Số lượng:</label>
-    <input type="number" id="quantity" class="form-control" formControlName="quantity"name="quantity" required />
+    <input type="number" id="quantity" class="form-control" formControlName="quantity" required />
+    <div *ngIf="editProductForm.get('quantity')?.invalid && (editProductForm.get('quantity')?.touched || editProductForm.get('quantity')?.dirty)" class="text-danger">
+      Số lượng là bắt buộc và phải lớn hơn 0.
+    </div>
   </div>
+
   <div class="form-group">
     <label for="price">Giá:</label>
-    <input type="number" id="price" class="form-control" formControlName="priceOutput" name="price" required />
+    <input type="number" id="price" class="form-control" formControlName="priceOutput" required />
+    <div *ngIf="editProductForm.get('priceOutput')?.invalid && (editProductForm.get('priceOutput')?.touched || editProductForm.get('priceOutput')?.dirty)" class="text-danger">
+      Giá là bắt buộc và phải lớn hơn 0.
+    </div>
   </div>
+
   <div class="form-group">
-    <label for="price">Mô tả:</label>
-    <input type="text" id="description" class="form-control" formControlName="description" name="description" required />
+    <label for="description">Mô tả:</label>
+    <input type="text" id="description" class="form-control" formControlName="description" required />
+    <div *ngIf="editProductForm.get('description')?.invalid && (editProductForm.get('description')?.touched || editProductForm.get('description')?.dirty)" class="text-danger">
+      Mô tả là bắt buộc.
+    </div>
   </div>
+
   <div class="form-group">
-    <label for="image">Hình ảnh hiện tại:</label>
+    <label for="currentImage">Hình ảnh hiện tại:</label>
     <img *ngIf="productImageUrl" [src]="rootUrl + '/' + productImageUrl" alt="Hình ảnh sản phẩm" style="max-width: 200px; max-height: 200px;" />
   </div>
 
   <div class="form-group">
     <label for="image">Chọn hình ảnh mới:</label>
-    <input type="file" id="image" class="form-control" (change)="onFileSelected($event)" name="image" />
+    <input type="file" id="image" class="form-control" (change)="onFileSelected($event)" />
   </div>
-  <button type="submit" class="btn btn-primary">Cập nhật</button>
+  
+  <button type="submit" class="btn btn-primary" [disabled]="editProductForm.invalid">Cập nhật</button>
   <button type="button" (click)="cancel()" class="btn btn-secondary">Hủy</button>
 </form>

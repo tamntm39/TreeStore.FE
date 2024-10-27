@@ -12,7 +12,9 @@ export interface Order {
   note?: string | null;
   orderId?: number;
   productOrders?: Array<ProductOrder> | null;
+  promotionId?: number | null;
   state?: number;
+  totalAmount?: number;
   user?: User;
   userId?: number;
 }

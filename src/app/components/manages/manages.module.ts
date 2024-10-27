@@ -37,6 +37,7 @@ const routes: Routes = [
     path: 'inventory', // Đường dẫn chính cho user
     loadChildren: () => import('./inventory/inventory.module').then((m) => m.InventoryModule)
   },
+  { path: 'order', loadChildren: () => import('./order/order.module').then(m => m.OrderModule) },
 ];
 
 @NgModule({
