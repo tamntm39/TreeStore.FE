@@ -75,7 +75,7 @@ export class PromotionListComponent implements OnInit { // Implement OnInit đ�
         if (result.isConfirmed) {
             // Gửi yêu cầu để thay đổi trạng thái khuyến mãi
             this.promotionService.apiPromotionChangeActivePost$Json$Response({
-               promotionId :promotion.promotionId
+               promotionId :promotion.promotionCode
             }).subscribe((rs) => {
                 const response = rs.body;
                 if (response.success) {

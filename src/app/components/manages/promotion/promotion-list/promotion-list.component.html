@@ -25,7 +25,7 @@
           <tbody>
             <tr *ngFor="let promotion of listPromotionDB; let i = index">
               <td>{{ i + 1 }}</td> <!-- Hiển thị STT -->
-              <td>{{ promotion.promotionId }}</td> 
+              <td>{{ promotion.promotionCode }}</td> 
               <td>{{ promotion.programName }}</td>
               <td>{{ promotion.description }}</td>
               <td>{{ promotion.startDate}}</td> 
@@ -43,7 +43,7 @@
                 </td>
                 <td>
                     <!-- Nút sửa -->
-                    <button (click)="navigateToEditPromotion(promotion.promotionId)" class="btn btn-warning btn-sm">Sửa</button> 
+                    <button (click)="navigateToEditPromotion(promotion.promotionCode)" class="btn btn-warning btn-sm">Sửa</button> 
                   </td>
               
            

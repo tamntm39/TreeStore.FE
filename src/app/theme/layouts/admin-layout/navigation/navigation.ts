@@ -21,13 +21,13 @@ export interface NavigationItem {
 export const NavigationItems: NavigationItem[] = [
   {
     id: 'dashboard',
-    title: 'Dashboard',
+    title: 'Thông kê',
     type: 'group',
     icon: 'icon-navigation',
     children: [
       {
         id: 'default',
-        title: 'Default',
+        title: 'Doanh thu',
         type: 'item',
         classes: 'nav-item',
         url: '/dashboard/default',
@@ -168,35 +168,35 @@ export const NavigationItems: NavigationItem[] = [
       }
     ]
   }
-  ,
-  {
-    id: 'authentication',
-    title: 'Quản lý mã khuyến mãi',
-    type: 'group',
-    icon: 'icon-navigation',
-    children: [
-      {
-        id: 'listpromotion',
-        title: 'Danh sách mã khuyến mãi',
-        type: 'item',
-        classes: 'nav-item',
-        url: '/manages/promotion/promotion-list',
-        icon: 'login',
-        target: false,
-        breadcrumbs: false
-      },
-      {
-        id: 'Danh sách mã khuyến mãi',
-        title: 'Register',
-        type: 'item',
-        classes: 'nav-item',
-        url: '/register',
-        icon: 'profile',
-        target: true,
-        breadcrumbs: false
-      }
-    ]
-  }
+  // ,
+  // {
+  //   id: 'authentication',
+  //   title: 'Quản lý mã khuyến mãi',
+  //   type: 'group',
+  //   icon: 'icon-navigation',
+  //   children: [
+  //     {
+  //       id: 'listpromotion',
+  //       title: 'Danh sách mã khuyến mãi',
+  //       type: 'item',
+  //       classes: 'nav-item',
+  //       url: '/manages/promotion/promotion-list',
+  //       icon: 'login',
+  //       target: false,
+  //       breadcrumbs: false
+  //     },
+  //     {
+  //       id: 'Danh sách mã khuyến mãi',
+  //       title: 'Register',
+  //       type: 'item',
+  //       classes: 'nav-item',
+  //       url: '/register',
+  //       icon: 'profile',
+  //       target: true,
+  //       breadcrumbs: false
+  //     }
+  //   ]
+  // }
   // ,
   // {
   //   id: 'utilities',

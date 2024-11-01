@@ -39,7 +39,7 @@ export class PromotionAddComponent implements OnInit {
     onSubmit() {
         if (this.addPromotionForm.valid) {
             const updatedPromotion: PromotionRequest = {
-                promotionId: this.addPromotionForm.get('promotionId')?.value || null,
+                promotionCode: this.addPromotionForm.get('promotionCode')?.value || null,
                 programName: this.addPromotionForm.get('programName')?.value || null,
                 description: this.addPromotionForm.get('description')?.value || null,
                 creationDate: this.addPromotionForm.get('creationDate')?.value || null, // Định dạng ngày tháng

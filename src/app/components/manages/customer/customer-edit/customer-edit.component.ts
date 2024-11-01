@@ -68,7 +68,7 @@ export class CustomerEditComponent implements OnInit {
         email: this.editCustomerForm.get('email')?.value,
         phone: this.editCustomerForm.get('phone')?.value,
         address: this.editCustomerForm.get('address')?.value,
-        avatar: this.editCustomerForm.get('avatar')?.value // Nếu cần cập nhật avatar
+        // avatar: this.editCustomerForm.get('avatar')?.value 
       };
 
       // Gọi API cập nhật khách hàng

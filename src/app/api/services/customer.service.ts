@@ -29,6 +29,16 @@ import { apiCustomerListCustomerGet$Json } from '../fn/customer/api-customer-lis
 import { ApiCustomerListCustomerGet$Json$Params } from '../fn/customer/api-customer-list-customer-get-json';
 import { apiCustomerListCustomerGet$Plain } from '../fn/customer/api-customer-list-customer-get-plain';
 import { ApiCustomerListCustomerGet$Plain$Params } from '../fn/customer/api-customer-list-customer-get-plain';
+import { apiCustomerLoginPost$Json } from '../fn/customer/api-customer-login-post-json';
+import { ApiCustomerLoginPost$Json$Params } from '../fn/customer/api-customer-login-post-json';
+import { apiCustomerLoginPost$Plain } from '../fn/customer/api-customer-login-post-plain';
+import { ApiCustomerLoginPost$Plain$Params } from '../fn/customer/api-customer-login-post-plain';
+import { apiCustomerLogoutPost } from '../fn/customer/api-customer-logout-post';
+import { ApiCustomerLogoutPost$Params } from '../fn/customer/api-customer-logout-post';
+import { apiCustomerRegisterPost$Json } from '../fn/customer/api-customer-register-post-json';
+import { ApiCustomerRegisterPost$Json$Params } from '../fn/customer/api-customer-register-post-json';
+import { apiCustomerRegisterPost$Plain } from '../fn/customer/api-customer-register-post-plain';
+import { ApiCustomerRegisterPost$Plain$Params } from '../fn/customer/api-customer-register-post-plain';
 import { apiCustomerSearchByNameGet } from '../fn/customer/api-customer-search-by-name-get';
 import { ApiCustomerSearchByNameGet$Params } from '../fn/customer/api-customer-search-by-name-get';
 import { apiCustomerUpdateCustomerPut$Json } from '../fn/customer/api-customer-update-customer-put-json';
@@ -327,6 +337,125 @@ export class CustomerService extends BaseService {
    */
   apiCustomerSearchByNameGet(params?: ApiCustomerSearchByNameGet$Params, context?: HttpContext): Observable<void> {
     return this.apiCustomerSearchByNameGet$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `apiCustomerRegisterPost()` */
+  static readonly ApiCustomerRegisterPostPath = '/api/Customer/Register';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiCustomerRegisterPost$Plain()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiCustomerRegisterPost$Plain$Response(params?: ApiCustomerRegisterPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<CustomerResponseResultCustomModel>> {
+    return apiCustomerRegisterPost$Plain(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiCustomerRegisterPost$Plain$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiCustomerRegisterPost$Plain(params?: ApiCustomerRegisterPost$Plain$Params, context?: HttpContext): Observable<CustomerResponseResultCustomModel> {
+    return this.apiCustomerRegisterPost$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<CustomerResponseResultCustomModel>): CustomerResponseResultCustomModel => r.body)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiCustomerRegisterPost$Json()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiCustomerRegisterPost$Json$Response(params?: ApiCustomerRegisterPost$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<CustomerResponseResultCustomModel>> {
+    return apiCustomerRegisterPost$Json(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiCustomerRegisterPost$Json$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiCustomerRegisterPost$Json(params?: ApiCustomerRegisterPost$Json$Params, context?: HttpContext): Observable<CustomerResponseResultCustomModel> {
+    return this.apiCustomerRegisterPost$Json$Response(params, context).pipe(
+      map((r: StrictHttpResponse<CustomerResponseResultCustomModel>): CustomerResponseResultCustomModel => r.body)
+    );
+  }
+
+  /** Path part for operation `apiCustomerLoginPost()` */
+  static readonly ApiCustomerLoginPostPath = '/api/Customer/Login';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiCustomerLoginPost$Plain()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiCustomerLoginPost$Plain$Response(params?: ApiCustomerLoginPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<CustomerResponseResultCustomModel>> {
+    return apiCustomerLoginPost$Plain(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiCustomerLoginPost$Plain$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiCustomerLoginPost$Plain(params?: ApiCustomerLoginPost$Plain$Params, context?: HttpContext): Observable<CustomerResponseResultCustomModel> {
+    return this.apiCustomerLoginPost$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<CustomerResponseResultCustomModel>): CustomerResponseResultCustomModel => r.body)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiCustomerLoginPost$Json()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiCustomerLoginPost$Json$Response(params?: ApiCustomerLoginPost$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<CustomerResponseResultCustomModel>> {
+    return apiCustomerLoginPost$Json(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiCustomerLoginPost$Json$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiCustomerLoginPost$Json(params?: ApiCustomerLoginPost$Json$Params, context?: HttpContext): Observable<CustomerResponseResultCustomModel> {
+    return this.apiCustomerLoginPost$Json$Response(params, context).pipe(
+      map((r: StrictHttpResponse<CustomerResponseResultCustomModel>): CustomerResponseResultCustomModel => r.body)
+    );
+  }
+
+  /** Path part for operation `apiCustomerLogoutPost()` */
+  static readonly ApiCustomerLogoutPostPath = '/api/Customer/Logout';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiCustomerLogoutPost()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiCustomerLogoutPost$Response(params?: ApiCustomerLogoutPost$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+    return apiCustomerLogoutPost(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiCustomerLogoutPost$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiCustomerLogoutPost(params?: ApiCustomerLogoutPost$Params, context?: HttpContext): Observable<void> {
+    return this.apiCustomerLogoutPost$Response(params, context).pipe(
       map((r: StrictHttpResponse<void>): void => r.body)
     );
   }

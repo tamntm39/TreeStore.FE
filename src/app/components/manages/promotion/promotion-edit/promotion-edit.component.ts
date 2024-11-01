@@ -42,7 +42,7 @@ export class PromotionEditComponent implements OnInit {
 
  ngOnInit() {
   
-  this.promotionId = this.route.snapshot.paramMap.get('promotionId') || '';
+  this.promotionId = this.route.snapshot.paramMap.get('promotionCode') || '';
   console.log( this.promotionId); // Log promotionId mỗi khi component khởi tạo
   
   if (this.promotionId) {
@@ -54,7 +54,7 @@ export class PromotionEditComponent implements OnInit {
         
         // Cập nhật giá trị form
         this.editPromotionForm.patchValue({
-          promotionId: this.promotionDB.promotionId,
+          promotionId: this.promotionDB.promotionCode,
           programName: this.promotionDB.programName,
           description: this.promotionDB.description,
           creationDate: new Date(this.promotionDB.creationDate), // Chuyển đổi sang Date
@@ -86,7 +86,7 @@ export class PromotionEditComponent implements OnInit {
   
     if (this.editPromotionForm.valid) {
       const updatedPromotion: PromotionRequest = {
-        promotionId: this.editPromotionForm.get('promotionId')?.value || '',  // Đảm bảo `promotionId` là string
+        promotionCode: this.editPromotionForm.get('promotionCode')?.value || '',  // Đảm bảo `promotionId` là string
         programName: this.editPromotionForm.get('programName')?.value || null,
         description: this.editPromotionForm.get('description')?.value || null,
         creationDate: this.editPromotionForm.get('creationDate')?.value || null ,
