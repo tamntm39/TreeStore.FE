@@ -8,6 +8,7 @@ import { CategoryModule } from './category/category.module';
 import { ProductModule } from './product/product.module';
 import { InventoryModule } from './inventory/inventory.module';
 import { PromotionModule } from './promotion/promotion.module';
+import { OrderModule } from './order/order.module';
 
 const routes: Routes = [
   {
@@ -48,6 +49,7 @@ const routes: Routes = [
     CategoryModule,
     ProductModule,
     PromotionModule,
+    OrderModule,
     InventoryModule
   ]
 })

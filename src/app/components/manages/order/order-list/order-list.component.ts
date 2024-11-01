@@ -11,19 +11,18 @@ import Swal from 'sweetalert2';
   styleUrls: ['./order-list.component.scss']
 })
 export class OrderListComponent implements OnInit {
-  listOrders: GetListOrderSpResult[] ; // Đảm bảo listOrders là một mảng các đơn hàng
+  listOrders: GetListOrderSpResult[]; // Đảm bảo listOrders là một mảng các đơn hàng
 
   constructor(
     private router: Router,
     private orderService: OrderService,
-    protected config: ApiConfiguration,
+    protected config: ApiConfiguration
   ) {}
 
   ngOnInit(): void {
     this.loadOrders();
-  } 
+  }
 
- 
   loadOrders(): void {
     this.orderService.apiOrderListOrderGet$Json$Response().subscribe((rs) => {
       const response = rs.body;
@@ -35,8 +34,7 @@ export class OrderListComponent implements OnInit {
     });
   }
 
- 
-
- 
- 
+  navigateToDetailOrder(orderId: number) {
+    this.router.navigate(['/manages/order/order-detail', orderId]); // Đường dẫn đến trang chỉnh sửa sản phẩm
+  }
 }

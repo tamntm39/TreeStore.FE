@@ -23,18 +23,11 @@
               <td>{{ order.orderId }}</td>
               <td>{{ order.fullName }}</td>
               <td>{{ order.address }}</td>
-              <td>{{ order.totalAmount }}</td>
-              <td>
-                <!-- <button 
-                  (click)="toggleOrderActiveStatus(order)" 
-                  [ngClass]="{'toggle-status-btn': true, 'unactive': !order.isActive}">
-                  {{ order.isActive ? 'Kích hoạt' : 'Vô hiệu khóa' }}
-                </button> -->
-              </td>
+              <td>{{ order.totalAmount | currency: 'VND':'symbol':'1.0-0' }}</td>
+              <td>{{ order.state | orderState }}</td>
               <td>{{ order.createOn | date:'short' }}</td>
-              
               <td>
-                <!-- <button (click)="navigateToEditOrder(order.orderId)" class="btn btn-warning btn-sm">Sửa</button> -->
+                <button (click)="navigateToDetailOrder(order.orderId)" class="btn btn-warning btn-sm">Xem chi tiết</button>
                 <!-- Sử dụng orderId -->
               </td>
             </tr>

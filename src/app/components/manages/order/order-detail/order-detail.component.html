@@ -1,0 +1,44 @@
+<div *ngIf="orderDetails && orderDetails.length > 0" class="order-details-container p-4">
+  <div class="text-center mb-4">
+    <h3 class="text-primary font-weight-bold">Chi Tiết Đơn Hàng - {{ orderId }}</h3>
+    <h5 class="text-muted">Tên khách hàng : {{ customerName }}</h5>
+    <h5 class="text-muted">Địa chỉ : {{ address }}</h5>
+    <h5 class="text-muted">Trạng thái đơn hàng : {{ stateId | orderState }}</h5>
+  </div>
+
+  <table class="table table-bordered table-hover shadow-sm">
+    <thead class="thead-light">
+      <tr>
+        <th>STT</th>
+        <th>Tên sản phẩm</th>
+        <th>Giá</th>
+        <th>Số lượng</th>
+        <th>Hình ảnh</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of orderDetails; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.price | currency: 'VND' : 'symbol' : '1.0-0' }}</td>
+        <td>{{ item.quantity }}</td>
+        <td class="text-center">
+          <img  [src]="rootUrl + '/' + item.img" alt="{{ item.img }}" width="100" height="100" />
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="d-flex justify-content-start">
+    <button type="button" (click)="cancel()" class="btn btn-secondary">Quay lại</button>
+  </div>
+
+  <div class="d-flex justify-content-end">
+    <button *ngIf="stateId == 0" type="button" (click)="changeStateOrder(1)" class="btn btn-primary mx-1">Duyệt</button>
+    <button *ngIf="stateId == 1" type="button" (click)="changeStateOrder(2)" class="btn btn-info mx-1">Chuyển hàng cho shipper</button>
+    <button *ngIf="stateId == 2" type="button" (click)="changeStateOrder(3)" class="btn btn-success mx-1">Giao hàng thành công</button>
+    <button *ngIf="stateId != 4" type="button" (click)="changeStateOrder(4)" class="btn btn-danger mx-1">Hủy</button>
+  </div>
+  
+</div>
+<div *ngIf="!orderDetails || orderDetails.length === 0" class="alert alert-warning text-center">Không tìm thấy chi tiết đơn hàng.</div>
