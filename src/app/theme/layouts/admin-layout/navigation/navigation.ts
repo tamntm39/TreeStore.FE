@@ -37,6 +37,23 @@ export const NavigationItems: NavigationItem[] = [
     ]
   },
   {
+    id: 'dashboard',
+    title: 'Thông kê',
+    type: 'group',
+    icon: 'icon-navigation',
+    children: [
+      {
+        id: 'default',
+        title: 'Doanh thu',
+        type: 'item',
+        classes: 'nav-item',
+        url: '/manages/revenue',
+        icon: 'dashboard',
+        breadcrumbs: false
+      }
+    ]
+  },
+  {
     "id": "accountManagement",
     "title": "Quản lý tài khoản",
     "type": "group",

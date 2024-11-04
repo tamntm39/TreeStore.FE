@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ApiConfiguration } from 'src/app/api/api-configuration';
 import { Customer, CustomerResponse } from 'src/app/api/models';
 import { CustomerService } from 'src/app/api/services';
 import Swal from 'sweetalert2';
@@ -17,7 +18,9 @@ export class CustomerListComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private customerService: CustomerService
+    private customerService: CustomerService,
+    protected config: ApiConfiguration, 
+
   ) { }
 
   ngOnInit(): void {
@@ -39,21 +42,38 @@ export class CustomerListComponent implements OnInit {
     });
   }
 
-  filterCustomers(): void {
-    const normalizedSearchTerm = this.searchTerm.toLowerCase().trim();
+  // filterCustomers(): void {
+  //   const normalizedSearchTerm = this.searchTerm.toLowerCase().trim();
+  //   this.filteredCustomers = this.listCustomersDB.filter(customer =>
+  //     customer.fullname.toLowerCase().includes(normalizedSearchTerm) ||
+  //     customer.email.toLowerCase().includes(normalizedSearchTerm) ||
+  //     customer.phone.includes(normalizedSearchTerm) ||
+  //     customer.address.toLowerCase().includes(normalizedSearchTerm) // Nếu bạn cũng muốn tìm theo địa chỉ
+  //   );
+  // }
+  
+  onSearch(): void {
+    const normalizedSearchTerm = this.searchTerm.trim().toLowerCase();
+    if (normalizedSearchTerm === '') {
+      // Nếu không có từ khóa tìm kiếm, gán toàn bộ danh sách vào filteredCustomers
+      this.filteredCustomers = this.listCustomersDB;
+      return;
+    }
+  
     this.filteredCustomers = this.listCustomersDB.filter(customer =>
       customer.fullname.toLowerCase().includes(normalizedSearchTerm) ||
       customer.email.toLowerCase().includes(normalizedSearchTerm) ||
       customer.phone.includes(normalizedSearchTerm) ||
-      customer.address.toLowerCase().includes(normalizedSearchTerm) // Nếu bạn cũng muốn tìm theo địa chỉ
+      customer.address.toLowerCase().includes(normalizedSearchTerm)
     );
   }
   
+ 
 
   navigateToEditCustomer(customerId: number) {
     this.router.navigate(['/manages/customer/customer-edit', customerId]);
   }
-
+  
   toggleCustomerActiveStatus(customer: CustomerResponse) {
     const newStatus = !customer.isActive; // Lưu trạng thái mới
     Swal.fire({

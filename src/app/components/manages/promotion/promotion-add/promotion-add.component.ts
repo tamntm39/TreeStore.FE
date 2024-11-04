@@ -20,7 +20,7 @@ export class PromotionAddComponent implements OnInit {
     ) {
         this.addPromotionForm = this.fb.group({
             programName: [''],
-            promotionId: [''],
+            promotionCode: [''],
             description: [''],
             creationDate: [''],
             startDate: [''],

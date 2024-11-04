@@ -13,7 +13,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ErrorInterceptor } from './auth/helpers/error.interceptor';
 import { JwtInterceptor } from 'src/app/auth/helpers/jwt.interceptor';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -24,6 +24,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     ReactiveFormsModule, 
     CommonModule,
+    FormsModule,
     ApiModule.forRoot({ rootUrl: environment.apiUrl }), 
   ],
   providers: [

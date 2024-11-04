@@ -1,7 +1,7 @@
 <div class="col-md-12 col-xl-8">
   <h5 class="mb-3">Danh sách khách hàng</h5>
 
-  <div class="mb-3" style="display: flex; justify-content: space-between; align-items: center">
+  <!-- <div class="mb-3" style="display: flex; justify-content: space-between; align-items: center">
     <input
       type="text"
       [(ngModel)]="searchTerm"
@@ -9,8 +9,21 @@
       placeholder="Tìm kiếm khách hàng..."
       class="form-control"
       style="width: 300px"
-    />
-  </div>
+    /> -->
+
+    <div class="d-flex align-items-center mb-3">
+      <form (ngSubmit)="onSearch()" #searchForm="ngForm" class="d-flex ms-auto">
+      <input 
+        type="text" 
+        id="search" 
+        class="form-control me-2" 
+        [(ngModel)]="searchTerm" 
+        name="search" 
+        placeholder="Tìm kiếm khách hàng" 
+        required>
+      <button type="submit" class="btn btn-secondary">Tìm kiếm</button>
+      </form>
+    </div>
   <div class="card tbl-card">
     <div class="table-responsive">
       <table class="table table-hover mb-0">
@@ -56,4 +69,4 @@
       </table>
     </div>
   </div>
-</div>
+<!-- </div> -->

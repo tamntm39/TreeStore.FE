@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./promotion-edit.component.scss']
 })
 export class PromotionEditComponent implements OnInit {
-  promotionId:string 
+  promotionCode:string 
   promotionDB: PromotionResponse ;
   editPromotionForm: FormGroup;
 
@@ -25,7 +25,7 @@ export class PromotionEditComponent implements OnInit {
     this.editPromotionForm = this.fb.group({
 
      
-      promotionId:[''],
+      promotionCode:[''],
       programName: [''],
       description: [''],
       creationDate: [''],
@@ -42,11 +42,11 @@ export class PromotionEditComponent implements OnInit {
 
  ngOnInit() {
   
-  this.promotionId = this.route.snapshot.paramMap.get('promotionCode') || '';
-  console.log( this.promotionId); // Log promotionId mỗi khi component khởi tạo
+  this.promotionCode = this.route.snapshot.paramMap.get('promotionCode') || '';
+  console.log( this.promotionCode); // Log promotionId mỗi khi component khởi tạo
   
-  if (this.promotionId) {
-    this.promotionService.apiPromotionGetPromotionByIdPromotionIdGet$Json$Response({ promotionId: this.promotionId }).subscribe((rs) => {
+  if (this.promotionCode) {
+    this.promotionService.apiPromotionGetPromotionByIdPromotionCodeGet$Json$Response({ promotionCode: this.promotionCode }).subscribe((rs) => {
       console.log('Response:', rs);
       if (rs.body.success) {
         this.promotionDB = rs.body.data;
@@ -54,7 +54,7 @@ export class PromotionEditComponent implements OnInit {
         
         // Cập nhật giá trị form
         this.editPromotionForm.patchValue({
-          promotionId: this.promotionDB.promotionCode,
+          promotionCode: this.promotionDB.promotionCode,
           programName: this.promotionDB.programName,
           description: this.promotionDB.description,
           creationDate: new Date(this.promotionDB.creationDate), // Chuyển đổi sang Date

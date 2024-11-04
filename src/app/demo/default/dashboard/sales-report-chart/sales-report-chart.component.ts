@@ -79,11 +79,11 @@ export class SalesReportChartComponent {
         labels: {
           useSeriesColors: false
         },
-        markers: {
-          width: 10,
-          height: 10,
-          radius: 50
-        },
+        // markers: {
+        //   width: 10,
+        //   height: 10,
+        //   radius: 50
+        // },
         itemMargin: {
           horizontal: 15,
           vertical: 5

@@ -55,8 +55,8 @@ export class PromotionListComponent implements OnInit { // Implement OnInit đ�
     this.router.navigate(['/manages/promotion/promotion-add']);
   }
 
-  navigateToEditPromotion(promotionId: string) {
-    this.router.navigate(['/manages/promotion/promotion-edit', promotionId]);
+  navigateToEditPromotion(promotionCode: string) {
+    this.router.navigate(['/manages/promotion/promotion-edit', promotionCode]);
   }
 
 
@@ -75,7 +75,7 @@ export class PromotionListComponent implements OnInit { // Implement OnInit đ�
         if (result.isConfirmed) {
             // Gửi yêu cầu để thay đổi trạng thái khuyến mãi
             this.promotionService.apiPromotionChangeActivePost$Json$Response({
-               promotionId :promotion.promotionCode
+               promotionCode :promotion.promotionCode
             }).subscribe((rs) => {
                 const response = rs.body;
                 if (response.success) {

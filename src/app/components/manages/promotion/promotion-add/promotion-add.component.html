@@ -4,8 +4,8 @@
         <form [formGroup]="addPromotionForm" (ngSubmit)="onSubmit()">
             <div class="mb-3">
                 <label for="promotionId" class="form-label">Mã Khuyến Mãi</label>
-                <input type="text" id="promotionId" class="form-control" formControlName="promotionId" required />
-                <div *ngIf="addPromotionForm.get('promotionId')?.invalid && (addPromotionForm.get('promotionId')?.touched || addPromotionForm.get('promotionId')?.dirty)" class="text-danger">
+                <input type="text" id="promotionCode" class="form-control" formControlName="promotionCode" required />
+                <div *ngIf="addPromotionForm.get('promotionCode')?.invalid && (addPromotionForm.get('promotionCode')?.touched || addPromotionForm.get('promotionCode')?.dirty)" class="text-danger">
                     ID khuyến mãi là bắt buộc.
                 </div>
             </div>

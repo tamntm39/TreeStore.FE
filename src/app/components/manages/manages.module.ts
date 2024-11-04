@@ -35,7 +35,8 @@ const routes: Routes = [
     loadChildren: () => import('./inventory/inventory.module').then((m) => m.InventoryModule)
   },
   { path: 'order', loadChildren: () => import('./order/order.module').then((m) => m.OrderModule) },
-  { path: 'promotion', loadChildren: () => import('./promotion/promotion.module').then((m) => m.PromotionModule) }
+  { path: 'promotion', loadChildren: () => import('./promotion/promotion.module').then((m) => m.PromotionModule) },
+  { path: 'revenue', loadChildren: () => import('./revenue/revenue.module').then(m => m.RevenueModule) }
 ];
 
 @NgModule({

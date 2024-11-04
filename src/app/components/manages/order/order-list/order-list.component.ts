@@ -5,6 +5,7 @@ import { GetListOrderSpResult, Order } from 'src/app/api/models'; // Đảm bả
 import { OrderService } from 'src/app/api/services'; // Đảm bảo bạn đã nhập đúng OrderService
 import Swal from 'sweetalert2';
 
+
 @Component({
   selector: 'app-order-list',
   templateUrl: './order-list.component.html',
@@ -12,6 +13,8 @@ import Swal from 'sweetalert2';
 })
 export class OrderListComponent implements OnInit {
   listOrders: GetListOrderSpResult[]; // Đảm bảo listOrders là một mảng các đơn hàng
+  searchTerm: any;
+  filteredOrders: GetListOrderSpResult[];
 
   constructor(
     private router: Router,
@@ -22,7 +25,7 @@ export class OrderListComponent implements OnInit {
   ngOnInit(): void {
     this.loadOrders();
   }
-
+ 
   loadOrders(): void {
     this.orderService.apiOrderListOrderGet$Json$Response().subscribe((rs) => {
       const response = rs.body;

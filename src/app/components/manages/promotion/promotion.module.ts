@@ -21,7 +21,7 @@ const routes: Routes = [
     component:PromotionAddComponent
    },
    {
-    path: 'promotion-edit/:promotionId', // Đảm bảo tham số promotionId ở đây
+    path: 'promotion-edit/:promotionCode', // Đảm bảo tham số promotionId ở đây
     component: PromotionEditComponent
    }
 ];
