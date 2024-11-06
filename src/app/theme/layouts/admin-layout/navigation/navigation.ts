@@ -19,23 +19,23 @@ export interface NavigationItem {
 }
 
 export const NavigationItems: NavigationItem[] = [
-  {
-    id: 'dashboard',
-    title: 'Thông kê',
-    type: 'group',
-    icon: 'icon-navigation',
-    children: [
-      {
-        id: 'default',
-        title: 'Doanh thu',
-        type: 'item',
-        classes: 'nav-item',
-        url: '/dashboard/default',
-        icon: 'dashboard',
-        breadcrumbs: false
-      }
-    ]
-  },
+  // {
+  //   id: 'dashboard',
+  //   title: 'Thông kê',
+  //   type: 'group',
+  //   icon: 'icon-navigation',
+  //   children: [
+  //     {
+  //       id: 'default',
+  //       title: 'Doanh thu',
+  //       type: 'item',
+  //       classes: 'nav-item',
+  //       url: '/dashboard/default',
+  //       icon: 'dashboard',
+  //       breadcrumbs: false
+  //     }
+  //   ]
+  // },
   {
     id: 'dashboard',
     title: 'Thông kê',

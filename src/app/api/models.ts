@@ -47,6 +47,8 @@ export { PromotionResponseResultCustomModel } from './models/promotion-response-
 export { RegisterRequest } from './models/register-request';
 export { RegisterResponse } from './models/register-response';
 export { RegisterResponseResultCustomModel } from './models/register-response-result-custom-model';
+export { RevenueResponse } from './models/revenue-response';
+export { RevenueResponseListResultCustomModel } from './models/revenue-response-list-result-custom-model';
 export { Review } from './models/review';
 export { ReviewRequest } from './models/review-request';
 export { ReviewResponse } from './models/review-response';
