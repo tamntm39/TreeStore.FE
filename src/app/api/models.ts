@@ -23,10 +23,13 @@ export { DeactivateCustomerRequest } from './models/deactivate-customer-request'
 export { DetailOrderReponse } from './models/detail-order-reponse';
 export { DetailOrderReponseResultCustomModel } from './models/detail-order-reponse-result-custom-model';
 export { GetDetailProductOrderSpResult } from './models/get-detail-product-order-sp-result';
+export { GetListOrderByCustomerIdSpResult } from './models/get-list-order-by-customer-id-sp-result';
+export { GetListOrderByCustomerIdSpResultListResultCustomModel } from './models/get-list-order-by-customer-id-sp-result-list-result-custom-model';
 export { GetListOrderSpResult } from './models/get-list-order-sp-result';
 export { GetListOrderSpResultListResultCustomModel } from './models/get-list-order-sp-result-list-result-custom-model';
 export { GetListProductSpResult } from './models/get-list-product-sp-result';
 export { GetListProductSpResultListResultCustomModel } from './models/get-list-product-sp-result-list-result-custom-model';
+export { Int32ResultCustomModel } from './models/int-32-result-custom-model';
 export { LoginCustomer } from './models/login-customer';
 export { LoginRequest } from './models/login-request';
 export { LoginResponse } from './models/login-response';
