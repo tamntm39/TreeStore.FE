@@ -1,33 +1,29 @@
-<div class="inventory-list">
-  <h2>Danh sách hàng tồn kho</h2>
-  
+<div class="inventory-list col-md-12 col-xl-8 tbl-card">
+  <h2 class="text-center">Danh sách hàng tồn kho</h2>
+
   <div class="d-flex align-items-center mb-3">
     <!-- Form tìm kiếm -->
     <form (ngSubmit)="onSearch()" #searchForm="ngForm" class="d-flex ms-auto">
       <input 
         type="text" 
         id="search" 
-        class="form-control me-2"
-        [(ngModel)]="searchTerm"
-        name="search"
+        class="form-control me-2" 
+        [(ngModel)]="searchTerm" 
+        name="search" 
         placeholder="Tìm kiếm sản phẩm" 
         required>
       <button type="submit" class="btn btn-secondary">Tìm kiếm</button>
     </form>
   </div>
 
-
-  
-    <!-- <form (ngSubmit)="onSearch()" #searchForm="ngForm" class="d-flex ms-auto"> -->
-
-  <table class="table table-hover mb-0">
+  <table class="table table-hover">
     <thead>
       <tr>
         <th>STT</th>
         <th>Hình ảnh</th>
         <th>Tên sản phẩm</th>
         <th>Số lượng</th>
-        <th>Thao tác</th>
+        <!-- <th>Thao tác</th> -->
       </tr>
     </thead>
     <tbody>
@@ -36,20 +32,23 @@
         <td>
           <img [src]="item.img ? rootUrl + '/' + item.img : 'path/to/default-image.jpg'" 
                alt="{{ item.productName }}" 
-               width="100" height="100" />
+               width="100" 
+               height="100" />
         </td>
         <td>{{ item.productName }}</td>
         <td>{{ item.quantity }}</td>
-        <td>
-          <button (click)="deleteInventoryItem(item.productId)" class="btn btn-danger btn-sm">
+        <!-- <td>
+          <button 
+            (click)="deleteInventoryItem(item.productId)" 
+            class="btn btn-danger btn-sm">
             Xóa
           </button>
-        </td>
+        </td> -->
       </tr>
     </tbody>
   </table>
 
-  <div *ngIf="inventoryItems.length === 0" class="no-data">
+  <div *ngIf="inventoryItems.length === 0" class="no-data text-center mt-3">
     Không có sản phẩm nào trong kho
   </div>
 </div>
