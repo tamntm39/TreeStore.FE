@@ -19,7 +19,10 @@
 
   
 
-  <h5 class="mb-3 mt-2">DOANH THU 7 NGÀY GẦN ĐÂY</h5>
+  <div class="d-flex justify-content-between align-items-center mb-3 mt-2">
+    <h5 class="mb-0">DOANH THU 7 NGÀY GẦN ĐÂY</h5>
+    <button class="btn btn-primary" (click)="exportExcel()">Xuất ra Excel</button>
+  </div>
 <app-card [showHeader]="false">
   <h6 class="mb-2 f-w-400 text-muted">Tổng tiền trong tuần qua:</h6>
   <h3 class="mb-3">{{ totalRevenue | number: '1.0-0' }} VND</h3>

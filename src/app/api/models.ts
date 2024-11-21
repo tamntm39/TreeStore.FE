@@ -8,6 +8,7 @@ export { CartItem } from './models/cart-item';
 export { Category } from './models/category';
 export { CategoryListResultCustomModel } from './models/category-list-result-custom-model';
 export { CategoryResultCustomModel } from './models/category-result-custom-model';
+export { CheckPromotionModel } from './models/check-promotion-model';
 export { CreateCategoryRequest } from './models/create-category-request';
 export { CreateCategoryRequestListResultCustomModel } from './models/create-category-request-list-result-custom-model';
 export { CreateOrderRequest } from './models/create-order-request';

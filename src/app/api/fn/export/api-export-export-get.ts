@@ -9,14 +9,12 @@ import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
 
-export interface ApiPromotionCheckPromotionCodeGet$Params {
-  promotionCode?: string;
+export interface ApiExportExportGet$Params {
 }
 
-export function apiPromotionCheckPromotionCodeGet(http: HttpClient, rootUrl: string, params?: ApiPromotionCheckPromotionCodeGet$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
-  const rb = new RequestBuilder(rootUrl, apiPromotionCheckPromotionCodeGet.PATH, 'get');
+export function apiExportExportGet(http: HttpClient, rootUrl: string, params?: ApiExportExportGet$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+  const rb = new RequestBuilder(rootUrl, apiExportExportGet.PATH, 'get');
   if (params) {
-    rb.query('promotionCode', params.promotionCode, {});
   }
 
   return http.request(
@@ -29,4 +27,4 @@ export function apiPromotionCheckPromotionCodeGet(http: HttpClient, rootUrl: str
   );
 }
 
-apiPromotionCheckPromotionCodeGet.PATH = '/api/Promotion/CheckPromotionCode';
+apiExportExportGet.PATH = '/api/Export/export';

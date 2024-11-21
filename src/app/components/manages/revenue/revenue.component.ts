@@ -1,12 +1,13 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApexOptions } from 'ng-apexcharts';
 import { OrderService } from 'src/app/api/services';
 import { ProductService } from 'src/app/api/services';
 import { CustomerService } from 'src/app/api/services';
-
 import { ReviewService } from 'src/app/api/services';
-
+import { ExportService } from 'src/app/api/services';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-revenue',
@@ -24,7 +25,8 @@ export class RevenueChartComponent implements OnInit {
     private productService: ProductService,
     private customerService: CustomerService,
     private reviewService: ReviewService,
-    private router: Router
+    private router: Router,
+    private http: HttpClient
   ) {}
 
   ngOnInit(): void {
@@ -108,7 +110,17 @@ export class RevenueChartComponent implements OnInit {
       }
     );
   }
-  
+  exportExcel() {
+    this.http.get("https://localhost:7072/api/Export/export", { responseType: 'blob' }).subscribe(
+      (response: Blob) => {
+        const fileName = 'Export.xlsx';
+        saveAs(response, fileName);
+      },
+      (error) => {
+        console.error('Error downloading the file:', error);
+      }
+    );
+  }
   loadTotalProducts(): void {
     this.productService.apiProductGetTotalProductsTotalProductsGet$Json$Response().subscribe(
       (response: any) => {

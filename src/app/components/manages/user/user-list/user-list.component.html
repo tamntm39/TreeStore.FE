@@ -31,7 +31,7 @@
             <th>Địa chỉ</th>
             <th>Quyền hạn</th>
             <th>Ngày sinh</th>
-            <th>Trạng thái</th>
+            <!-- <th>Trạng thái</th> -->
             <!-- <th>Thời gian tạo</th> -->
             <th>Thao tác</th>
           </tr>
@@ -45,13 +45,13 @@
             <td>{{ user.address }}</td>
             <td>{{ user.position }}</td> 
             <td>{{ user.birthday }}</td>
-            <td>
+            <!-- <td>
               <button 
               (click)="toggleUserActiveStatus(user)"
               [ngClass]="{'toggle-status-btn': true, 'unactive': !user.isActive}">
               {{ user.isActive ? 'Kích hoạt' : 'Vô hiệu khóa' }}
             </button>
-            </td>
+            </td> -->
             <!-- <td>{{ user.createOn }}</td> -->
             <td>
               <!-- Nút sửa -->
