@@ -4,6 +4,8 @@
 
 export { ActiveRequestPromotion } from './models/active-request-promotion';
 export { BooleanResultCustomModel } from './models/boolean-result-custom-model';
+export { CaptureOrderResponse } from './models/capture-order-response';
+export { CaptureOrderResponseResultCustomModel } from './models/capture-order-response-result-custom-model';
 export { CartItem } from './models/cart-item';
 export { Category } from './models/category';
 export { CategoryListResultCustomModel } from './models/category-list-result-custom-model';
@@ -11,6 +13,7 @@ export { CategoryResultCustomModel } from './models/category-result-custom-model
 export { CheckPromotionModel } from './models/check-promotion-model';
 export { CreateCategoryRequest } from './models/create-category-request';
 export { CreateCategoryRequestListResultCustomModel } from './models/create-category-request-list-result-custom-model';
+export { CreateOrderDto } from './models/create-order-dto';
 export { CreateOrderRequest } from './models/create-order-request';
 export { CreateProductRequest } from './models/create-product-request';
 export { CreateUserRequest } from './models/create-user-request';
@@ -30,6 +33,8 @@ export { GetListOrderSpResult } from './models/get-list-order-sp-result';
 export { GetListOrderSpResultListResultCustomModel } from './models/get-list-order-sp-result-list-result-custom-model';
 export { GetListProductSpResult } from './models/get-list-product-sp-result';
 export { GetListProductSpResultListResultCustomModel } from './models/get-list-product-sp-result-list-result-custom-model';
+export { GetReviewInfoWithCustomerResult } from './models/get-review-info-with-customer-result';
+export { GetReviewInfoWithCustomerResultListResultCustomModel } from './models/get-review-info-with-customer-result-list-result-custom-model';
 export { Int32ResultCustomModel } from './models/int-32-result-custom-model';
 export { LoginCustomer } from './models/login-customer';
 export { LoginRequest } from './models/login-request';

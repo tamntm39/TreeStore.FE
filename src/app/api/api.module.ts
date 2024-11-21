@@ -11,6 +11,7 @@ import { CustomerService } from './services/customer.service';
 import { ExportService } from './services/export.service';
 import { LoginService } from './services/login.service';
 import { OrderService } from './services/order.service';
+import { PayPalService } from './services/pay-pal.service';
 import { ProductService } from './services/product.service';
 import { PromotionService } from './services/promotion.service';
 import { ReviewService } from './services/review.service';
@@ -30,6 +31,7 @@ import { UserService } from './services/user.service';
     ExportService,
     LoginService,
     OrderService,
+    PayPalService,
     ProductService,
     PromotionService,
     ReviewService,

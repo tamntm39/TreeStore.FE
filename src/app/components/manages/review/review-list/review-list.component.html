@@ -10,7 +10,7 @@
             <th>STT</th>
             <th>Mã sản phẩm</th>
             <th>Mã bình luận</th>
-            <th>Mã khách hàng</th>
+            <th>Tên khách hàng</th>
             <th>Bình luận</th>
             <th>Hành động</th> <!-- Cột cho hành động -->
           </tr>
@@ -20,7 +20,7 @@
             <td>{{ i + 1 }}</td> <!-- Hiển thị STT -->
             <td>{{ review.productId }}</td> 
             <td>{{ review.reviewId }}</td>
-            <td>{{ review.productId }}</td>
+            <td>{{ review.fullName }}</td>
             <td>{{ review.comment }}</td> <!-- Bình luận -->
             <td>
               <button (click)="deleteReview(review.reviewId)" class="btn btn-danger btn-sm">Xóa</button> <!-- Gọi deleteReview với reviewId -->

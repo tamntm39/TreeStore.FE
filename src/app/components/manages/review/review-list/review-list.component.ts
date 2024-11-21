@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ReviewService } from 'src/app/api/services'; // Cập nhật đường dẫn cho service
-import { Review, ReviewResponse } from 'src/app/api/models'; // Cập nhật đường dẫn cho model
+import { GetReviewInfoWithCustomerResult, Review } from 'src/app/api/models'; // Cập nhật đường dẫn cho model
 import { Router } from '@angular/router';
 import { BooleanResultCustomModel } from 'src/app/api/models/boolean-result-custom-model'; // Cập nhật đường dẫn cho phù hợp
 
 import Swal from 'sweetalert2'; // Để hiển thị thông báo
 import { StrictHttpResponse } from 'src/app/api/strict-http-response';
+import { ApiConfiguration } from 'src/app/api/api-configuration';
 
 @Component({
   selector: 'app-review-list',
@@ -13,8 +14,15 @@ import { StrictHttpResponse } from 'src/app/api/strict-http-response';
   styleUrls: ['./review-list.component.scss']
 })
 export class ReviewListComponent implements OnInit {
-  listReviewDB: Array<Review> = []; 
-  reviews: Review[] =[];
+  listReviewDB: GetReviewInfoWithCustomerResult[] = []; 
+
+  private _reviews: Review[] = [];
+  public get reviews(): Review[] {
+    return this._reviews;
+  }
+  public set reviews(value: Review[]) {
+    this._reviews = value;
+  }
   constructor(
     private reviewService: ReviewService,
     private router: Router
@@ -26,7 +34,7 @@ export class ReviewListComponent implements OnInit {
   }
 
   loadReviews(): void {
-    this.reviewService.apiReviewListReviewGet$Json$Response().subscribe((rs) => {
+    this.reviewService.apiReviewListCustomersGet$Json$Response().subscribe((rs) => {
       const response = rs.body;
       if (response.success) {
         this.listReviewDB = response.data;
