@@ -9,11 +9,11 @@ import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
 
-export interface ApiOrderGetRevenueLast7DaysGet$Params {
+export interface ApiExportExportGet$Params {
 }
 
-export function apiOrderGetRevenueLast7DaysGet(http: HttpClient, rootUrl: string, params?: ApiOrderGetRevenueLast7DaysGet$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
-  const rb = new RequestBuilder(rootUrl, apiOrderGetRevenueLast7DaysGet.PATH, 'get');
+export function apiExportExportGet(http: HttpClient, rootUrl: string, params?: ApiExportExportGet$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+  const rb = new RequestBuilder(rootUrl, apiExportExportGet.PATH, 'get');
   if (params) {
   }
 
@@ -27,4 +27,4 @@ export function apiOrderGetRevenueLast7DaysGet(http: HttpClient, rootUrl: string
   );
 }
 
-apiOrderGetRevenueLast7DaysGet.PATH = '/api/Order/GetRevenueLast7Days';
+apiExportExportGet.PATH = '/api/Export/export';

@@ -4,6 +4,7 @@
 
 export { CategoryService } from './services/category.service';
 export { CustomerService } from './services/customer.service';
+export { ExportService } from './services/export.service';
 export { LoginService } from './services/login.service';
 export { OrderService } from './services/order.service';
 export { ProductService } from './services/product.service';

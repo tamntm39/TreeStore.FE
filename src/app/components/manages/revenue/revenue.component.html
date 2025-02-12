@@ -1,1 +1,64 @@
-<p>revenue works!</p>
+<div class="revenue-chart-container">
+    <!-- Title or Header -->
+   
+  
+    <!-- Chart Container -->
+    <div *ngIf="revenues.length > 0" class="chart">
+      <apx-chart 
+        [options]="chartOptions" 
+        [height]="chartOptions.chart.height" 
+        [type]="chartOptions.chart.type">
+      </apx-chart>
+    </div>
+  
+    <!-- Loading or No Data Message -->
+    <div *ngIf="revenues.length === 0" class="no-data">
+      <p>Không có dữ liệu doanh thu trong 7 ngày qua.</p>
+    </div>
+  </div>
+
+  
+
+  <div class="d-flex justify-content-between align-items-center mb-3 mt-2">
+    <h5 class="mb-0">DOANH THU 7 NGÀY GẦN ĐÂY</h5>
+    <button class="btn btn-primary" (click)="exportExcel()">Xuất ra Excel</button>
+  </div>
+<app-card [showHeader]="false">
+  <h6 class="mb-2 f-w-400 text-muted">Tổng tiền trong tuần qua:</h6>
+  <h3 class="mb-3">{{ totalRevenue | number: '1.0-0' }} VND</h3>
+  <apx-chart
+    [series]="chartOptions.series"
+    [chart]="chartOptions.chart"
+    [plotOptions]="chartOptions.plotOptions"
+    [dataLabels]="chartOptions.dataLabels"
+    [xaxis]="chartOptions.xaxis"
+    [colors]="chartOptions.colors"
+    [stroke]="chartOptions.stroke"
+    [yaxis]="chartOptions.yaxis"
+    [grid]="chartOptions.grid"
+    [tooltip]="chartOptions.tooltip"
+  ></apx-chart>
+</app-card>
+<div class="container mt-4">
+  <div class="row">
+    <div *ngFor="let item of AnalyticEcommerce" class="col-md-3 mb-4">
+      <div [class]="'card ' + item.border">
+        <div [class]="'card-body ' + item.background">
+          <div class="d-flex flex-column justify-content-between h-100">
+            <!-- Tiêu đề -->
+            <div class="mb-3">
+              <h5 class="card-title fw-bold" [style.fontSize]="'1.2rem'">{{ item.title }}</h5>
+            </div>
+
+            <!-- Icon -->
+            <div class="d-flex justify-content-between align-items-center">
+              <i [class]="'bi ' + item.icon + ' display-4 ' + item.color"></i>
+              <!-- Số liệu -->
+              <h6 class="card-number fw-bold text-end" [style.fontSize]="'2rem'">{{ item.number }}</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

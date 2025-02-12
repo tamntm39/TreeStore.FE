@@ -23,11 +23,20 @@ import { apiReviewGetByIdGetIdGet$Json } from '../fn/review/api-review-get-by-id
 import { ApiReviewGetByIdGetIdGet$Json$Params } from '../fn/review/api-review-get-by-id-get-id-get-json';
 import { apiReviewGetByIdGetIdGet$Plain } from '../fn/review/api-review-get-by-id-get-id-get-plain';
 import { ApiReviewGetByIdGetIdGet$Plain$Params } from '../fn/review/api-review-get-by-id-get-id-get-plain';
+import { apiReviewGetReviewsByProductIdProductIdGet$Json } from '../fn/review/api-review-get-reviews-by-product-id-product-id-get-json';
+import { ApiReviewGetReviewsByProductIdProductIdGet$Json$Params } from '../fn/review/api-review-get-reviews-by-product-id-product-id-get-json';
+import { apiReviewGetReviewsByProductIdProductIdGet$Plain } from '../fn/review/api-review-get-reviews-by-product-id-product-id-get-plain';
+import { ApiReviewGetReviewsByProductIdProductIdGet$Plain$Params } from '../fn/review/api-review-get-reviews-by-product-id-product-id-get-plain';
+import { apiReviewGetTotalReviewsTotalReviewsGet$Json } from '../fn/review/api-review-get-total-reviews-total-reviews-get-json';
+import { ApiReviewGetTotalReviewsTotalReviewsGet$Json$Params } from '../fn/review/api-review-get-total-reviews-total-reviews-get-json';
+import { apiReviewGetTotalReviewsTotalReviewsGet$Plain } from '../fn/review/api-review-get-total-reviews-total-reviews-get-plain';
+import { ApiReviewGetTotalReviewsTotalReviewsGet$Plain$Params } from '../fn/review/api-review-get-total-reviews-total-reviews-get-plain';
 import { apiReviewListReviewGet$Json } from '../fn/review/api-review-list-review-get-json';
 import { ApiReviewListReviewGet$Json$Params } from '../fn/review/api-review-list-review-get-json';
 import { apiReviewListReviewGet$Plain } from '../fn/review/api-review-list-review-get-plain';
 import { ApiReviewListReviewGet$Plain$Params } from '../fn/review/api-review-list-review-get-plain';
 import { BooleanResultCustomModel } from '../models/boolean-result-custom-model';
+import { Int32ResultCustomModel } from '../models/int-32-result-custom-model';
 import { ReviewResponseListResultCustomModel } from '../models/review-response-list-result-custom-model';
 import { ReviewResponseResultCustomModel } from '../models/review-response-result-custom-model';
 
@@ -222,6 +231,100 @@ export class ReviewService extends BaseService {
   apiReviewCreateReviewPost$Json(params?: ApiReviewCreateReviewPost$Json$Params, context?: HttpContext): Observable<BooleanResultCustomModel> {
     return this.apiReviewCreateReviewPost$Json$Response(params, context).pipe(
       map((r: StrictHttpResponse<BooleanResultCustomModel>): BooleanResultCustomModel => r.body)
+    );
+  }
+
+  /** Path part for operation `apiReviewGetReviewsByProductIdProductIdGet()` */
+  static readonly ApiReviewGetReviewsByProductIdProductIdGetPath = '/api/Review/GetReviewsByProductId/{productId}';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiReviewGetReviewsByProductIdProductIdGet$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiReviewGetReviewsByProductIdProductIdGet$Plain$Response(params: ApiReviewGetReviewsByProductIdProductIdGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<ReviewResponseListResultCustomModel>> {
+    return apiReviewGetReviewsByProductIdProductIdGet$Plain(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiReviewGetReviewsByProductIdProductIdGet$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiReviewGetReviewsByProductIdProductIdGet$Plain(params: ApiReviewGetReviewsByProductIdProductIdGet$Plain$Params, context?: HttpContext): Observable<ReviewResponseListResultCustomModel> {
+    return this.apiReviewGetReviewsByProductIdProductIdGet$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<ReviewResponseListResultCustomModel>): ReviewResponseListResultCustomModel => r.body)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiReviewGetReviewsByProductIdProductIdGet$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiReviewGetReviewsByProductIdProductIdGet$Json$Response(params: ApiReviewGetReviewsByProductIdProductIdGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<ReviewResponseListResultCustomModel>> {
+    return apiReviewGetReviewsByProductIdProductIdGet$Json(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiReviewGetReviewsByProductIdProductIdGet$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiReviewGetReviewsByProductIdProductIdGet$Json(params: ApiReviewGetReviewsByProductIdProductIdGet$Json$Params, context?: HttpContext): Observable<ReviewResponseListResultCustomModel> {
+    return this.apiReviewGetReviewsByProductIdProductIdGet$Json$Response(params, context).pipe(
+      map((r: StrictHttpResponse<ReviewResponseListResultCustomModel>): ReviewResponseListResultCustomModel => r.body)
+    );
+  }
+
+  /** Path part for operation `apiReviewGetTotalReviewsTotalReviewsGet()` */
+  static readonly ApiReviewGetTotalReviewsTotalReviewsGetPath = '/api/Review/GetTotalReviews/total-reviews';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiReviewGetTotalReviewsTotalReviewsGet$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiReviewGetTotalReviewsTotalReviewsGet$Plain$Response(params?: ApiReviewGetTotalReviewsTotalReviewsGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<Int32ResultCustomModel>> {
+    return apiReviewGetTotalReviewsTotalReviewsGet$Plain(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiReviewGetTotalReviewsTotalReviewsGet$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiReviewGetTotalReviewsTotalReviewsGet$Plain(params?: ApiReviewGetTotalReviewsTotalReviewsGet$Plain$Params, context?: HttpContext): Observable<Int32ResultCustomModel> {
+    return this.apiReviewGetTotalReviewsTotalReviewsGet$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<Int32ResultCustomModel>): Int32ResultCustomModel => r.body)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiReviewGetTotalReviewsTotalReviewsGet$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiReviewGetTotalReviewsTotalReviewsGet$Json$Response(params?: ApiReviewGetTotalReviewsTotalReviewsGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<Int32ResultCustomModel>> {
+    return apiReviewGetTotalReviewsTotalReviewsGet$Json(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiReviewGetTotalReviewsTotalReviewsGet$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiReviewGetTotalReviewsTotalReviewsGet$Json(params?: ApiReviewGetTotalReviewsTotalReviewsGet$Json$Params, context?: HttpContext): Observable<Int32ResultCustomModel> {
+    return this.apiReviewGetTotalReviewsTotalReviewsGet$Json$Response(params, context).pipe(
+      map((r: StrictHttpResponse<Int32ResultCustomModel>): Int32ResultCustomModel => r.body)
     );
   }
 
